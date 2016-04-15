@@ -1,16 +1,19 @@
 package com.cgi.recruitment.fx.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.cgi.recruitment.BootFxRecApplication;
 import com.cgi.recruitment.fx.models.FxPerson;
+import com.cgi.recruitment.fx.models.PersonOverviewModel;
 import com.cgi.recruitment.shared.DateConverter;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+@Component
 public class PersonOverviewController {
     @FXML
     private TableView<FxPerson> personTable;
@@ -39,6 +42,8 @@ public class PersonOverviewController {
     @FXML
     private Label commentsLabel;
     
+    @Autowired
+    private PersonOverviewModel personModel;
     
 
     // Reference to the main application.
@@ -49,6 +54,7 @@ public class PersonOverviewController {
      * The constructor is called before the initialize() method.
      */
     public PersonOverviewController() {
+    	System.out.println("PersonOverviewController created");
     }
 
     /**
@@ -62,8 +68,11 @@ public class PersonOverviewController {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
         
-        fillPersonTable();
         showPersonDetails(null);
+        
+        personModel.fillListWithTestData();
+        
+        personTable.setItems(personModel.getPersonData());
         
         personTable.getSelectionModel().selectedItemProperty().addListener(
         		(observable, oldValue, newValue) -> showPersonDetails(newValue)
@@ -78,22 +87,6 @@ public class PersonOverviewController {
      */
     public void setMainApp(BootFxRecApplication fxApp) {
         this.fxApp = fxApp;
-    }
-    
-    private void fillPersonTable () {
-        ObservableList<FxPerson> personData = FXCollections.observableArrayList();
-        
-        personData.add(new FxPerson("Hans", "Muster"));
-        personData.add(new FxPerson("Ruth", "Mueller"));
-        personData.add(new FxPerson("Heinz", "Kurz"));
-        personData.add(new FxPerson("Cornelia", "Meier","cornelia.meier@gmail.com","0615847542","Biology",DateConverter.parse("01.01.2017"),"Tester","Amsterdam",DateConverter.parse("01.02.2017"),"none"));
-        personData.add(new FxPerson("Werner", "Meyer"));
-        personData.add(new FxPerson("Lydia", "Kunz"));
-        personData.add(new FxPerson("Anna", "Best"));
-        personData.add(new FxPerson("Stefan", "Meier"));
-        personData.add(new FxPerson("Martin", "Mueller"));
-        // Add observable list data to the table
-        personTable.setItems(personData);
     }
     
     /**
@@ -132,7 +125,9 @@ public class PersonOverviewController {
             commentsLabel.setText("");
         }
     }
-    
+    /**
+     * If Button new is clicked.
+     */
     @FXML
     private void handleNewPerson () {
     	System.out.println("Button New.. Clicked");
