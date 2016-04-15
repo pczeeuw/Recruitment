@@ -1,5 +1,7 @@
 package com.cgi.recruitment.fx.controllers;
 
+import org.springframework.stereotype.Component;
+
 import com.cgi.recruitment.fx.models.FxPerson;
 
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+@Component
 public class AddPersonController {
 
 	@FXML

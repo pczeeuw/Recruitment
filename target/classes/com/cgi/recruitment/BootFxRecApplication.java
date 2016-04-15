@@ -30,10 +30,14 @@ public class BootFxRecApplication extends Application{
 	
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(BootFxRecApplication.class, args);
 		BootFxRecApplication.context = context;
+		
+		FXMLLoader loader = new FXMLLoader ();
+		loader.setControllerFactory(context::getBean);
 		
 		Application.launch(args);
 	}
@@ -51,6 +55,7 @@ public class BootFxRecApplication extends Application{
 	
 	private void initRootLayout () {
 		FXMLLoader loader = new FXMLLoader ();
+		loader.setControllerFactory(context::getBean);
 		Resource resource = context.getBean("RootLayoutResource", Resource.class);
 		
 		System.out.println(resource.toString() + " exists= " + resource.exists());
@@ -68,6 +73,7 @@ public class BootFxRecApplication extends Application{
 	
 	public void showPersonOverview () {
 		FXMLLoader loader = new FXMLLoader ();
+		loader.setControllerFactory(context::getBean);
 		Resource resource = context.getBean("PersonOverviewResource", Resource.class);
 		System.out.println(resource.toString() + " exists= " + resource.exists());
 		
@@ -90,6 +96,7 @@ public class BootFxRecApplication extends Application{
 	
 	public void showAddPersonDialog () {
 		FXMLLoader loader = new FXMLLoader ();
+		loader.setControllerFactory(context::getBean);
 		Resource resource = context.getBean("AddPersonResource",Resource.class);
 		
 		try {
