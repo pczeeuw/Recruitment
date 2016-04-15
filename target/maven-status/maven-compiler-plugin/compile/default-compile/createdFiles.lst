@@ -1,3 +1,4 @@
-nl\pczeeuw\fx\FXApp.class
-nl\pczeeuw\fx\FXConfig.class
-nl\pczeeuw\BootFxRecApplication.class
+com\cgi\recruitment\fx\models\FxPerson.class
+com\cgi\recruitment\BootFxRecApplication.class
+com\cgi\recruitment\fx\FXApp.class
+com\cgi\recruitment\fx\FXConfig.class

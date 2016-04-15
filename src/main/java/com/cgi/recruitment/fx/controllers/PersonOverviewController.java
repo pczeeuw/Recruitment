@@ -2,6 +2,7 @@ package com.cgi.recruitment.fx.controllers;
 
 import com.cgi.recruitment.BootFxRecApplication;
 import com.cgi.recruitment.fx.models.FxPerson;
+import com.cgi.recruitment.shared.DateConverter;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,19 +18,28 @@ public class PersonOverviewController {
     private TableColumn<FxPerson, String> firstNameColumn;
     @FXML
     private TableColumn<FxPerson, String> lastNameColumn;
-
     @FXML
     private Label firstNameLabel;
     @FXML
     private Label lastNameLabel;
     @FXML
-    private Label streetLabel;
+    private Label emailLabel;
     @FXML
-    private Label postalCodeLabel;
+    private Label phoneLabel;
     @FXML
-    private Label cityLabel;
+    private Label studyLabel;
     @FXML
-    private Label birthdayLabel;
+    private Label graduationLabel;
+    @FXML
+    private Label lookingForLabel;
+    @FXML
+    private Label workLocationLabel;
+    @FXML
+    private Label prefStartDateLabel;
+    @FXML
+    private Label commentsLabel;
+    
+    
 
     // Reference to the main application.
     private BootFxRecApplication fxApp;
@@ -78,7 +88,7 @@ public class PersonOverviewController {
         personData.add(new FxPerson("Hans", "Muster"));
         personData.add(new FxPerson("Ruth", "Mueller"));
         personData.add(new FxPerson("Heinz", "Kurz"));
-        personData.add(new FxPerson("Cornelia", "Meier"));
+        personData.add(new FxPerson("Cornelia", "Meier","cornelia.meier@gmail.com","0615847542","Biology",DateConverter.parse("01.01.2017"),"Tester","Amsterdam",DateConverter.parse("01.02.2017"),"none"));
         personData.add(new FxPerson("Werner", "Meyer"));
         personData.add(new FxPerson("Lydia", "Kunz"));
         personData.add(new FxPerson("Anna", "Best"));
@@ -99,9 +109,14 @@ public class PersonOverviewController {
             // Fill the labels with info from the person object.
             firstNameLabel.setText(person.getFirstName());
             lastNameLabel.setText(person.getLastName());
-            streetLabel.setText(person.getStreet());
-            postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
-            cityLabel.setText(person.getCity());
+            emailLabel.setText(person.getEmailAddress());
+            phoneLabel.setText(person.getPhoneNumber());
+            studyLabel.setText(person.getStudy());
+            graduationLabel.setText(DateConverter.format(person.getGraduationDate()));
+            lookingForLabel.setText(person.getLookingFor());
+            workLocationLabel.setText(person.getWorkLocation());
+            prefStartDateLabel.setText(DateConverter.format(person.getWorkStartDate()));
+            commentsLabel.setText(person.getComments());
 
             // TODO: We need a way to convert the birthday into a String! 
             // birthdayLabel.setText(...);
@@ -109,10 +124,14 @@ public class PersonOverviewController {
             // Person is null, remove all the text.
             firstNameLabel.setText("");
             lastNameLabel.setText("");
-            streetLabel.setText("");
-            postalCodeLabel.setText("");
-            cityLabel.setText("");
-            birthdayLabel.setText("");
+            emailLabel.setText("");
+            phoneLabel.setText("");
+            studyLabel.setText("");
+            graduationLabel.setText("");
+            lookingForLabel.setText("");
+            workLocationLabel.setText("");
+            prefStartDateLabel.setText("");
+            commentsLabel.setText("");
         }
     }
 }

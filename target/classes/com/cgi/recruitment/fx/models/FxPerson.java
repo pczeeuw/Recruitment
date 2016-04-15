@@ -2,8 +2,8 @@ package com.cgi.recruitment.fx.models;
 
 import java.time.LocalDate;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,14 +16,14 @@ public class FxPerson {
 
 	private final StringProperty firstName;
 	private final StringProperty lastName;
-	private  StringProperty emailAddress;
-	private  IntegerProperty phoneNumber;
-	private  StringProperty study;
-	private ObjectProperty<LocalDate> graduationDate;
-	private  StringProperty lookingFor;
-	private  StringProperty workLocation;
-	private ObjectProperty<LocalDate> workStartDate;
-	private  StringProperty comments;
+	private final StringProperty emailAddress;
+	private final StringProperty phoneNumber;
+	private final StringProperty study;
+	private final ObjectProperty<LocalDate> graduationDate;
+	private final StringProperty lookingFor;
+	private final StringProperty workLocation;
+	private final ObjectProperty<LocalDate> prefStartDate;
+	private final StringProperty comments;
 
 	/**
 	 * Default constructor.
@@ -39,8 +39,20 @@ public class FxPerson {
 	 * @param lastName
 	 */
 	public FxPerson(String firstName, String lastName) {
+		this (firstName, lastName, null,null,null,null,null,null,null,null);
+	}
+	
+	public FxPerson(String firstName, String lastName, String emailAddress, String phoneNumber, String study, LocalDate graduationDate, String lookingFor, String workLocation, LocalDate prefStartDate, String comments) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
+		this.emailAddress = new SimpleStringProperty(emailAddress);
+		this.phoneNumber = new SimpleStringProperty(phoneNumber);
+		this.study = new SimpleStringProperty(study);
+		this.graduationDate = new SimpleObjectProperty<>(graduationDate);
+		this.lookingFor = new SimpleStringProperty(lookingFor);
+		this.workLocation = new SimpleStringProperty(workLocation);
+		this.prefStartDate = new SimpleObjectProperty<>(prefStartDate);
+		this.comments = new SimpleStringProperty(comments);
 	}
 
 	public String getFirstName() {
@@ -79,15 +91,15 @@ public class FxPerson {
 		this.emailAddress.set(emailAddress);
 	}
 
-	public IntegerProperty getPhoneNumberProperty () {
+	public StringProperty getPhoneNumberProperty () {
 		return phoneNumber;
 	}
 	
-	public Integer getPhoneNumber () {
+	public String getPhoneNumber () {
 		return this.phoneNumber.get();
 	}
 	
-	public void setPhoneNumber(Integer phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber.set(phoneNumber);
 	}
 
@@ -141,15 +153,15 @@ public class FxPerson {
 	}
 
 	public ObjectProperty<LocalDate> getWorkStartDateProperty() {
-		return workStartDate;
+		return prefStartDate;
 	}
 	
 	public LocalDate getWorkStartDate() {
-		return workStartDate.get();
+		return prefStartDate.get();
 	}
 	
 	public void setWorkStartDate(LocalDate startDate) {
-		this.workStartDate.set(startDate);
+		this.prefStartDate.set(startDate);
 	}
 
 	public StringProperty getCommentsProperty() {
