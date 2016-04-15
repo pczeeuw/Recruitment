@@ -75,7 +75,7 @@
                   </GridPane>
                   <Button layoutX="337.0" layoutY="253.0" mnemonicParsing="false" prefWidth="70.0" text="Delete" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                   <Button layoutX="263.0" layoutY="253.0" mnemonicParsing="false" prefWidth="70.0" text="Edit..." AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="85.0" />
-                  <Button layoutX="190.0" layoutY="253.0" mnemonicParsing="false" prefWidth="70.0" text="New..." AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="165.0" />
+                  <Button layoutX="190.0" layoutY="253.0" mnemonicParsing="false" onAction="#handleNewPerson" prefWidth="70.0" text="New..." AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="165.0" />
                </children>
             </AnchorPane>
         </items>

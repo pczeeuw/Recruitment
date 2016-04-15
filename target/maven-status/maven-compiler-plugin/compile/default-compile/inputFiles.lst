@@ -2,5 +2,6 @@ D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\BootFx
 D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\FXConfig.java
 D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\controllers\PersonOverviewController.java
 D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\FXApp.java
+D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\shared\DateConverter.java
 D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\controllers\AddPersonController.java
 D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\models\FxPerson.java

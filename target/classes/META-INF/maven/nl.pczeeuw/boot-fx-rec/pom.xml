@@ -108,4 +108,27 @@
 
 
 
+	<organization>
+		<name>CGI Nederland</name>
+		<url>www.cgi.com/nl/</url>
+	</organization>
+	<scm>
+		<url>https://github.com/pczeeuw/recruitment</url>
+		<connection>scm:git:git://github.com/pczeeuw/recruitment.git</connection>
+		<developerConnection>pczeeuw</developerConnection>
+	</scm>
+
+	<issueManagement>
+		<url>https://github.com/pczeeuw/recruitment/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+	<developers>
+		<developer>
+			<email>pczeeuw@gmail.com</email>
+			<name>Pieter Zeeuw</name>
+			<url>https://github.com/pczeeuw</url>
+			<id>pczeeuw</id>
+		</developer>
+	</developers>
 </project>

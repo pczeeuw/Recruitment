@@ -78,8 +78,6 @@ public class PersonOverviewController {
      */
     public void setMainApp(BootFxRecApplication fxApp) {
         this.fxApp = fxApp;
-
-
     }
     
     private void fillPersonTable () {
@@ -133,5 +131,14 @@ public class PersonOverviewController {
             prefStartDateLabel.setText("");
             commentsLabel.setText("");
         }
+    }
+    
+    @FXML
+    private void handleNewPerson () {
+    	System.out.println("Button New.. Clicked");
+    	if (fxApp == null) {
+    		System.err.println("FxApp is not set!");
+    	}
+    	fxApp.showAddPersonDialog();
     }
 }

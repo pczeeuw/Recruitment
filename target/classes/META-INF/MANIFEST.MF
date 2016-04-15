@@ -5,5 +5,5 @@ Built-By: pczee
 Implementation-Vendor-Id: nl.pczeeuw
 Build-Jdk: 1.8.0_60
 Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Vendor: CGI Nederland
 

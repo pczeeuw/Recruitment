@@ -24,7 +24,8 @@ public class FXConfig {
 	
 	@Bean(name="AddPersonResource")
 	public Resource getAddPersonResource (ResourceLoader resourceLoader) {
-		Resource result = resourceLoader.getResource("classpath:/views/ContactDetails.fxml");
+		System.err.println("Getting resource");
+		Resource result = resourceLoader.getResource("classpath:/views/AddPerson.fxml");
 		System.out.println(result.toString());
 		return result;
 	}
