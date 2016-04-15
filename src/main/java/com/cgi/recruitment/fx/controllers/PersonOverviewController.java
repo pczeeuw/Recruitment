@@ -52,6 +52,7 @@ public class PersonOverviewController {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
         
+        fillPersonTable();
         showPersonDetails(null);
         
         personTable.getSelectionModel().selectedItemProperty().addListener(
@@ -68,6 +69,10 @@ public class PersonOverviewController {
     public void setMainApp(BootFxRecApplication fxApp) {
         this.fxApp = fxApp;
 
+
+    }
+    
+    private void fillPersonTable () {
         ObservableList<FxPerson> personData = FXCollections.observableArrayList();
         
         personData.add(new FxPerson("Hans", "Muster"));

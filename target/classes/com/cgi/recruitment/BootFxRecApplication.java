@@ -77,7 +77,7 @@ public class BootFxRecApplication extends Application{
 			rootLayout.setCenter(personOverview);
 			
 			PersonOverviewController controller = loader.getController();
-			controller.setMainApp(this);
+			//controller.setMainApp(this);
 		
 		} catch (IOException e) {
 			e.printStackTrace();

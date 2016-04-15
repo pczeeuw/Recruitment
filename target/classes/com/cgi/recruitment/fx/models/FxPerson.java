@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -18,10 +16,14 @@ public class FxPerson {
 
 	private final StringProperty firstName;
 	private final StringProperty lastName;
-	private final StringProperty street;
-	private final IntegerProperty postalCode;
-	private final StringProperty city;
-	private final ObjectProperty<LocalDate> birthday;
+	private  StringProperty emailAddress;
+	private  IntegerProperty phoneNumber;
+	private  StringProperty study;
+	private ObjectProperty<LocalDate> graduationDate;
+	private  StringProperty lookingFor;
+	private  StringProperty workLocation;
+	private ObjectProperty<LocalDate> workStartDate;
+	private  StringProperty comments;
 
 	/**
 	 * Default constructor.
@@ -39,12 +41,6 @@ public class FxPerson {
 	public FxPerson(String firstName, String lastName) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
-
-		// Some initial dummy data, just for convenient testing.
-		this.street = new SimpleStringProperty("some street");
-		this.postalCode = new SimpleIntegerProperty(1234);
-		this.city = new SimpleStringProperty("some city");
-		this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
 	}
 
 	public String getFirstName() {
@@ -71,51 +67,102 @@ public class FxPerson {
 		return lastName;
 	}
 
-	public String getStreet() {
-		return street.get();
+	public StringProperty emailAddressProperty() {
+		return emailAddress;
+	}
+	
+	public String getEmailAddress () {
+		return this.emailAddress.get();
+	}
+	
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress.set(emailAddress);
 	}
 
-	public void setStreet(String street) {
-		this.street.set(street);
+	public IntegerProperty getPhoneNumberProperty () {
+		return phoneNumber;
+	}
+	
+	public Integer getPhoneNumber () {
+		return this.phoneNumber.get();
+	}
+	
+	public void setPhoneNumber(Integer phoneNumber) {
+		this.phoneNumber.set(phoneNumber);
 	}
 
-	public StringProperty streetProperty() {
-		return street;
+
+	public StringProperty getStudyProperty() {
+		return study;
+	}
+	
+	public String getStudy () {
+		return this.study.get();
+	}
+	
+	public void setStudy(String study) {
+		this.study.set(study);
 	}
 
-	public int getPostalCode() {
-		return postalCode.get();
+	public ObjectProperty<LocalDate> getGraduationDateProperty() {
+		return graduationDate;
+	}
+	
+	public LocalDate getGraduationDate() {
+		return graduationDate.get();
+	}
+	
+	public void setGraduationDate(LocalDate gradDate) {
+		this.graduationDate.set(gradDate);
 	}
 
-	public void setPostalCode(int postalCode) {
-		this.postalCode.set(postalCode);
+	public StringProperty getLookingForProperty() {
+		return lookingFor;
+	}
+	
+	public String getLookingFor() {
+		return lookingFor.get();
+	}
+	
+	public void setLookingFor(String lookingFor) {
+		this.lookingFor.set(lookingFor);
 	}
 
-	public IntegerProperty postalCodeProperty() {
-		return postalCode;
+	public StringProperty getWorkLocationProperty() {
+		return workLocation;
+	}
+	
+	public String getWorkLocation() {
+		return workLocation.get();
+	}
+	
+	public void setWorkLocation(String workLocation) {
+		this.workLocation.set(workLocation);
 	}
 
-	public String getCity() {
-		return city.get();
+	public ObjectProperty<LocalDate> getWorkStartDateProperty() {
+		return workStartDate;
+	}
+	
+	public LocalDate getWorkStartDate() {
+		return workStartDate.get();
+	}
+	
+	public void setWorkStartDate(LocalDate startDate) {
+		this.workStartDate.set(startDate);
 	}
 
-	public void setCity(String city) {
-		this.city.set(city);
+	public StringProperty getCommentsProperty() {
+		return comments;
+	}
+	
+	public String getComments() {
+		return comments.get();
+	}
+	
+	public void setComments(String comments) {
+		this.comments.set(comments);
 	}
 
-	public StringProperty cityProperty() {
-		return city;
-	}
 
-	public LocalDate getBirthday() {
-		return birthday.get();
-	}
-
-	public void setBirthday(LocalDate birthday) {
-		this.birthday.set(birthday);
-	}
-
-	public ObjectProperty<LocalDate> birthdayProperty() {
-		return birthday;
-	}
 }
