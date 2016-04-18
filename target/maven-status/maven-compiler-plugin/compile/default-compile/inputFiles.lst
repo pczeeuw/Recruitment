@@ -1,7 +1,8 @@
-D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\BootFxRecApplication.java
-D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\FXConfig.java
-D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\controllers\PersonOverviewController.java
-D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\FXApp.java
-D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\shared\DateConverter.java
-D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\controllers\AddPersonController.java
-D:\Dev\workspaces\ws_spring\recruitment\src\main\java\com\cgi\recruitment\fx\models\FxPerson.java
+C:\Dev\Tools\spring_workspace\boot-fx-rec\src\main\java\com\cgi\recruitment\fx\models\PersonOverviewModel.java
+C:\Dev\Tools\spring_workspace\boot-fx-rec\src\main\java\com\cgi\recruitment\BootFxRecApplication.java
+C:\Dev\Tools\spring_workspace\boot-fx-rec\src\main\java\com\cgi\recruitment\fx\FXConfig.java
+C:\Dev\Tools\spring_workspace\boot-fx-rec\src\main\java\com\cgi\recruitment\fx\controllers\AddPersonController.java
+C:\Dev\Tools\spring_workspace\boot-fx-rec\src\main\java\com\cgi\recruitment\fx\models\FxPerson.java
+C:\Dev\Tools\spring_workspace\boot-fx-rec\src\main\java\com\cgi\recruitment\fx\controllers\PersonOverviewController.java
+C:\Dev\Tools\spring_workspace\boot-fx-rec\src\main\java\com\cgi\recruitment\fx\FXApp.java
+C:\Dev\Tools\spring_workspace\boot-fx-rec\src\main\java\com\cgi\recruitment\shared\DateConverter.java

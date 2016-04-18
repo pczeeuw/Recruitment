@@ -3,10 +3,10 @@ package com.cgi.recruitment.fx.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cgi.recruitment.BootFxRecApplication;
+import com.cgi.recruitment.fx.FXApp;
 import com.cgi.recruitment.fx.models.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
-import com.cgi.recruitment.shared.DateConverter;
+import com.cgi.recruitment.util.DateConverter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -47,7 +47,7 @@ public class PersonOverviewController {
     
 
     // Reference to the main application.
-    private BootFxRecApplication fxApp;
+    private FXApp fxApp;
 
     /**
      * The constructor.
@@ -85,7 +85,7 @@ public class PersonOverviewController {
      * 
      * @param mainApp
      */
-    public void setMainApp(BootFxRecApplication fxApp) {
+    public void setMainApp(FXApp fxApp) {
         this.fxApp = fxApp;
     }
     
