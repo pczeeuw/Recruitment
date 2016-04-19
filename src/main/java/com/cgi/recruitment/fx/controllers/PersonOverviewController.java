@@ -130,10 +130,13 @@ public class PersonOverviewController {
      */
     @FXML
     private void handleNewPerson () {
-    	System.out.println("Button New.. Clicked");
-    	if (fxApp == null) {
-    		System.err.println("FxApp is not set!");
-    	}
-    	fxApp.showAddPersonDialog();
+    	fxApp.showAddPersonDialog(null);
     }
+    
+    @FXML
+    private void editPerson () {
+    	fxApp.showAddPersonDialog(personTable.getSelectionModel().selectedItemProperty().getValue());
+    }
+    
+    
 }

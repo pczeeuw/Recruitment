@@ -10,15 +10,19 @@ import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.controllers.AddPersonController;
 import com.cgi.recruitment.fx.controllers.PersonOverviewController;
+import com.cgi.recruitment.fx.models.FxPerson;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 @Component
@@ -30,12 +34,12 @@ public class FXApp implements ApplicationContextAware {
 	private BorderPane rootLayout;
 
 	private Resource[] screenResources;
-	private Resource[] cssResources;
+//	private Resource[] cssResources;
 
 	public void initApp(Stage primaryStage) {
 
 		loadScreenResources();
-		loadCssResources();
+//		loadCssResources();
 
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Recruitment App");
@@ -55,24 +59,24 @@ public class FXApp implements ApplicationContextAware {
 		this.context = applicationContext;
 	}
 
-	public void showAddPersonDialog() {
+	public void showAddPersonDialog(FxPerson person) {
 		try {
-			this.loadAddPersonDialog();
+			this.loadAddPersonDialog(person);
 		} catch (IOException e) {
 			System.err.println("Failed to load the AddPersonDialog");
 			e.printStackTrace();
 		}
 	}
 
-	private Resource getCssResourceByFileName(String fileName) {
-		for (Resource res : cssResources) {
-			System.out.println("Css file: " + res.toString());
-			if (res.getFilename().equalsIgnoreCase(fileName))
-				return res;
-		}
-
-		return null;
-	}
+//	private Resource getCssResourceByFileName(String fileName) {
+//		for (Resource res : cssResources) {
+//			System.out.println("Css file: " + res.toString());
+//			if (res.getFilename().equalsIgnoreCase(fileName))
+//				return res;
+//		}
+//
+//		return null;
+//	}
 
 	private Resource getScreenResourceByFileName(String fileName) {
 		for (Resource res : screenResources) {
@@ -82,14 +86,14 @@ public class FXApp implements ApplicationContextAware {
 		return null;
 	}
 
-	private void loadAddPersonDialog() throws IOException {
+	private void loadAddPersonDialog(FxPerson person) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setControllerFactory(context::getBean);
 		Resource screenResource = getScreenResourceByFileName("AddPerson.fxml");
-		Resource cssResource = getCssResourceByFileName("add-person.css");
+		//Resource cssResource = getCssResourceByFileName("add-person.css");
 
 		loader.setLocation(screenResource.getURL());
-		AnchorPane page = (AnchorPane) loader.load();
+		VBox page = (VBox) loader.load();
 
 		Stage dialogStage = new Stage();
 		dialogStage.setTitle("Aanmelden");
@@ -97,13 +101,23 @@ public class FXApp implements ApplicationContextAware {
 		dialogStage.initOwner(primaryStage);
 		dialogStage.setFullScreenExitKeyCombination(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
 		dialogStage.setFullScreen(true);
+		
+		Rectangle2D screenSize = Screen.getPrimary().getBounds();
+		
+		System.out.println("Screen is: " + screenSize.getHeight() + ":" + screenSize.getWidth());
+		
+		//page.widthProperty().add(screenSize.getWidth());
+		//page.heightProperty().add(screenSize.getHeight());
 
 		Scene scene = new Scene(page);
 		//scene.getStylesheets().add(cssResource.toString());
 		dialogStage.setScene(scene);
+		
 
+		
 		AddPersonController controller = loader.getController();
-		controller.setDialogStage(dialogStage);
+		controller.setFxPerson (person);
+		//controller.setDialogStage(dialogStage);
 
 		dialogStage.showAndWait();
 	}
@@ -125,15 +139,15 @@ public class FXApp implements ApplicationContextAware {
 
 	}
 
-	private void loadCssResources() {
-		try {
-			this.cssResources = context.getResources("classpath:views/css/*.css");
-		} catch (IOException e) {
-			System.err.println("Failed to load Css files from classpath");
-			e.printStackTrace();
-		}
-
-	}
+//	private void loadCssResources() {
+//		try {
+//			this.cssResources = context.getResources("classpath:views/css/*.css");
+//		} catch (IOException e) {
+//			System.err.println("Failed to load Css files from classpath");
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 	private void loadScreenResources() {
 		try {
