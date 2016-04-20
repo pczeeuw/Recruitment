@@ -50,9 +50,7 @@ public class AddPersonController {
 	private Label validatorLbl;
 
 	//private Stage dialogStage;
-	
-	private FxPerson person;
-	
+		
 	@Autowired
 	private PersonOverviewModel personOverviewModel;
 
@@ -74,7 +72,6 @@ public class AddPersonController {
 
 	@FXML
 	public void addPerson(ActionEvent event) {
-		System.out.println("Are all fields correct? " + validateAll());
 		if (validateAll ()) {
 			addPersonToModel ();
 			validatorLbl.setText("");
@@ -163,10 +160,4 @@ public class AddPersonController {
 		}
 		return condition;
 	}
-
-	public void setFxPerson(FxPerson person) {
-		this.person = person;
-		
-	}
-
 }

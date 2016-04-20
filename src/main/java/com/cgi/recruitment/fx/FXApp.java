@@ -8,12 +8,10 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
-import com.cgi.recruitment.fx.controllers.AddPersonController;
 import com.cgi.recruitment.fx.controllers.PersonOverviewController;
 import com.cgi.recruitment.fx.models.FxPerson;
 
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
@@ -22,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 @Component
@@ -102,22 +99,10 @@ public class FXApp implements ApplicationContextAware {
 		dialogStage.setFullScreenExitKeyCombination(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
 		dialogStage.setFullScreen(true);
 		
-		Rectangle2D screenSize = Screen.getPrimary().getBounds();
-		
-		System.out.println("Screen is: " + screenSize.getHeight() + ":" + screenSize.getWidth());
-		
-		//page.widthProperty().add(screenSize.getWidth());
-		//page.heightProperty().add(screenSize.getHeight());
-
 		Scene scene = new Scene(page);
-		//scene.getStylesheets().add(cssResource.toString());
 		dialogStage.setScene(scene);
-		
-
-		
-		AddPersonController controller = loader.getController();
-		controller.setFxPerson (person);
-		//controller.setDialogStage(dialogStage);
+				
+		loader.getController();
 
 		dialogStage.showAndWait();
 	}
