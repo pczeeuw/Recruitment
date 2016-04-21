@@ -187,7 +187,7 @@
                         <Font name="Arial" size="18.0" />
                      </font>
                   </TextArea>
-                  <Button mnemonicParsing="false" onAction="#addPerson" text="Versturen" GridPane.columnIndex="3" GridPane.rowIndex="11">
+                  <Button mnemonicParsing="false" onAction="#addPerson" text="Opslaan" GridPane.columnIndex="3" GridPane.rowIndex="11">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>

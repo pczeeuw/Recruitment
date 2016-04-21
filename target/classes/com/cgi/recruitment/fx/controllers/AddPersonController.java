@@ -21,7 +21,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 @Component
 public class AddPersonController {
@@ -48,13 +47,11 @@ public class AddPersonController {
 	private TextArea commentsArea;
 	@FXML
 	private Label validatorLbl;
-
-	//private Stage dialogStage;
 		
 	@Autowired
 	private PersonOverviewModel personOverviewModel;
 
-	private final String[] lookingForList = { "Baan", "Stage" };
+	private final String[] lookingForList = {"Afstudeerstage", "Baan", "Stage", "Nvt"};
 	private final String[] workingLocationList = { "Arnhem", "Eindhoven", "Groningen", "Heerlen", "Hoofddrop",
 			"Rotterdam" };
 
@@ -65,10 +62,6 @@ public class AddPersonController {
 		lookingForChc.setValue("Baan");
 		workingLocationChc.setValue("Arnhem");
 	}
-
-//	public void setDialogStage(Stage dialogStage) {
-//		//this.dialogStage = dialogStage;
-//	}
 
 	@FXML
 	public void addPerson(ActionEvent event) {
@@ -85,22 +78,31 @@ public class AddPersonController {
 		
 		person.setFirstName(firstNameFld.getText());
 		firstNameFld.setText("");
+		
 		person.setLastName(lastNameFld.getText());
 		lastNameFld.setText("");
+		
 		person.setEmailAddress(emailAddressFld.getText());
 		emailAddressFld.setText("");
+		
 		person.setPhoneNumber(PhoneNumberConverter.formatPhoneNumber(phoneNumberFld.getText()));
 		phoneNumberFld.setText("");
+		
 		person.setStudy(studyFld.getText());
 		studyFld.setText("");
+		
 		person.setGraduationDate(graduationDateFld.getValue());
 		graduationDateFld.setValue(null);
+		
 		person.setLookingFor(lookingForChc.getValue());
 		lookingForChc.setValue("Baan");
+		
 		person.setWorkLocation(workingLocationChc.getValue());
 		workingLocationChc.setValue("Arnhem");
+		
 		person.setWorkStartDate(availablePerFld.getValue());
 		availablePerFld.setValue(null);
+		
 		person.setComments(commentsArea.getText());	
 		commentsArea.setText("");
 		
@@ -129,8 +131,7 @@ public class AddPersonController {
 	}
 	
 	@FXML 
-	public void validateDate (Event event) {
-				
+	public void validateDate (Event event) {				
 		DatePicker source = (DatePicker) event.getSource();
 		
 		validateGeneric(PersonValidator.validateLocalDate(source.getValue()), source.getStyleClass());

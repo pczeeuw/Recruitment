@@ -10,7 +10,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 @SpringBootApplication
-public class BootFxRecApplication extends Application{
+public class BootFxRecApplication extends Application {
 	
 	private static ApplicationContext context;
 

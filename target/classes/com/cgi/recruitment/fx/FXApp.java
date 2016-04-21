@@ -31,13 +31,10 @@ public class FXApp implements ApplicationContextAware {
 	private BorderPane rootLayout;
 
 	private Resource[] screenResources;
-//	private Resource[] cssResources;
 
 	public void initApp(Stage primaryStage) {
-
 		loadScreenResources();
-//		loadCssResources();
-
+		
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Recruitment App");
 
@@ -48,7 +45,6 @@ public class FXApp implements ApplicationContextAware {
 			System.err.println("Failed to load Scene");
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
@@ -65,16 +61,6 @@ public class FXApp implements ApplicationContextAware {
 		}
 	}
 
-//	private Resource getCssResourceByFileName(String fileName) {
-//		for (Resource res : cssResources) {
-//			System.out.println("Css file: " + res.toString());
-//			if (res.getFilename().equalsIgnoreCase(fileName))
-//				return res;
-//		}
-//
-//		return null;
-//	}
-
 	private Resource getScreenResourceByFileName(String fileName) {
 		for (Resource res : screenResources) {
 			if (res.getFilename().equalsIgnoreCase(fileName))
@@ -87,7 +73,6 @@ public class FXApp implements ApplicationContextAware {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setControllerFactory(context::getBean);
 		Resource screenResource = getScreenResourceByFileName("AddPerson.fxml");
-		//Resource cssResource = getCssResourceByFileName("add-person.css");
 
 		loader.setLocation(screenResource.getURL());
 		VBox page = (VBox) loader.load();
@@ -121,18 +106,7 @@ public class FXApp implements ApplicationContextAware {
 		controller.setMainApp(this);
 
 		rootLayout.setCenter(personOverview);
-
 	}
-
-//	private void loadCssResources() {
-//		try {
-//			this.cssResources = context.getResources("classpath:views/css/*.css");
-//		} catch (IOException e) {
-//			System.err.println("Failed to load Css files from classpath");
-//			e.printStackTrace();
-//		}
-//
-//	}
 
 	private void loadScreenResources() {
 		try {
