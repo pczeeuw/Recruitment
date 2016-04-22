@@ -6,13 +6,16 @@ import org.springframework.stereotype.Component;
 import com.cgi.recruitment.fx.FXApp;
 import com.cgi.recruitment.fx.models.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
+import com.cgi.recruitment.services.PersonPersistService;
 import com.cgi.recruitment.util.DateConverter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class PersonOverviewController {
     @FXML
@@ -44,6 +47,9 @@ public class PersonOverviewController {
     
     @Autowired
     private PersonOverviewModel personModel;
+    
+    @Autowired
+    PersonPersistService service;
     
 
     // Reference to the main application.
@@ -135,7 +141,8 @@ public class PersonOverviewController {
     
     @FXML
     private void editPerson () {
-    	fxApp.showAddPersonDialog(personTable.getSelectionModel().selectedItemProperty().getValue());
+    	log.info("Persisting Model");
+    	service.persistModel();
     }
     
     
