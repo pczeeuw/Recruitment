@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.cgi.recruitment.fx.FXApp;
-import com.cgi.recruitment.services.PersonPersistService;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

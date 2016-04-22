@@ -1,6 +1,7 @@
 package com.cgi.recruitment.services;
 
 import java.io.File;
+import java.util.Arrays;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -22,7 +23,8 @@ public class PersonPersistService {
 	public void persistModel () {
 		Person p = PersonConverter.convertToPerson(personModel.getPersonData().get(3));
 		
-		File file = new File("person.xml");
+		String userF = System.getenv("LOCALAPPDATA");
+		File file = new File(userF);
 		try {
 			JAXBContext jaxb = JAXBContext.newInstance(Person.class);
 			Marshaller marshaller = jaxb.createMarshaller();

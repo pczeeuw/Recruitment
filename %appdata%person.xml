@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<person>
+    <comments>none</comments>
+    <emailAddress>cornelia.meier@gmail.com</emailAddress>
+    <firstName>Cornelia</firstName>
+    <freePer/>
+    <graduationDate/>
+    <lastName>Meier</lastName>
+    <lookingFor>Tester</lookingFor>
+    <phoneNumber>0615847542</phoneNumber>
+    <study>Biology</study>
+    <workingLocation>Amsterdam</workingLocation>
+</person>

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Builder;
 import lombok.Data;
 
-@Builder
+
 @XmlRootElement
 @Data 
 public class Person {
