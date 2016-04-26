@@ -5,14 +5,12 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cgi.recruitment.domain.RecruitmentEvent;
 import com.cgi.recruitment.fx.FXApp;
 import com.cgi.recruitment.fx.models.FxPerson;
 import com.cgi.recruitment.fx.models.FxRecruitmentEvent;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
-import com.cgi.recruitment.services.PersonPersistService;
+import com.cgi.recruitment.services.EventPersistService;
 import com.cgi.recruitment.util.converters.DateConverter;
-import com.cgi.recruitment.util.converters.EventConverter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -57,7 +55,7 @@ public class PersonOverviewController {
     private FxRecruitmentEvent recruitmentEvent;
     
     @Autowired
-    PersonPersistService service;
+    EventPersistService service;
     
 
     // Reference to the main application.
@@ -156,6 +154,11 @@ public class PersonOverviewController {
 
     	log.info("Persisting Model");
     	service.persistModel(recruitmentEvent);
+    }
+    
+    @FXML
+    private void deletePerson () {
+    	service.getEventFileNames();
     }
     
     
