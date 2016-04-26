@@ -59,7 +59,6 @@ public class EventPersistService {
 		
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			for (Path entry : stream) {
-				log.info("Iterating trough path: " + entry.getFileName());
 				if (entry.toString().endsWith(".xml")) {
 					fileNames.add(entry.getFileName().toString());
 					log.info("Found file " + entry.getFileName().toString());
