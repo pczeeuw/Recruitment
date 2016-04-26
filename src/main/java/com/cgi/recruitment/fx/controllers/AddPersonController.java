@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.models.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
-import com.cgi.recruitment.util.PersonValidator;
-import com.cgi.recruitment.util.PhoneNumberConverter;
+import com.cgi.recruitment.util.converters.PhoneNumberConverter;
+import com.cgi.recruitment.util.vallidators.PersonValidator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

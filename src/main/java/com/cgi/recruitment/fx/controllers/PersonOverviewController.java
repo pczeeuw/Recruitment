@@ -1,13 +1,18 @@
 package com.cgi.recruitment.fx.controllers;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cgi.recruitment.domain.RecruitmentEvent;
 import com.cgi.recruitment.fx.FXApp;
 import com.cgi.recruitment.fx.models.FxPerson;
+import com.cgi.recruitment.fx.models.FxRecruitmentEvent;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
 import com.cgi.recruitment.services.PersonPersistService;
-import com.cgi.recruitment.util.DateConverter;
+import com.cgi.recruitment.util.converters.DateConverter;
+import com.cgi.recruitment.util.converters.EventConverter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -47,6 +52,9 @@ public class PersonOverviewController {
     
     @Autowired
     private PersonOverviewModel personModel;
+    
+    @Autowired
+    private FxRecruitmentEvent recruitmentEvent;
     
     @Autowired
     PersonPersistService service;
@@ -141,8 +149,13 @@ public class PersonOverviewController {
     
     @FXML
     private void editPerson () {
+    	recruitmentEvent.setEventName("Testdagen");
+    	recruitmentEvent.setEventLocation("Groningen");
+    	recruitmentEvent.setEventDate(LocalDate.now());
+    	recruitmentEvent.setPersonList(personModel.getPersonData());
+
     	log.info("Persisting Model");
-    	service.persistModel();
+    	service.persistModel(recruitmentEvent);
     }
     
     

@@ -1,6 +1,5 @@
 package com.cgi.recruitment.services;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
@@ -12,35 +11,36 @@ import javax.xml.bind.Marshaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cgi.recruitment.domain.Person;
-import com.cgi.recruitment.fx.models.PersonOverviewModel;
-import com.cgi.recruitment.util.PersonConverter;
+import com.cgi.recruitment.domain.RecruitmentEvent;
+import com.cgi.recruitment.fx.models.FxRecruitmentEvent;
+import com.cgi.recruitment.util.converters.EventConverter;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class PersonPersistService {
 	
 	@Autowired
-	private Properties applicationProperties;
-	
-	@Autowired
-	private PersonOverviewModel personModel;
-	
-	public void persistModel () {
-		Person p = PersonConverter.convertToPerson(personModel.getPersonData().get(3));
+	private Properties AppProperties;
 		
-		Path path = Paths.get(applicationProperties.getProperty("data.xmldir"),"persons.xml");
-
+	public void persistModel (FxRecruitmentEvent fxRecruitmentEvent) {
+		RecruitmentEvent recruitmentEvent = EventConverter.convertToRecruitmentEvent(fxRecruitmentEvent);
+		
+		log.info("Persisting event " + recruitmentEvent.getEventName());
+		log.info("Filename is " + recruitmentEvent.getFileName());
+		
+		Path path = Paths.get(AppProperties.getProperty("data.eventdir"),recruitmentEvent.getFileName());
 		try {
-			JAXBContext jaxb = JAXBContext.newInstance(Person.class);
+			JAXBContext jaxb = JAXBContext.newInstance(RecruitmentEvent.class);
 			Marshaller marshaller = jaxb.createMarshaller();
 			
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			marshaller.marshal(p, path.toFile());
+			marshaller.marshal(recruitmentEvent, path.toFile());
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 
 }
