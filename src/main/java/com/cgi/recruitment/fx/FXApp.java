@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.controllers.PersonOverviewController;
 import com.cgi.recruitment.fx.models.FxPerson;
+import com.cgi.recruitment.util.AppConfiguration;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -36,7 +37,7 @@ public class FXApp implements ApplicationContextAware {
 		loadScreenResources();
 		
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Recruitment App");
+		this.primaryStage.setTitle("Recruitment App " + ((AppConfiguration)context.getBean(AppConfiguration.class)).getAppVersion());
 
 		try {
 			loadRootLayout();

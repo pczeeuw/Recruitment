@@ -2,7 +2,7 @@ package com.cgi.recruitment.fx.models;
 
 import org.springframework.stereotype.Component;
 
-import com.cgi.recruitment.util.DateConverter;
+import com.cgi.recruitment.util.converters.DateConverter;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
