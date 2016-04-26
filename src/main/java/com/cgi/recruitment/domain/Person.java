@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import lombok.Builder;
 import lombok.Data;
 
 

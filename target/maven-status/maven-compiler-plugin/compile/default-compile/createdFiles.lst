@@ -1,4 +1,6 @@
+com\cgi\recruitment\util\PersonConverter.class
 com\cgi\recruitment\fx\models\PersonOverviewModel.class
+com\cgi\recruitment\util\ApplicationPropertiesConfiguration.class
 com\cgi\recruitment\fx\controllers\AddPersonController.class
 com\cgi\recruitment\BootFxRecApplication.class
 com\cgi\recruitment\util\PhoneNumberConverter.class
@@ -7,4 +9,5 @@ com\cgi\recruitment\util\DateConverter.class
 com\cgi\recruitment\fx\FXApp.class
 com\cgi\recruitment\domain\Person.class
 com\cgi\recruitment\fx\models\FxPerson.class
+com\cgi\recruitment\services\PersonPersistService.class
 com\cgi\recruitment\fx\controllers\PersonOverviewController.class

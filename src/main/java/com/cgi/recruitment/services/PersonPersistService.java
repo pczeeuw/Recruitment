@@ -1,7 +1,9 @@
 package com.cgi.recruitment.services;
 
 import java.io.File;
-import java.util.Arrays;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -18,19 +20,22 @@ import com.cgi.recruitment.util.PersonConverter;
 public class PersonPersistService {
 	
 	@Autowired
+	private Properties applicationProperties;
+	
+	@Autowired
 	private PersonOverviewModel personModel;
 	
 	public void persistModel () {
 		Person p = PersonConverter.convertToPerson(personModel.getPersonData().get(3));
 		
-		String userF = System.getenv("LOCALAPPDATA");
-		File file = new File(userF);
+		Path path = Paths.get(applicationProperties.getProperty("data.xmldir"),"persons.xml");
+
 		try {
 			JAXBContext jaxb = JAXBContext.newInstance(Person.class);
 			Marshaller marshaller = jaxb.createMarshaller();
 			
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			marshaller.marshal(p, file);
+			marshaller.marshal(p, path.toFile());
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
