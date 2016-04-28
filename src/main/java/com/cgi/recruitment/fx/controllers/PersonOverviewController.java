@@ -60,7 +60,7 @@ public class PersonOverviewController {
      * The constructor is called before the initialize() method.
      */
     public PersonOverviewController() {
-    	System.out.println("PersonOverviewController created");
+    	log.info("PersonOverviewController created");
     }
     
     public void setPersonOverviewModel (PersonOverviewModel model) {
@@ -75,7 +75,7 @@ public class PersonOverviewController {
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
-    	System.err.println("Initialize of Controller called");
+    	log.info("Initialize of Controller called");
 
         
     }
@@ -161,7 +161,11 @@ public class PersonOverviewController {
     
     @FXML
     private void deletePerson () {
-    	//service.getEventFileNames();
+    	log.info(personTable.getSelectionModel().getSelectedItem().getFirstName());
+    	if (personModel.getPersonData().remove(personTable.getSelectionModel().getSelectedItem())) {
+    		log.info("Selected Person deleted from model");
+    		service.persistEvent(personModel.getFxEvent());
+    	}
     }
     
     @FXML

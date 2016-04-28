@@ -1,5 +1,6 @@
 package com.cgi.recruitment.fx.controllers;
 
+import java.io.File;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,13 @@ import com.cgi.recruitment.fx.FXApp;
 import com.cgi.recruitment.fx.domain.FxRecruitmentEvent;
 import com.cgi.recruitment.fx.domain.FxRecruitmentEventFileName;
 import com.cgi.recruitment.fx.models.EventOverviewModel;
+import com.cgi.recruitment.services.ExcelExportService;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
 
 @Component
 public class EventOverviewController {
@@ -35,6 +38,9 @@ public class EventOverviewController {
 
 	@Autowired
 	private EventOverviewModel eventModel;
+	
+	@Autowired
+	private ExcelExportService excelService;
 	
 	private FXApp fxApp;
 
@@ -91,6 +97,23 @@ public class EventOverviewController {
 	
 	@FXML
 	public void exportEvent () {
+		if (eventModel.getSelectedEvent()==null)
+			return;
+		File file;
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+		fileChooser.setInitialFileName(eventModel.getSelectedEvent().getEventDate().toString()+ "-" + eventModel.getSelectedEvent().getEventName()+"-"+eventModel.getSelectedEvent().getEventLocation());
+        fileChooser.getExtensionFilters().addAll(
+                //new FileChooser.ExtensionFilter("Alle bestanden", "*.*"),
+                new FileChooser.ExtensionFilter("XLS", "*.xls")
+                //new FileChooser.ExtensionFilter("XLSX", "*.xlsx")
+            );
+		file = fileChooser.showSaveDialog(fxApp.getStage());
+		
+		excelService.setRecruitmentEvent(eventModel.getSelectedEvent());
+		excelService.setTargetFile(file);
+		
+		excelService.exportToXLSX();
 		
 	}
 

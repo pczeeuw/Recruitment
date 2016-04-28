@@ -2,10 +2,12 @@ package com.cgi.recruitment.fx.controllers;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.domain.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
+import com.cgi.recruitment.services.EventPersistService;
 import com.cgi.recruitment.util.converters.PhoneNumberConverter;
 import com.cgi.recruitment.util.vallidators.PersonValidator;
 
@@ -51,6 +53,9 @@ public class AddPersonController {
 		
 	private PersonOverviewModel personOverviewModel;
 
+	@Autowired
+	EventPersistService persistService;
+	
 	private final String[] lookingForList = {"Afstudeerstage", "Baan", "Stage", "Nvt"};
 	private final String[] workingLocationList = { "Arnhem", "Eindhoven", "Groningen", "Heerlen", "Hoofddrop",
 			"Rotterdam" };
@@ -67,7 +72,9 @@ public class AddPersonController {
 	public void addPerson(ActionEvent event) {
 		if (validateAll ()) {
 			addPersonToModel ();
+			persistService.persistEvent(personOverviewModel.getFxEvent());
 			validatorLbl.setText("");
+			log.info("Person added to model and saved to file");
 		} else {
 			validatorLbl.setText("Vul alle velden in!");
 		}

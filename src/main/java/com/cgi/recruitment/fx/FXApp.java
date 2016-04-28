@@ -94,6 +94,10 @@ public class FXApp implements ApplicationContextAware {
 			e.printStackTrace();
 		}
 	}
+	
+	public Stage getStage () {
+		return this.primaryStage;
+	}
 
 	private Resource getScreenResourceByFileName(String fileName) {
 		for (Resource res : screenResources) {
