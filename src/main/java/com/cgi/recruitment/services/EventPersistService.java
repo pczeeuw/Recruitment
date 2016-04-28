@@ -12,13 +12,14 @@ import java.util.Properties;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.domain.RecruitmentEvent;
-import com.cgi.recruitment.fx.models.FxRecruitmentEvent;
+import com.cgi.recruitment.fx.domain.FxRecruitmentEvent;
 import com.cgi.recruitment.util.converters.EventConverter;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +32,7 @@ public class EventPersistService {
 	@Qualifier("AppProperties")
 	private Properties appProperties;
 		
-	public void persistModel (FxRecruitmentEvent fxRecruitmentEvent) {
+	public void persistEvent (FxRecruitmentEvent fxRecruitmentEvent) {
 		RecruitmentEvent recruitmentEvent = EventConverter.convertToRecruitmentEvent(fxRecruitmentEvent);
 		
 		log.info("Persisting event " + recruitmentEvent.getEventName());
@@ -50,11 +51,20 @@ public class EventPersistService {
 		}		
 	}
 	
+//	public List<RecruitmentEvent> getEventList () {
+//		List<RecruitmentEvent> result = new ArrayList<>();
+//		
+//		for (String fileName : getEventFileNames()) {
+//			
+//		}
+//		
+//		return result;
+//	}
+	
 	public List<String> getEventFileNames () {
 		log.info("Retrieving excisting Recruitment Event XML files");
 		ArrayList<String> fileNames = new ArrayList<>();
-		
-		
+				
 		Path dir = Paths.get(appProperties.getProperty("data.eventdir"));
 		
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
@@ -68,8 +78,22 @@ public class EventPersistService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return fileNames;
+		return fileNames;		
+	}
+	
+	public FxRecruitmentEvent getPersistedEvent (String fileName) {
+		Path path = Paths.get(appProperties.getProperty("data.eventdir"),fileName);
 		
+		try {
+			
+			JAXBContext jaxb = JAXBContext.newInstance(RecruitmentEvent.class);
+			Unmarshaller unmarshaller = jaxb.createUnmarshaller();
+			return EventConverter.convertToFxRecruitmentEventg(((RecruitmentEvent) unmarshaller.unmarshal(path.toFile())) );
+		} catch (JAXBException e) {
+			log.error("Failed to load from File!");
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

@@ -1,13 +1,10 @@
 package com.cgi.recruitment.fx.controllers;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.FXApp;
-import com.cgi.recruitment.fx.models.FxPerson;
-import com.cgi.recruitment.fx.models.FxRecruitmentEvent;
+import com.cgi.recruitment.fx.domain.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
 import com.cgi.recruitment.services.EventPersistService;
 import com.cgi.recruitment.util.converters.DateConverter;
@@ -48,14 +45,11 @@ public class PersonOverviewController {
     @FXML
     private Label commentsLabel;
     
-    @Autowired
     private PersonOverviewModel personModel;
     
+   
     @Autowired
-    private FxRecruitmentEvent recruitmentEvent;
-    
-    @Autowired
-    EventPersistService service;
+    private EventPersistService service;
     
 
     // Reference to the main application.
@@ -68,6 +62,11 @@ public class PersonOverviewController {
     public PersonOverviewController() {
     	System.out.println("PersonOverviewController created");
     }
+    
+    public void setPersonOverviewModel (PersonOverviewModel model) {
+    	this.personModel = model;
+    	initAfterModel();
+    }
 
     /**
      * Initializes the controller class. This method is automatically called
@@ -77,19 +76,23 @@ public class PersonOverviewController {
     private void initialize() {
         // Initialize the person table with the two columns.
     	System.err.println("Initialize of Controller called");
+
+        
+    }
+    
+    private void initAfterModel () {
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
         
         showPersonDetails(null);
         
-        personModel.fillListWithTestData();
+        //personModel.fillListWithTestData();
         
         personTable.setItems(personModel.getPersonData());
         
         personTable.getSelectionModel().selectedItemProperty().addListener(
         		(observable, oldValue, newValue) -> showPersonDetails(newValue)
         		);
-        
     }
 
     /**
@@ -142,24 +145,32 @@ public class PersonOverviewController {
      */
     @FXML
     private void handleNewPerson () {
-    	fxApp.showAddPersonDialog(null);
+    	fxApp.showAddPersonDialog(personModel);
     }
     
     @FXML
     private void editPerson () {
-    	recruitmentEvent.setEventName("Testdagen");
-    	recruitmentEvent.setEventLocation("Groningen");
-    	recruitmentEvent.setEventDate(LocalDate.now());
-    	recruitmentEvent.setPersonList(personModel.getPersonData());
-
-    	log.info("Persisting Model");
-    	service.persistModel(recruitmentEvent);
+//    	recruitmentEvent.setEventName("Testdagen");
+//    	recruitmentEvent.setEventLocation("Groningen");
+//    	recruitmentEvent.setEventDate(LocalDate.now());
+//    	recruitmentEvent.setPersonList(personModel.getPersonData());
+//
+//    	log.info("Persisting Model");
+//    	service.persistEvent(recruitmentEvent);
     }
     
     @FXML
     private void deletePerson () {
-    	service.getEventFileNames();
+    	//service.getEventFileNames();
     }
+    
+    @FXML
+    private void backToEvents () {
+    	service.persistEvent(personModel.getFxEvent());
+    	this.fxApp.showEventOverview();
+    }
+    
+    
     
     
 }
