@@ -1,4 +1,4 @@
-package com.cgi.recruitment.fx.models;
+package com.cgi.recruitment.fx.domain;
 
 import java.time.LocalDate;
 
@@ -34,7 +34,7 @@ public class FxRecruitmentEvent {
 		this.personList = FXCollections.observableArrayList();
 	}
 	
-	public StringProperty eventNameProperty () {
+	public StringProperty getEventNameProperty () {
 		return this.eventName;
 	}
 	

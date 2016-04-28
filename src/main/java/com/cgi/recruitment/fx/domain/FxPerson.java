@@ -1,4 +1,4 @@
-package com.cgi.recruitment.fx.models;
+package com.cgi.recruitment.fx.domain;
 
 import java.time.LocalDate;
 

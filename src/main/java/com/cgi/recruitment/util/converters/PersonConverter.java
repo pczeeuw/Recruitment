@@ -1,7 +1,7 @@
 package com.cgi.recruitment.util.converters;
 
 import com.cgi.recruitment.domain.Person;
-import com.cgi.recruitment.fx.models.FxPerson;
+import com.cgi.recruitment.fx.domain.FxPerson;
 
 public class PersonConverter {
 
@@ -18,5 +18,20 @@ public class PersonConverter {
 		p.setFreePer(fxP.getWorkStartDate());
 		p.setComments(fxP.getComments());
 		return p;
+	}
+	
+	public static FxPerson convertToFxPerson (Person p) {
+		FxPerson fxP = new FxPerson ();
+		fxP.setFirstName(p.getFirstName());
+		fxP.setLastName(p.getLastName());
+		fxP.setEmailAddress(p.getEmailAddress());
+		fxP.setPhoneNumber(p.getPhoneNumber());
+		fxP.setStudy(p.getStudy());
+		fxP.setGraduationDate(p.getGraduationDate());
+		fxP.setLookingFor(p.getLookingFor());
+		fxP.setWorkLocation(p.getWorkingLocation());
+		fxP.setWorkStartDate(p.getFreePer());
+		fxP.setComments(p.getComments());
+		return fxP;
 	}
 }

@@ -39,7 +39,7 @@ public class RecruitmentEvent {
 	}
 	
 	public String getFileName () {
-		return String.format("%1$s-%2$s-%3$s.xml", eventName,eventLocation,eventDate.toString());
+		return String.format("%3$s-%2$s-%1$s.xml", eventName,eventLocation,eventDate.toString());
 	}
 	
 }

@@ -5,8 +5,9 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cgi.recruitment.fx.models.FxPerson;
+import com.cgi.recruitment.fx.domain.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
+import com.cgi.recruitment.services.EventPersistService;
 import com.cgi.recruitment.util.converters.PhoneNumberConverter;
 import com.cgi.recruitment.util.vallidators.PersonValidator;
 
@@ -21,7 +22,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class AddPersonController {
 
@@ -48,9 +51,11 @@ public class AddPersonController {
 	@FXML
 	private Label validatorLbl;
 		
-	@Autowired
 	private PersonOverviewModel personOverviewModel;
 
+	@Autowired
+	EventPersistService persistService;
+	
 	private final String[] lookingForList = {"Afstudeerstage", "Baan", "Stage", "Nvt"};
 	private final String[] workingLocationList = { "Arnhem", "Eindhoven", "Groningen", "Heerlen", "Hoofddrop",
 			"Rotterdam" };
@@ -67,10 +72,16 @@ public class AddPersonController {
 	public void addPerson(ActionEvent event) {
 		if (validateAll ()) {
 			addPersonToModel ();
+			persistService.persistEvent(personOverviewModel.getFxEvent());
 			validatorLbl.setText("");
+			log.info("Person added to model and saved to file");
 		} else {
 			validatorLbl.setText("Vul alle velden in!");
 		}
+	}
+	
+	public void setPersonOverviewModel (PersonOverviewModel model) {
+		this.personOverviewModel = model;
 	}
 	
 	private void addPersonToModel () {
@@ -106,7 +117,10 @@ public class AddPersonController {
 		person.setComments(commentsArea.getText());	
 		commentsArea.setText("");
 		
-		personOverviewModel.getPersonData().add(person);
+		if (personOverviewModel != null)
+			personOverviewModel.getPersonData().add(person);
+		else
+			log.error("Overview model is null!!");
 	}
 	
 	private boolean validateAll () {

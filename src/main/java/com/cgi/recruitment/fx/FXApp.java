@@ -8,8 +8,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import com.cgi.recruitment.fx.controllers.AddPersonController;
+import com.cgi.recruitment.fx.controllers.EventOverviewController;
+import com.cgi.recruitment.fx.controllers.NewEventController;
 import com.cgi.recruitment.fx.controllers.PersonOverviewController;
-import com.cgi.recruitment.fx.models.FxPerson;
+import com.cgi.recruitment.fx.domain.FxRecruitmentEvent;
+import com.cgi.recruitment.fx.models.PersonOverviewModel;
 import com.cgi.recruitment.util.AppConfiguration;
 
 import javafx.fxml.FXMLLoader;
@@ -22,7 +26,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class FXApp implements ApplicationContextAware {
 
@@ -41,9 +47,9 @@ public class FXApp implements ApplicationContextAware {
 
 		try {
 			loadRootLayout();
-			loadPersonOverview();
+			loadEventOverview();
 		} catch (IOException e) {
-			System.err.println("Failed to load Scene");
+			log.error("Failed to load Scene");
 			e.printStackTrace();
 		}
 	}
@@ -53,13 +59,44 @@ public class FXApp implements ApplicationContextAware {
 		this.context = applicationContext;
 	}
 
-	public void showAddPersonDialog(FxPerson person) {
+	public void showAddPersonDialog(PersonOverviewModel model) {
 		try {
-			this.loadAddPersonDialog(person);
+			this.loadAddPersonDialog(model);
 		} catch (IOException e) {
-			System.err.println("Failed to load the AddPersonDialog");
+			log.error("Failed to load the AddPersonDialog");
 			e.printStackTrace();
 		}
+	}
+	
+	public void showPersonOverview (FxRecruitmentEvent event) {
+		try {
+			this.loadPersonOverview(event);
+		} catch (IOException e) {
+			log.error("Failed to load PersonOverview");
+			e.printStackTrace();
+		}
+	}
+	
+	public void showEventOverview () {
+		try {
+			this.loadEventOverview();
+		} catch (IOException e) {
+			log.error("Failed to load EventOverview");
+			e.printStackTrace();
+		}
+	}
+	
+	public void showNewEventDialog () {
+		try {
+			this.loadNewEventDialog();
+		} catch (IOException e) {
+			log.error("Could not load New Event Dialog");
+			e.printStackTrace();
+		}
+	}
+	
+	public Stage getStage () {
+		return this.primaryStage;
 	}
 
 	private Resource getScreenResourceByFileName(String fileName) {
@@ -70,7 +107,7 @@ public class FXApp implements ApplicationContextAware {
 		return null;
 	}
 
-	private void loadAddPersonDialog(FxPerson person) throws IOException {
+	private void loadAddPersonDialog(PersonOverviewModel model) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setControllerFactory(context::getBean);
 		Resource screenResource = getScreenResourceByFileName("AddPerson.fxml");
@@ -88,12 +125,13 @@ public class FXApp implements ApplicationContextAware {
 		Scene scene = new Scene(page);
 		dialogStage.setScene(scene);
 				
-		loader.getController();
+		AddPersonController controller = (AddPersonController) loader.getController();
+		controller.setPersonOverviewModel(model);
 
 		dialogStage.showAndWait();
 	}
 
-	private void loadPersonOverview() throws IOException {
+	private void loadPersonOverview(FxRecruitmentEvent event) throws IOException {
 
 		FXMLLoader loader = new FXMLLoader();
 		loader.setControllerFactory(context::getBean);
@@ -104,9 +142,48 @@ public class FXApp implements ApplicationContextAware {
 		rootLayout.setCenter(personOverview);
 
 		PersonOverviewController controller = loader.getController();
+		controller.setPersonOverviewModel(new PersonOverviewModel(event));
 		controller.setMainApp(this);
 
 		rootLayout.setCenter(personOverview);
+	}
+	
+	private void loadEventOverview() throws IOException {
+
+		FXMLLoader loader = new FXMLLoader();
+		loader.setControllerFactory(context::getBean);
+		Resource resource = getScreenResourceByFileName("EventOverview.fxml");
+		loader.setLocation(resource.getURL());
+		AnchorPane personOverview = (AnchorPane) loader.load();
+
+		rootLayout.setCenter(personOverview);
+
+		EventOverviewController controller = loader.getController();
+		controller.setMainApp(this);
+
+		rootLayout.setCenter(personOverview);
+	}
+	
+	private void loadNewEventDialog () throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setControllerFactory(context::getBean);
+		Resource screenResource = getScreenResourceByFileName("NewEvent.fxml");
+
+		loader.setLocation(screenResource.getURL());
+		AnchorPane page = (AnchorPane) loader.load();
+
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Nieuw Event");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(primaryStage);
+		
+		Scene scene = new Scene(page);
+		dialogStage.setScene(scene);
+				
+		NewEventController controller = (NewEventController) loader.getController();
+		controller.setDialogStage(dialogStage);
+
+		dialogStage.showAndWait();
 	}
 
 	private void loadScreenResources() {
