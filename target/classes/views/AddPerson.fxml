@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -50,7 +51,7 @@
                   <Image url="@img/bg-left.jpg" />
                </image>
             </ImageView>
-            <GridPane alignment="CENTER" prefWidth="800.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <GridPane fx:id="gridPane" alignment="CENTER" prefWidth="800.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
@@ -98,6 +99,7 @@
                      </font>
                   </TextField>
                   <DatePicker fx:id="graduationDateFld" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <ComboBox prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ChoiceBox fx:id="lookingForChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <ChoiceBox fx:id="workingLocationChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                   <DatePicker fx:id="availablePerFld" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -133,7 +135,7 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Studie" GridPane.rowIndex="3">
+                  <Label text="Studierichting" GridPane.rowIndex="3">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -149,7 +151,7 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Op zoek naar" GridPane.rowIndex="5">
+                  <Label text="Geinteresseerd in" GridPane.rowIndex="5">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -157,7 +159,7 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Werklocatie" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                  <Label text="Regio" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -192,6 +194,14 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Button>
+                  <Label text="Opleidingsniveau" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
                </children>
             </GridPane>
          </children>

@@ -2,6 +2,7 @@ package com.cgi.recruitment.fx.controllers;
 
 import java.util.Arrays;
 
+import org.controlsfx.control.CheckComboBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -50,22 +52,30 @@ public class AddPersonController {
 	private TextArea commentsArea;
 	@FXML
 	private Label validatorLbl;
-		
+	@FXML
+	GridPane gridPane;
+			
 	private PersonOverviewModel personOverviewModel;
 
 	@Autowired
 	EventPersistService persistService;
 	
-	private final String[] lookingForList = {"Afstudeerstage", "Baan", "Stage", "Nvt"};
-	private final String[] workingLocationList = { "Arnhem", "Eindhoven", "Groningen", "Heerlen", "Hoofddrop",
-			"Rotterdam" };
+	private final static String[] lookingForList = {"Afstudeerstage", "Baan" ,"Stage", "Samenwerking" , "Oplossing" , "Nvt"};
+	private final static String[] workingLocationList = { "Noord", "Oost","Randstad", "Zuid", "Landelijk" };
+	
+	private CheckComboBox<String> comboBox;
 
+	
 	@FXML
 	private void initialize() {
 		lookingForChc.setItems(FXCollections.observableArrayList(Arrays.asList(lookingForList)));
 		workingLocationChc.setItems(FXCollections.observableArrayList(Arrays.asList(workingLocationList)));
 		lookingForChc.setValue("Baan");
-		workingLocationChc.setValue("Arnhem");
+		workingLocationChc.setValue("Randstad");
+		
+		//Add a combo-check-box to the grid.
+		comboBox = new CheckComboBox <> (FXCollections.observableArrayList(Arrays.asList(workingLocationList)));
+		gridPane.add(comboBox, 3, 6);
 	}
 
 	@FXML
