@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import org.controlsfx.control.CheckComboBox;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.domain.FxPerson;
@@ -41,6 +42,8 @@ public class AddPersonController {
 	@FXML
 	private TextField studyFld;
 	@FXML
+	private ChoiceBox<String> educationLevel;
+	@FXML
 	private DatePicker graduationDateFld;
 	@FXML
 	private ChoiceBox<String> lookingForChc;
@@ -53,29 +56,49 @@ public class AddPersonController {
 	@FXML
 	private Label validatorLbl;
 	@FXML
-	GridPane gridPane;
+	private GridPane gridPane;
 			
-	private PersonOverviewModel personOverviewModel;
-
 	@Autowired
 	EventPersistService persistService;
 	
-	private final static String[] lookingForList = {"Afstudeerstage", "Baan" ,"Stage", "Samenwerking" , "Oplossing" , "Nvt"};
-	private final static String[] workingLocationList = { "Noord", "Oost","Randstad", "Zuid", "Landelijk" };
+	@Value("${recruitment.values.interesse}")
+	private String[] lookingForList;
 	
-	private CheckComboBox<String> comboBox;
+	@Value("${recruitment.values.regio}")
+	private String[] workingLocationList;
+	
+	@Value("${recruitment.values.opleidingsniveau}")
+	private String[] educationLevelList;
+	
+	@Value("${recruitment.values.werkveld}")
+	private String[] workingFieldList;
+	
+	@Value("${recruitment.values.vaardigheden}")
+	private String[] skillsList;
+	
+	private CheckComboBox<String> comboBoxSkill;
 
+	private CheckComboBox<String> comboBoxWorkingField;
+	
+	private PersonOverviewModel personOverviewModel;
 	
 	@FXML
 	private void initialize() {
 		lookingForChc.setItems(FXCollections.observableArrayList(Arrays.asList(lookingForList)));
 		workingLocationChc.setItems(FXCollections.observableArrayList(Arrays.asList(workingLocationList)));
-		lookingForChc.setValue("Baan");
-		workingLocationChc.setValue("Randstad");
+		educationLevel.setItems(FXCollections.observableArrayList(Arrays.asList(educationLevelList)));
+		//lookingForChc.setValue("Baan");
+		//workingLocationChc.setValue("Randstad");
 		
-		//Add a combo-check-box to the grid.
-		comboBox = new CheckComboBox <> (FXCollections.observableArrayList(Arrays.asList(workingLocationList)));
-		gridPane.add(comboBox, 3, 6);
+		
+		//Add a comXbo-check-box to the grid.
+		comboBoxSkill = new CheckComboBox <> (FXCollections.observableArrayList(Arrays.asList(skillsList)));
+		gridPane.add(comboBoxSkill, 3, 6);
+		comboBoxSkill.setPrefWidth(200);
+		
+		comboBoxWorkingField = new CheckComboBox <> (FXCollections.observableArrayList(Arrays.asList(workingFieldList)));
+		comboBoxWorkingField.setPrefWidth(200);
+		gridPane.add(comboBoxWorkingField, 3, 7);
 	}
 
 	@FXML

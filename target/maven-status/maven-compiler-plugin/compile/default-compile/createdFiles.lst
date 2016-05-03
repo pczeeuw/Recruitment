@@ -3,7 +3,6 @@ com\cgi\recruitment\fx\models\PersonOverviewModel.class
 com\cgi\recruitment\fx\controllers\EventOverviewController.class
 com\cgi\recruitment\util\AppConfiguration.class
 com\cgi\recruitment\domain\package-info.class
-META-INF\maven\nl.pczeeuw\boot-fx-rec\pom.properties
 com\cgi\recruitment\services\ExcelExportService.class
 com\cgi\recruitment\util\vallidators\PersonValidator.class
 com\cgi\recruitment\fx\domain\FxPerson.class
@@ -15,9 +14,7 @@ com\cgi\recruitment\util\converters\PersonConverter.class
 com\cgi\recruitment\fx\FXApp.class
 com\cgi\recruitment\fx\controllers\NewEventController.class
 com\cgi\recruitment\domain\Person.class
-META-INF\maven\nl.pczeeuw\boot-fx-rec\pom.xml
 com\cgi\recruitment\services\EventPersistService.class
-META-INF\MANIFEST.MF
 com\cgi\recruitment\fx\domain\FxRecruitmentEventFileName.class
 com\cgi\recruitment\util\converters\PersonListConverter.class
 com\cgi\recruitment\domain\RecruitmentEvent.class
