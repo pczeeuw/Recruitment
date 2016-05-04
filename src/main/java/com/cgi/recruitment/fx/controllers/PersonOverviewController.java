@@ -119,8 +119,8 @@ public class PersonOverviewController {
             phoneLabel.setText(person.getPhoneNumber());
             studyLabel.setText(person.getStudy());
             graduationLabel.setText(DateConverter.format(person.getGraduationDate()));
-            lookingForLabel.setText(person.getLookingFor());
-            workLocationLabel.setText(person.getWorkLocation());
+            lookingForLabel.setText(person.getInterestedIn());
+            workLocationLabel.setText(person.getRegion());
             prefStartDateLabel.setText(DateConverter.format(person.getWorkStartDate()));
             commentsLabel.setText(person.getComments());
 

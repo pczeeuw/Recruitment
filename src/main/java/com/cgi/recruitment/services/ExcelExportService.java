@@ -60,9 +60,9 @@ public class ExcelExportService {
 			row.createCell(3).setCellValue(p.getPhoneNumber());
 			row.createCell(4).setCellValue(p.getStudy());
 			row.createCell(5).setCellValue(p.getGraduationDate().toString());
-			row.createCell(6).setCellValue(p.getLookingFor());
-			row.createCell(7).setCellValue(p.getWorkingLocation());
-			row.createCell(8).setCellValue(p.getFreePer().toString());
+			row.createCell(6).setCellValue(p.getInterestedIn());
+			row.createCell(7).setCellValue(p.getRegion());
+			row.createCell(8).setCellValue(p.getPrefStartDate().toString());
 			row.createCell(9).setCellValue(p.getComments());
 		}
 		persistWorkbook(workbook);		

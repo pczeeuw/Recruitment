@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -22,8 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.CheckComboBox?>
 
-<VBox style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgi.recruitment.fx.controllers.AddPersonController">
+<VBox style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgi.recruitment.fx.controllers.AddPersonController">
    <children>
       <GridPane>
         <columnConstraints>
@@ -70,44 +64,59 @@
                   <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField id="first-name-input" fx:id="firstNameFld" onKeyTyped="#validateNotEmpty" prefWidth="100.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1">
+                  <TextField id="first-name-input" fx:id="firstNameFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField id="last-name-input" fx:id="lastNameFld" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3">
+                  <TextField id="last-name-input" fx:id="lastNameFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField id="email-input" fx:id="emailAddressFld" onKeyTyped="#validateEmailAddress" prefWidth="100.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField id="email-input" fx:id="emailAddressFld" maxWidth="200.0" onKeyTyped="#validateEmailAddress" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="phoneNumberFld" onKeyTyped="#validatePhoneNumber" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <TextField fx:id="phoneNumberFld" maxWidth="200.0" onKeyTyped="#validatePhoneNumber" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="studyFld" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="studyFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </TextField>
-                  <DatePicker fx:id="graduationDateFld" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <ChoiceBox fx:id="lookingForChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ChoiceBox fx:id="workingLocationChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                  <DatePicker fx:id="availablePerFld" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <DatePicker fx:id="graduationDateFld" maxWidth="200.0" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                  <ChoiceBox fx:id="educationLevel" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ChoiceBox fx:id="lookingForChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ChoiceBox fx:id="workingLocationChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                  <DatePicker fx:id="availablePerFld" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
+                  <ChoiceBox fx:id="carreerLevelChc" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
+                  <CheckComboBox fx:id="comboSkill" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+                  <CheckComboBox fx:id="comboBranch" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" />
+                  <CheckComboBox fx:id="comboRole" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
+                  <TextArea fx:id="commentsArea" prefHeight="50.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="12" GridPane.rowSpan="2" />
+                  <Button fx:id="submitButton" alignment="CENTER" mnemonicParsing="false" onAction="#addPerson" text="Versturen" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                  </Button>
                   <Label text="Voornaam">
                      <padding>
                         <Insets left="5.0" />
@@ -156,7 +165,7 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Geinteresseerd in" GridPane.rowIndex="5">
+                  <Label text="Geinteresseerd in" GridPane.rowIndex="6">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -164,7 +173,7 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Regio" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                  <Label text="Regio" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -172,7 +181,7 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Per wanneer?" GridPane.rowIndex="6">
+                  <Label text="Per wanneer?" GridPane.rowIndex="7">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -180,8 +189,8 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="validatorLbl" stylesheets="@css/add-person.css" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                  <Label text="Opmerkingen" GridPane.rowIndex="8">
+                  <Label fx:id="validatorLbl" stylesheets="@css/add-person.css" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                  <Label text="Opmerkingen" GridPane.rowIndex="12">
                      <padding>
                         <Insets left="5.0" />
                      </padding>
@@ -189,16 +198,6 @@
                         <Font name="Arial" size="24.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="commentsArea" prefHeight="50.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8" GridPane.rowSpan="2">
-                     <font>
-                        <Font name="Arial" size="18.0" />
-                     </font>
-                  </TextArea>
-                  <Button mnemonicParsing="false" onAction="#addPerson" text="Opslaan" GridPane.columnIndex="3" GridPane.rowIndex="11">
-                     <font>
-                        <Font name="Arial" size="24.0" />
-                     </font>
-                  </Button>
                   <Label text="Opleidingsniveau" GridPane.rowIndex="4">
                      <font>
                         <Font name="Arial" size="24.0" />
@@ -207,8 +206,7 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <ChoiceBox fx:id="educationLevel" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label text="Vaardigheden" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <Label text="Specialisme" GridPane.columnIndex="2" GridPane.rowIndex="9">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
@@ -216,7 +214,7 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
-                  <Label text="Werkveld" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                  <Label text="Branche" GridPane.rowIndex="10">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
@@ -226,6 +224,25 @@
                      <padding>
                         <Insets left="5.0" />
                      </padding>
+                  </Label>
+                  <Label text="Carrière Niveau" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Rol" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
                   </Label>
                </children>
             </GridPane>

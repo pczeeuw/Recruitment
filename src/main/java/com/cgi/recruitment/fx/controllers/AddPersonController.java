@@ -52,12 +52,14 @@ public class AddPersonController {
 	@FXML
 	private DatePicker availablePerFld;
 	@FXML
-	private TextArea commentsArea;
+	private ChoiceBox<String> carreerLevelChc;
+	
 	@FXML
 	private Label validatorLbl;
 	@FXML
 	private GridPane gridPane;
 			
+		
 	@Autowired
 	EventPersistService persistService;
 	
@@ -71,34 +73,39 @@ public class AddPersonController {
 	private String[] educationLevelList;
 	
 	@Value("${recruitment.values.werkveld}")
-	private String[] workingFieldList;
+	private String[] brancheList;
 	
 	@Value("${recruitment.values.vaardigheden}")
 	private String[] skillsList;
 	
-	private CheckComboBox<String> comboBoxSkill;
-
-	private CheckComboBox<String> comboBoxWorkingField;
+	@Value("${recruitment.values.rol}")
+	private String[] rolesList;
 	
+	@Value("${recruitment.values.ervaring}")
+	private String[] experienceList;
+	
+	@FXML
+	private CheckComboBox<String> comboSkill;
+	@FXML
+	private CheckComboBox<String> comboBranch;
+	@FXML
+	private CheckComboBox<String> comboRole;
+	@FXML
 	private PersonOverviewModel personOverviewModel;
+	@FXML	
+	private TextArea commentsArea;
+
 	
 	@FXML
 	private void initialize() {
 		lookingForChc.setItems(FXCollections.observableArrayList(Arrays.asList(lookingForList)));
 		workingLocationChc.setItems(FXCollections.observableArrayList(Arrays.asList(workingLocationList)));
 		educationLevel.setItems(FXCollections.observableArrayList(Arrays.asList(educationLevelList)));
-		//lookingForChc.setValue("Baan");
-		//workingLocationChc.setValue("Randstad");
-		
-		
-		//Add a comXbo-check-box to the grid.
-		comboBoxSkill = new CheckComboBox <> (FXCollections.observableArrayList(Arrays.asList(skillsList)));
-		gridPane.add(comboBoxSkill, 3, 6);
-		comboBoxSkill.setPrefWidth(200);
-		
-		comboBoxWorkingField = new CheckComboBox <> (FXCollections.observableArrayList(Arrays.asList(workingFieldList)));
-		comboBoxWorkingField.setPrefWidth(200);
-		gridPane.add(comboBoxWorkingField, 3, 7);
+		carreerLevelChc.setItems(FXCollections.observableArrayList(Arrays.asList(experienceList)));
+;
+		comboSkill.getItems().addAll(Arrays.asList(skillsList));
+		comboRole.getItems().addAll(Arrays.asList(rolesList));
+		comboBranch.getItems().addAll(Arrays.asList(brancheList));
 	}
 
 	@FXML
@@ -117,6 +124,7 @@ public class AddPersonController {
 		this.personOverviewModel = model;
 	}
 	
+
 	private void addPersonToModel () {
 		FxPerson person = new FxPerson ();
 		
@@ -138,10 +146,10 @@ public class AddPersonController {
 		person.setGraduationDate(graduationDateFld.getValue());
 		graduationDateFld.setValue(null);
 		
-		person.setLookingFor(lookingForChc.getValue());
+		person.setInterestedIn(lookingForChc.getValue());
 		lookingForChc.setValue("Baan");
 		
-		person.setWorkLocation(workingLocationChc.getValue());
+		person.setRegion(workingLocationChc.getValue());
 		workingLocationChc.setValue("Arnhem");
 		
 		person.setWorkStartDate(availablePerFld.getValue());

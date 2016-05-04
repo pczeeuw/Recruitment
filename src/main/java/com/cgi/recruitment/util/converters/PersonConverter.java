@@ -13,9 +13,9 @@ public class PersonConverter {
 		p.setPhoneNumber(fxP.getPhoneNumber());
 		p.setStudy(fxP.getStudy());
 		p.setGraduationDate(fxP.getGraduationDate());
-		p.setLookingFor(fxP.getLookingFor());
-		p.setWorkingLocation(fxP.getWorkLocation());
-		p.setFreePer(fxP.getWorkStartDate());
+		p.setInterestedIn(fxP.getInterestedIn());
+		p.setRegion(fxP.getRegion());
+		p.setPrefStartDate(fxP.getWorkStartDate());
 		p.setComments(fxP.getComments());
 		return p;
 	}
@@ -28,10 +28,14 @@ public class PersonConverter {
 		fxP.setPhoneNumber(p.getPhoneNumber());
 		fxP.setStudy(p.getStudy());
 		fxP.setGraduationDate(p.getGraduationDate());
-		fxP.setLookingFor(p.getLookingFor());
-		fxP.setWorkLocation(p.getWorkingLocation());
-		fxP.setWorkStartDate(p.getFreePer());
+		fxP.setInterestedIn(p.getInterestedIn());
+		fxP.setRegion(p.getRegion());
+		fxP.setWorkStartDate(p.getPrefStartDate());
 		fxP.setComments(p.getComments());
 		return fxP;
+	}
+	
+	public static FxPerson convertsToFxPerson (Person p) {
+		return null;
 	}
 }

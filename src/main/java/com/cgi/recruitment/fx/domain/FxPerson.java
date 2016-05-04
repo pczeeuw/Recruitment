@@ -19,9 +19,12 @@ public class FxPerson {
 	private final StringProperty phoneNumber;
 	private final StringProperty study;
 	private final ObjectProperty<LocalDate> graduationDate;
-	private final StringProperty lookingFor;
-	private final StringProperty workLocation;
+	private final StringProperty interestedIn;
+	private final StringProperty region;
 	private final ObjectProperty<LocalDate> prefStartDate;
+	
+	
+	
 	private final StringProperty comments;
 
 	/**
@@ -48,8 +51,8 @@ public class FxPerson {
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.study = new SimpleStringProperty(study);
 		this.graduationDate = new SimpleObjectProperty<>(graduationDate);
-		this.lookingFor = new SimpleStringProperty(lookingFor);
-		this.workLocation = new SimpleStringProperty(workLocation);
+		this.interestedIn = new SimpleStringProperty(lookingFor);
+		this.region = new SimpleStringProperty(workLocation);
 		this.prefStartDate = new SimpleObjectProperty<>(prefStartDate);
 		this.comments = new SimpleStringProperty(comments);
 	}
@@ -127,28 +130,28 @@ public class FxPerson {
 		this.graduationDate.set(gradDate);
 	}
 
-	public StringProperty getLookingForProperty() {
-		return lookingFor;
+	public StringProperty getInterestedInProperty() {
+		return interestedIn;
 	}
 	
-	public String getLookingFor() {
-		return lookingFor.get();
+	public String getInterestedIn() {
+		return interestedIn.get();
 	}
 	
-	public void setLookingFor(String lookingFor) {
-		this.lookingFor.set(lookingFor);
+	public void setInterestedIn(String lookingFor) {
+		this.interestedIn.set(lookingFor);
 	}
 
-	public StringProperty getWorkLocationProperty() {
-		return workLocation;
+	public StringProperty getRegionProperty() {
+		return region;
 	}
 	
-	public String getWorkLocation() {
-		return workLocation.get();
+	public String getRegion() {
+		return region.get();
 	}
 	
-	public void setWorkLocation(String workLocation) {
-		this.workLocation.set(workLocation);
+	public void setRegion(String workLocation) {
+		this.region.set(workLocation);
 	}
 
 	public ObjectProperty<LocalDate> getWorkStartDateProperty() {
