@@ -5,7 +5,7 @@
 
 	<groupId>nl.pczeeuw</groupId>
 	<artifactId>boot-fx-rec</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>boot-fx-rec</name>
@@ -48,6 +48,23 @@
 			<version>3.14</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.controlsfx</groupId>
+			<artifactId>controlsfx</artifactId>
+			<version>8.40.10</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ma.glasnost.orika</groupId>
+			<artifactId>orika-core</artifactId>
+			<version>1.4.6</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

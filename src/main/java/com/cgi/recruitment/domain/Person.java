@@ -5,11 +5,12 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import javafx.beans.property.StringProperty;
 import lombok.Data;
 
 
 @XmlRootElement(name="person")
-@XmlType(propOrder = {"firstName","lastName","emailAddress","phoneNumber","study","graduationDate","lookingFor","workingLocation","freePer","comments"})
+@XmlType(propOrder = {"firstName","lastName","emailAddress","phoneNumber","study","graduationDate","interestedIn","region","prefStartDate","comments","careerLevel","specialism","branch","role"})
 @Data 
 public class Person {
 	private String firstName;
@@ -18,8 +19,12 @@ public class Person {
 	private String phoneNumber;
 	private String study;
 	private LocalDate graduationDate;
-	private String lookingFor;
-	private String workingLocation;
-	private LocalDate freePer;
+	private String interestedIn;
+	private String region;
+	private LocalDate prefStartDate;
 	private String comments;
+	private String careerLevel;
+	private String specialism;
+	private String branch;
+	private String role;
 }

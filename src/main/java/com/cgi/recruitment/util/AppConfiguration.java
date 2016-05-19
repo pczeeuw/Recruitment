@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,8 @@ public class AppConfiguration {
 
 	private boolean isWindows;
 	private boolean isUnix;
+
+	private Path appdataPath;
 
 	@Value("${info.build.version}")
 	private String appVersion;
@@ -55,13 +58,13 @@ public class AppConfiguration {
 	}
 
 	private void setLocalAppPropsWin() {
-		Path appdataPath = Paths.get(System.getenv("APPDATA"));
+		appdataPath = Paths.get(System.getenv("APPDATA"));
 		checkExists(appdataPath);
 
 		appdataPath = Paths.get(appdataPath.toString(), "recruitment");
 		if (!checkExists(appdataPath))
 			createDirs(appdataPath);
-
+		
 		if (!checkExists(Paths.get(appdataPath.toString(), PROPS_FILE)))
 			createIniFile(appdataPath);
 
@@ -79,7 +82,6 @@ public class AppConfiguration {
 			log.error(e.getMessage());
 			e.printStackTrace();
 		}
-
 	}
 
 	private boolean checkExists(Path p) {
@@ -111,7 +113,6 @@ public class AppConfiguration {
 		log.info("Default properties are set.");
 		storeProperties(props);
 		log.info("Default properties saved to " + props.getProperty("data.inifile"));
-
 	}
 
 	private void storeProperties(Properties props) {
@@ -129,7 +130,7 @@ public class AppConfiguration {
 	public String getAppVersion() {
 		return this.appVersion;
 	}
-	
+
 	@Bean(name="AppProperties")
 	public Properties getApplicationProperties () {
 		return this.appConfigProperties;
@@ -139,5 +140,4 @@ public class AppConfiguration {
 		storeProperties(this.appConfigProperties);
 		log.info("Updated Properties");
 	}
-
 }

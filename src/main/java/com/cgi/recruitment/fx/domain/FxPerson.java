@@ -19,9 +19,14 @@ public class FxPerson {
 	private final StringProperty phoneNumber;
 	private final StringProperty study;
 	private final ObjectProperty<LocalDate> graduationDate;
-	private final StringProperty lookingFor;
-	private final StringProperty workLocation;
+	private final StringProperty interestedIn;
+	private final StringProperty region;
 	private final ObjectProperty<LocalDate> prefStartDate;
+	private final StringProperty careerLevel;
+	private final StringProperty specialism;
+	private final StringProperty branch;
+	private final StringProperty role;
+	
 	private final StringProperty comments;
 
 	/**
@@ -38,20 +43,24 @@ public class FxPerson {
 	 * @param lastName
 	 */
 	public FxPerson(String firstName, String lastName) {
-		this (firstName, lastName, null,null,null,null,null,null,null,null);
+		this (firstName, lastName, null,null,null,null,null,null,null,null,null,null,null,null);
 	}
 	
-	public FxPerson(String firstName, String lastName, String emailAddress, String phoneNumber, String study, LocalDate graduationDate, String lookingFor, String workLocation, LocalDate prefStartDate, String comments) {
+	public FxPerson(String firstName, String lastName, String emailAddress, String phoneNumber, String study, LocalDate graduationDate, String lookingFor, String workLocation, LocalDate prefStartDate, String comments, String careerLevel, String specialism, String branch, String role) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
 		this.emailAddress = new SimpleStringProperty(emailAddress);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.study = new SimpleStringProperty(study);
 		this.graduationDate = new SimpleObjectProperty<>(graduationDate);
-		this.lookingFor = new SimpleStringProperty(lookingFor);
-		this.workLocation = new SimpleStringProperty(workLocation);
+		this.interestedIn = new SimpleStringProperty(lookingFor);
+		this.region = new SimpleStringProperty(workLocation);
 		this.prefStartDate = new SimpleObjectProperty<>(prefStartDate);
 		this.comments = new SimpleStringProperty(comments);
+		this.careerLevel = new SimpleStringProperty(careerLevel);;
+		this.specialism = new SimpleStringProperty(specialism);;
+		this.branch = new SimpleStringProperty(branch);;
+		this.role = new SimpleStringProperty(role);;
 	}
 
 	public String getFirstName() {
@@ -127,39 +136,39 @@ public class FxPerson {
 		this.graduationDate.set(gradDate);
 	}
 
-	public StringProperty getLookingForProperty() {
-		return lookingFor;
+	public StringProperty getInterestedInProperty() {
+		return interestedIn;
 	}
 	
-	public String getLookingFor() {
-		return lookingFor.get();
+	public String getInterestedIn() {
+		return interestedIn.get();
 	}
 	
-	public void setLookingFor(String lookingFor) {
-		this.lookingFor.set(lookingFor);
+	public void setInterestedIn(String lookingFor) {
+		this.interestedIn.set(lookingFor);
 	}
 
-	public StringProperty getWorkLocationProperty() {
-		return workLocation;
+	public StringProperty getRegionProperty() {
+		return region;
 	}
 	
-	public String getWorkLocation() {
-		return workLocation.get();
+	public String getRegion() {
+		return region.get();
 	}
 	
-	public void setWorkLocation(String workLocation) {
-		this.workLocation.set(workLocation);
+	public void setRegion(String workLocation) {
+		this.region.set(workLocation);
 	}
 
-	public ObjectProperty<LocalDate> getWorkStartDateProperty() {
+	public ObjectProperty<LocalDate> getPrefStartDateProperty() {
 		return prefStartDate;
 	}
 	
-	public LocalDate getWorkStartDate() {
+	public LocalDate getPrefStartDate() {
 		return prefStartDate.get();
 	}
 	
-	public void setWorkStartDate(LocalDate startDate) {
+	public void setPrefStartDate(LocalDate startDate) {
 		this.prefStartDate.set(startDate);
 	}
 
@@ -174,6 +183,56 @@ public class FxPerson {
 	public void setComments(String comments) {
 		this.comments.set(comments);
 	}
+	
+	public StringProperty getCareerLevelProperty () {
+		return this.careerLevel;
+	}
+	
+	public String getCareerLevel () {
+		return careerLevel.get();
+	}
+	
+	public void setCareerLevel (String careerLevel) {
+		this.careerLevel.set(careerLevel);
+	}
+	
+	public StringProperty getSpecialismProperty () {
+		return this.specialism;
+	}
+	
+	public String getSpecialism () {
+		return specialism.get();
+	}
+	
+	public void setSpecialism (String specialism) {
+		this.specialism.set(specialism);
+	}
+	
+	public StringProperty getBranchProperty () {
+		return this.branch;
+	}
+	
+	public String getBranch () {
+		return branch.get();
+	}
+	
+	public void setBranch (String branch) {
+		this.branch.set(branch);
+	}
+	
+	public StringProperty getRoleProperty () {
+		return this.role;
+	}
+	
+	public String getRole () {
+		return role.get();
+	}
+	
+	public void setRole (String role) {
+		this.role.set(role);
+	}
+	
+	
 
 
 }

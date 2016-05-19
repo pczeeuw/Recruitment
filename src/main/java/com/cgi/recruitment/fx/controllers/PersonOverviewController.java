@@ -119,9 +119,9 @@ public class PersonOverviewController {
             phoneLabel.setText(person.getPhoneNumber());
             studyLabel.setText(person.getStudy());
             graduationLabel.setText(DateConverter.format(person.getGraduationDate()));
-            lookingForLabel.setText(person.getLookingFor());
-            workLocationLabel.setText(person.getWorkLocation());
-            prefStartDateLabel.setText(DateConverter.format(person.getWorkStartDate()));
+            lookingForLabel.setText(person.getInterestedIn());
+            workLocationLabel.setText(person.getRegion());
+            prefStartDateLabel.setText(DateConverter.format(person.getPrefStartDate()));
             commentsLabel.setText(person.getComments());
 
             // TODO: We need a way to convert the birthday into a String! 
@@ -157,6 +157,7 @@ public class PersonOverviewController {
 //
 //    	log.info("Persisting Model");
 //    	service.persistEvent(recruitmentEvent);
+    	
     }
     
     @FXML

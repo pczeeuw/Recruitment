@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.domain.RecruitmentEvent;
 import com.cgi.recruitment.fx.domain.FxRecruitmentEvent;
-import com.cgi.recruitment.util.converters.EventConverter;
+import com.cgi.recruitment.util.converters.orika.OrikaCustomConverter;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,7 +33,7 @@ public class EventPersistService {
 	private Properties appProperties;
 		
 	public void persistEvent (FxRecruitmentEvent fxRecruitmentEvent) {
-		RecruitmentEvent recruitmentEvent = EventConverter.convertToRecruitmentEvent(fxRecruitmentEvent);
+		RecruitmentEvent recruitmentEvent = OrikaCustomConverter.convertFromFx(fxRecruitmentEvent);
 		
 		log.info("Persisting event " + recruitmentEvent.getEventName());
 		log.info("Filename is " + recruitmentEvent.getFileName());
@@ -88,7 +88,7 @@ public class EventPersistService {
 			
 			JAXBContext jaxb = JAXBContext.newInstance(RecruitmentEvent.class);
 			Unmarshaller unmarshaller = jaxb.createUnmarshaller();
-			return EventConverter.convertToFxRecruitmentEventg(((RecruitmentEvent) unmarshaller.unmarshal(path.toFile())) );
+			return OrikaCustomConverter.convertToFx(((RecruitmentEvent) unmarshaller.unmarshal(path.toFile())) );
 		} catch (JAXBException e) {
 			log.error("Failed to load from File!");
 			e.printStackTrace();

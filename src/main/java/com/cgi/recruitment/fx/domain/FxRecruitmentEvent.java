@@ -20,7 +20,7 @@ public class FxRecruitmentEvent {
 	private ObservableList<FxPerson> personList;
 	
 	public FxRecruitmentEvent () {
-		this ("TestEvent","Groningen");
+		this ("","");
 	}
 	
 	public FxRecruitmentEvent (String eventName, String eventLocation) {
@@ -28,11 +28,16 @@ public class FxRecruitmentEvent {
 	}
 	
 	public FxRecruitmentEvent (String eventName, String eventLocation, LocalDate eventDate) {
+		this (eventName, eventLocation, null, FXCollections.observableArrayList());
+	}
+	
+	public FxRecruitmentEvent (String eventName, String eventLocation, LocalDate eventDate, ObservableList<FxPerson> personList) {
 		this.eventName = new SimpleStringProperty(eventName);
 		this.eventLocation = new SimpleStringProperty(eventLocation);
 		this.eventDate = new SimpleObjectProperty<>(eventDate);
-		this.personList = FXCollections.observableArrayList();
+		this.personList = personList;
 	}
+	
 	
 	public StringProperty getEventNameProperty () {
 		return this.eventName;
