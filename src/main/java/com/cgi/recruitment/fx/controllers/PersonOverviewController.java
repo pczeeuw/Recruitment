@@ -121,7 +121,7 @@ public class PersonOverviewController {
             graduationLabel.setText(DateConverter.format(person.getGraduationDate()));
             lookingForLabel.setText(person.getInterestedIn());
             workLocationLabel.setText(person.getRegion());
-            prefStartDateLabel.setText(DateConverter.format(person.getWorkStartDate()));
+            prefStartDateLabel.setText(DateConverter.format(person.getPrefStartDate()));
             commentsLabel.setText(person.getComments());
 
             // TODO: We need a way to convert the birthday into a String! 

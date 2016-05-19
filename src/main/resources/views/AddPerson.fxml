@@ -117,28 +117,28 @@
 								<Font name="Arial" size="24.0" />
 							</font>
 						</Button>
-						<Label text="Voornaam">
+						<Label text="Voornaam *">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
-						<Label text="Achternaam" GridPane.columnIndex="2">
+						<Label text="Achternaam *" GridPane.columnIndex="2">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
-						<Label text="E-mail Adres" GridPane.rowIndex="1">
+						<Label text="E-mail Adres *" GridPane.rowIndex="1">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
 						<Label text="Telefoonnummer" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -146,15 +146,15 @@
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
-						<Label text="Studierichting" GridPane.rowIndex="3">
+						<Label text="Studierichting *" GridPane.rowIndex="3">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
 						<Label text="Afstudeerdatum" GridPane.columnIndex="2" GridPane.rowIndex="3">
@@ -162,7 +162,7 @@
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
 						<Label text="Geinteresseerd in" GridPane.rowIndex="6">
@@ -170,7 +170,7 @@
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
 						<Label text="Regio" GridPane.columnIndex="2" GridPane.rowIndex="6">
@@ -178,7 +178,7 @@
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
 						<Label text="Per wanneer?" GridPane.rowIndex="7">
@@ -186,7 +186,7 @@
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
 						<Label fx:id="validatorLbl" stylesheets="@css/add-person.css" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="7" />
@@ -195,12 +195,12 @@
 								<Insets left="5.0" />
 							</padding>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
-						<Label text="Opleidingsniveau" GridPane.rowIndex="4">
+						<Label text="Opleidingsniveau *" GridPane.rowIndex="4">
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 							<padding>
 								<Insets left="5.0" />
@@ -208,7 +208,7 @@
 						</Label>
 						<Label text="Specialisme" GridPane.columnIndex="2" GridPane.rowIndex="9">
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 							<padding>
 								<Insets left="5.0" />
@@ -216,7 +216,7 @@
 						</Label>
 						<Label text="Branche" GridPane.rowIndex="10">
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 							<GridPane.margin>
 								<Insets />
@@ -227,7 +227,7 @@
 						</Label>
 						<Label text="Carrière Niveau" GridPane.rowIndex="9">
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 							<opaqueInsets>
 								<Insets />
@@ -241,7 +241,7 @@
 								<Insets left="5.0" />
 							</GridPane.margin>
 							<font>
-								<Font name="Arial" size="24.0" />
+								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
 					</children>

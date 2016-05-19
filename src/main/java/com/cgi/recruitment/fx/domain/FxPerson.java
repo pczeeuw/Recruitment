@@ -160,15 +160,15 @@ public class FxPerson {
 		this.region.set(workLocation);
 	}
 
-	public ObjectProperty<LocalDate> getWorkStartDateProperty() {
+	public ObjectProperty<LocalDate> getPrefStartDateProperty() {
 		return prefStartDate;
 	}
 	
-	public LocalDate getWorkStartDate() {
+	public LocalDate getPrefStartDate() {
 		return prefStartDate.get();
 	}
 	
-	public void setWorkStartDate(LocalDate startDate) {
+	public void setPrefStartDate(LocalDate startDate) {
 		this.prefStartDate.set(startDate);
 	}
 

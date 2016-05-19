@@ -32,19 +32,19 @@ import lombok.extern.slf4j.Slf4j;
 public class AddPersonController {
 
 	@FXML
-	private TextField firstNameFld;
+	private TextField firstNameFld;					//Required
 	@FXML
-	private TextField lastNameFld;
+	private TextField lastNameFld;					//Required
 	@FXML
-	private TextField emailAddressFld;
+	private TextField emailAddressFld;				//Required
 	@FXML
 	private TextField phoneNumberFld;
 	@FXML
-	private TextField studyFld;
+	private TextField studyFld;						//Required
 	@FXML
-	private DatePicker graduationDateFld;
+	private DatePicker graduationDateFld;			
 	@FXML
-	private ChoiceBox<String> educationLevelChc;
+	private ChoiceBox<String> educationLevelChc;	//Required
 	@FXML
 	private ChoiceBox<String> interestedInChc;
 	@FXML
@@ -59,21 +59,18 @@ public class AddPersonController {
 	private CheckComboBox<String> comboBranch;
 	@FXML
 	private CheckComboBox<String> comboRole;
-	@FXML
-	private PersonOverviewModel personOverviewModel;
 	@FXML	
 	private TextArea commentsArea;
-	
-	
+		
 	@FXML
 	private Label validatorLbl;
 	@FXML
 	private GridPane gridPane;
 			
-		
 	@Autowired
-	EventPersistService persistService;
+	private EventPersistService persistService;
 	
+	//Values are in the application.properties file (under resources)
 	@Value("${recruitment.values.interesse}")
 	private String[] lookingForList;
 	
@@ -96,6 +93,7 @@ public class AddPersonController {
 	private String[] experienceList;
 	
 
+	private PersonOverviewModel personOverviewModel;
 
 	
 	@FXML
@@ -104,7 +102,6 @@ public class AddPersonController {
 		regionChc.setItems(FXCollections.observableArrayList(Arrays.asList(workingLocationList)));
 		educationLevelChc.setItems(FXCollections.observableArrayList(Arrays.asList(educationLevelList)));
 		carreerLevelChc.setItems(FXCollections.observableArrayList(Arrays.asList(experienceList)));
-;
 		comboSkill.getItems().addAll(Arrays.asList(skillsList));
 		comboRole.getItems().addAll(Arrays.asList(rolesList));
 		comboBranch.getItems().addAll(Arrays.asList(brancheList));
@@ -154,12 +151,24 @@ public class AddPersonController {
 		person.setRegion(regionChc.getValue());
 		regionChc.setValue("Arnhem");
 		
-		person.setWorkStartDate(prefStartDateDap.getValue());
+		person.setPrefStartDate(prefStartDateDap.getValue());
 		prefStartDateDap.setValue(null);
 		
+		person.setCareerLevel(carreerLevelChc.getValue());
+		carreerLevelChc.setValue(null);
+		
+		person.setSpecialism(comboSkill.getCheckModel().getCheckedItems().toString());
+		comboSkill.getCheckModel().clearChecks();
+		
+		person.setBranch(comboBranch.getCheckModel().getCheckedItems().toString());
+		comboBranch.getCheckModel().clearChecks();
+		
+		person.setRole(comboRole.getCheckModel().getCheckedItems().toString());
+		comboRole.getCheckModel().clearChecks();
+				
 		person.setComments(commentsArea.getText());	
 		commentsArea.setText("");
-		
+				
 		if (personOverviewModel != null)
 			personOverviewModel.getPersonData().add(person);
 		else
@@ -176,7 +185,12 @@ public class AddPersonController {
 		allFieldsCorrect &= validateRequired(PersonValidator.validateNotEmpty(studyFld.getText()), studyFld.getStyleClass());
 		allFieldsCorrect &= validateRequired(PersonValidator.validateLocalDate(graduationDateFld.getValue()), graduationDateFld.getStyleClass());
 		allFieldsCorrect &= validateRequired(PersonValidator.validateLocalDate(prefStartDateDap.getValue()), prefStartDateDap.getStyleClass());
-		//allFieldsCorrect &= validateNotRequired(PersonValidator.validateNotRequired(input));
+		allFieldsCorrect &= validateRequired(PersonValidator.validateNotEmpty(educationLevelChc.getValue()), educationLevelChc.getStyleClass());
+		allFieldsCorrect &= validateNotRequired(PersonValidator.validateNotRequired(interestedInChc.getValue()));
+		allFieldsCorrect &= validateNotRequired(PersonValidator.validateNotRequired(carreerLevelChc.getValue()));
+		allFieldsCorrect &= validateNotRequired(PersonValidator.validateNotRequired(comboSkill.getCheckModel().getCheckedItems().toString()));
+		allFieldsCorrect &= validateNotRequired(PersonValidator.validateNotRequired(comboBranch.getCheckModel().getCheckedItems().toString()));
+		allFieldsCorrect &= validateNotRequired(PersonValidator.validateNotRequired(comboRole.getCheckModel().getCheckedItems().toString()));
 		return allFieldsCorrect;
 	}
 	

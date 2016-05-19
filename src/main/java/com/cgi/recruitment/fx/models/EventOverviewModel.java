@@ -18,6 +18,7 @@ public class EventOverviewModel {
 	
 	private FxRecruitmentEvent selectedEvent;
 	
+	//Holds a list of RecruitmentEvent file names (The XML files in the appdata folder)
 	private ObservableList<FxRecruitmentEventFileName> eventData;
 	
 	public EventOverviewModel () {
@@ -35,6 +36,7 @@ public class EventOverviewModel {
 		}
 	}
 	
+	//When user clicks an event filename, load the event based on the filename
 	public void setSelectedEvent(String eventFileName) {
 		this.selectedEvent = eventPersistService.getPersistedEvent(eventFileName);
 	}

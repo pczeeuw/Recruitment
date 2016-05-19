@@ -30,16 +30,29 @@ public class PersonValidator {
 			return true;
 	}
 	
+	/**
+	 * Non-required field. If input is null, return true. If format fails, return false.
+	 * @param input
+	 * @return
+	 */
 	public static boolean validateLocalDate (LocalDate input) {
+		if (input == null)
+			return true;
+		
 		if (DateConverter.format(input)== null) 
 			return false;
 		else
 			return true;
 	}
 	
+	/**
+	 * Phone number must contain either no digits (Not a required field) or more than 7 digits
+	 * @param input
+	 * @return
+	 */
 	public static boolean validatePhoneNumber (String input) {
 		String phone = PhoneNumberConverter.formatPhoneNumber(input);
-		if (phone.length() < 9 || phone.length() > 12)
+		if (phone.length() != 0 && phone.length() < 7 )
 			return false;
 		else 
 			return true;
