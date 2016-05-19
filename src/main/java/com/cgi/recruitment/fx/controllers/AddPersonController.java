@@ -42,17 +42,28 @@ public class AddPersonController {
 	@FXML
 	private TextField studyFld;
 	@FXML
-	private ChoiceBox<String> educationLevel;
-	@FXML
 	private DatePicker graduationDateFld;
 	@FXML
-	private ChoiceBox<String> lookingForChc;
+	private ChoiceBox<String> educationLevelChc;
 	@FXML
-	private ChoiceBox<String> workingLocationChc;
+	private ChoiceBox<String> interestedInChc;
 	@FXML
-	private DatePicker availablePerFld;
+	private ChoiceBox<String> regionChc;
+	@FXML
+	private DatePicker prefStartDateDap;
 	@FXML
 	private ChoiceBox<String> carreerLevelChc;
+	@FXML
+	private CheckComboBox<String> comboSkill;
+	@FXML
+	private CheckComboBox<String> comboBranch;
+	@FXML
+	private CheckComboBox<String> comboRole;
+	@FXML
+	private PersonOverviewModel personOverviewModel;
+	@FXML	
+	private TextArea commentsArea;
+	
 	
 	@FXML
 	private Label validatorLbl;
@@ -84,23 +95,14 @@ public class AddPersonController {
 	@Value("${recruitment.values.ervaring}")
 	private String[] experienceList;
 	
-	@FXML
-	private CheckComboBox<String> comboSkill;
-	@FXML
-	private CheckComboBox<String> comboBranch;
-	@FXML
-	private CheckComboBox<String> comboRole;
-	@FXML
-	private PersonOverviewModel personOverviewModel;
-	@FXML	
-	private TextArea commentsArea;
+
 
 	
 	@FXML
 	private void initialize() {
-		lookingForChc.setItems(FXCollections.observableArrayList(Arrays.asList(lookingForList)));
-		workingLocationChc.setItems(FXCollections.observableArrayList(Arrays.asList(workingLocationList)));
-		educationLevel.setItems(FXCollections.observableArrayList(Arrays.asList(educationLevelList)));
+		interestedInChc.setItems(FXCollections.observableArrayList(Arrays.asList(lookingForList)));
+		regionChc.setItems(FXCollections.observableArrayList(Arrays.asList(workingLocationList)));
+		educationLevelChc.setItems(FXCollections.observableArrayList(Arrays.asList(educationLevelList)));
 		carreerLevelChc.setItems(FXCollections.observableArrayList(Arrays.asList(experienceList)));
 ;
 		comboSkill.getItems().addAll(Arrays.asList(skillsList));
@@ -146,14 +148,14 @@ public class AddPersonController {
 		person.setGraduationDate(graduationDateFld.getValue());
 		graduationDateFld.setValue(null);
 		
-		person.setInterestedIn(lookingForChc.getValue());
-		lookingForChc.setValue("Baan");
+		person.setInterestedIn(interestedInChc.getValue());
+		interestedInChc.setValue("Baan");
 		
-		person.setRegion(workingLocationChc.getValue());
-		workingLocationChc.setValue("Arnhem");
+		person.setRegion(regionChc.getValue());
+		regionChc.setValue("Arnhem");
 		
-		person.setWorkStartDate(availablePerFld.getValue());
-		availablePerFld.setValue(null);
+		person.setWorkStartDate(prefStartDateDap.getValue());
+		prefStartDateDap.setValue(null);
 		
 		person.setComments(commentsArea.getText());	
 		commentsArea.setText("");
@@ -167,14 +169,14 @@ public class AddPersonController {
 	private boolean validateAll () {
 		boolean allFieldsCorrect = true;
 		
-		allFieldsCorrect &= validateGeneric(PersonValidator.validateNotEmpty(firstNameFld.getText()), firstNameFld.getStyleClass());
-		allFieldsCorrect &= validateGeneric(PersonValidator.validateNotEmpty(lastNameFld.getText()), lastNameFld.getStyleClass());
-		allFieldsCorrect &= validateGeneric(PersonValidator.validateEmailAddress(emailAddressFld.getText()), emailAddressFld.getStyleClass());
-		allFieldsCorrect &= validateGeneric(PersonValidator.validatePhoneNumber(phoneNumberFld.getText()), phoneNumberFld.getStyleClass());
-		allFieldsCorrect &= validateGeneric(PersonValidator.validateNotEmpty(studyFld.getText()), studyFld.getStyleClass());
-		allFieldsCorrect &= validateGeneric(PersonValidator.validateLocalDate(graduationDateFld.getValue()), graduationDateFld.getStyleClass());
-		allFieldsCorrect &= validateGeneric(PersonValidator.validateLocalDate(availablePerFld.getValue()), availablePerFld.getStyleClass());
-		
+		allFieldsCorrect &= validateRequired(PersonValidator.validateNotEmpty(firstNameFld.getText()), firstNameFld.getStyleClass());
+		allFieldsCorrect &= validateRequired(PersonValidator.validateNotEmpty(lastNameFld.getText()), lastNameFld.getStyleClass());
+		allFieldsCorrect &= validateRequired(PersonValidator.validateEmailAddress(emailAddressFld.getText()), emailAddressFld.getStyleClass());
+		allFieldsCorrect &= validateRequired(PersonValidator.validatePhoneNumber(phoneNumberFld.getText()), phoneNumberFld.getStyleClass());
+		allFieldsCorrect &= validateRequired(PersonValidator.validateNotEmpty(studyFld.getText()), studyFld.getStyleClass());
+		allFieldsCorrect &= validateRequired(PersonValidator.validateLocalDate(graduationDateFld.getValue()), graduationDateFld.getStyleClass());
+		allFieldsCorrect &= validateRequired(PersonValidator.validateLocalDate(prefStartDateDap.getValue()), prefStartDateDap.getStyleClass());
+		//allFieldsCorrect &= validateNotRequired(PersonValidator.validateNotRequired(input));
 		return allFieldsCorrect;
 	}
 	
@@ -182,31 +184,31 @@ public class AddPersonController {
 	public void validatePhoneNumber (KeyEvent event) {
 		TextField source = (TextField) event.getSource();
 		
-		validateGeneric(PersonValidator.validatePhoneNumber(source.getText()),source.getStyleClass());
+		validateRequired(PersonValidator.validatePhoneNumber(source.getText()),source.getStyleClass());
 	}
 	
 	@FXML 
 	public void validateDate (Event event) {				
 		DatePicker source = (DatePicker) event.getSource();
 		
-		validateGeneric(PersonValidator.validateLocalDate(source.getValue()), source.getStyleClass());
+		validateRequired(PersonValidator.validateLocalDate(source.getValue()), source.getStyleClass());
 	} 
 
 	@FXML
 	public void validateEmailAddress(KeyEvent event) {
 		TextField source = (TextField) event.getSource();
 
-		validateGeneric(PersonValidator.validateEmailAddress(source.getText()), source.getStyleClass());
+		validateRequired(PersonValidator.validateEmailAddress(source.getText()), source.getStyleClass());
 	}
 
 	@FXML
 	public void validateNotEmpty(KeyEvent event) {
 		TextField source = (TextField) event.getSource();
 
-		validateGeneric(PersonValidator.validateNotEmpty(source.getText()), source.getStyleClass());
+		validateRequired(PersonValidator.validateNotEmpty(source.getText()), source.getStyleClass());
 	}
 
-	private boolean validateGeneric(boolean condition, ObservableList<String> style) {
+	private boolean validateRequired(boolean condition, ObservableList<String> style) {
 		if (condition) {
 			if (style.contains("error"))
 				style.removeAll("error");
@@ -214,6 +216,10 @@ public class AddPersonController {
 			if (!style.contains("error"))
 				style.add("error");
 		}
+		return condition;
+	}
+	
+	private boolean validateNotRequired(boolean condition) {
 		return condition;
 	}
 }

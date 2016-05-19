@@ -157,6 +157,7 @@ public class PersonOverviewController {
 //
 //    	log.info("Persisting Model");
 //    	service.persistEvent(recruitmentEvent);
+    	
     }
     
     @FXML

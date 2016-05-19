@@ -23,6 +23,13 @@ public class PersonValidator {
 		return input.length() > 0;
 	}
 	
+	public static boolean validateNotRequired (String input) {
+		if (input.isEmpty())
+			return input.isEmpty();
+		else
+			return true;
+	}
+	
 	public static boolean validateLocalDate (LocalDate input) {
 		if (DateConverter.format(input)== null) 
 			return false;
