@@ -12,6 +12,7 @@ import java.util.Properties;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.stereotype.Component;
@@ -29,7 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class AppConfiguration {
 	private static final String SYSTEM_OS = System.getProperty("os.name").toLowerCase();
-	private static final String PROPS_FILE = "recruitment.ini";
+	private static final String INI_FILE = "recruitment.ini";
+	private static final String PROPS_FILE = "recruitment.properties";
 
 	private boolean isWindows;
 	private boolean isUnix;
@@ -65,15 +67,19 @@ public class AppConfiguration {
 		if (!checkExists(appdataPath))
 			createDirs(appdataPath);
 		
-		if (!checkExists(Paths.get(appdataPath.toString(), PROPS_FILE)))
+		if (!checkExists(Paths.get(appdataPath.toString(), INI_FILE)))
 			createIniFile(appdataPath);
-
+		
+		if (!checkExists(Paths.get(appdataPath.toString(), PROPS_FILE))) {
+			log.info("No recruitment.properties file found!");
+			createPropertiesFile(appdataPath);
+		}
 		processIniFile(appdataPath);
 	}
 
 	private void processIniFile(Path p) {
 		log.info("Attempting to read from existing recruitment.ini file");
-		try (InputStream input = new FileInputStream(Paths.get(p.toString(), PROPS_FILE).toFile())) {
+		try (InputStream input = new FileInputStream(Paths.get(p.toString(), INI_FILE).toFile())) {
 			appConfigProperties = new Properties();
 			appConfigProperties.load(input);
 			log.info("Succesfully retrieved properties from existing recruitment.ini");
@@ -103,24 +109,39 @@ public class AppConfiguration {
 		Properties props = new Properties();
 		props.setProperty("app.version", appVersion);
 		props.setProperty("data.rootdir", p.toFile().toString());
-		props.setProperty("data.inifile", Paths.get(p.toString(), PROPS_FILE).toFile().toString());
+		props.setProperty("data.inifile", Paths.get(p.toString(), INI_FILE).toFile().toString());
 		props.setProperty("data.eventdir", Paths.get(p.toFile().toString(), "events").toString());
+		props.setProperty("recruitment.config", Paths.get(p.toString(), PROPS_FILE).toFile().toString());
 		
 		//Create the XML dir if it doesnt exist.
 		if (!checkExists(Paths.get(props.getProperty("data.eventdir"))))
 			createDirs(Paths.get(props.getProperty("data.eventdir")));
 		
 		log.info("Default properties are set.");
-		storeProperties(props);
+		storeProperties(props, Paths.get(props.getProperty("data.rootdir"), INI_FILE));
 		log.info("Default properties saved to " + props.getProperty("data.inifile"));
 	}
-
-	private void storeProperties(Properties props) {
-		try (OutputStream out = new FileOutputStream(
-				Paths.get(props.getProperty("data.rootdir"), PROPS_FILE).toFile())) {
+	
+	private void createPropertiesFile(Path target) {
+		Properties recProps = new Properties ();
+		recProps.setProperty("recruitment.fields.en", "FirstName,LastName,EmailAddress,PhoneNumber,Study,GraduationDate,InterestedIn,Region,PrefStartDate,CareerLevel,Specialism,Branch,Role,Comments");
+		recProps.setProperty("recruitment.fields.nl", "Voornaam,Achternaam,E-mailadres,Telefoonnummer,Studie,Afstudeerdatum,Interesse In,Regio,Startdatum,Carriere Niveau,Specialisme,Branche,Role,Commentaar");
+		recProps.setProperty("recruitment.values.opleidingsniveau", "HBO,WO,PhD,Anders,Test");
+		recProps.setProperty("recruitment.values.regio", "Noord,Oost,Randstad,Zuid,Landelijk");
+		recProps.setProperty("recruitment.values.interesse", "Baan,Afstudeerstage,Samenwerking,Oplossing,Anders,Nvt");
+		recProps.setProperty("recruitment.values.vaardigheden", "Java,PHP,.Net");
+		recProps.setProperty("recruitment.values.werkveld", "Utilities,Goverment,Banking,Transport");
+		recProps.setProperty("recruitment.values.ervaring", "Student,Young Professional,Medior Professional,Senior Professional");
+		recProps.setProperty("recruitment.values.rol", "Afstudeeropdracht,Technical Software Engineer,Software Developer,Business");
+		
+		storeProperties(recProps, Paths.get(target.toFile().toString(), PROPS_FILE));
+	}
+	
+	private void storeProperties(Properties props, Path target) {
+		try (OutputStream out = new FileOutputStream(target.toFile())) {
 			props.store(out, "");
 		} catch (IOException e) {
-			log.error("Could not write recruitment.ini!");
+			log.error("Could not write the properties file!");
 			log.error(e.getMessage());
 			e.printStackTrace();
 		}
@@ -137,7 +158,7 @@ public class AppConfiguration {
 	}
 
 	public void updateAppConfigProperties() {
-		storeProperties(this.appConfigProperties);
+		storeProperties(this.appConfigProperties,Paths.get(appConfigProperties.getProperty("data.rootdir"), INI_FILE));
 		log.info("Updated Properties");
 	}
 }

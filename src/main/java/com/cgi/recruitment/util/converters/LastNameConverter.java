@@ -23,7 +23,7 @@ public class LastNameConverter {
 			}
 		} else {
 			result = input;
-		}	
+		}
 		return result;
 	}
 }

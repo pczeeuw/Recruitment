@@ -13,13 +13,17 @@ public class PersonValidator {
 			"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{1,})$";
 	
-	public static boolean validateEmailAddress (String emailAddress) {
+	public static boolean validateEmailAddress (String input) {
+		if (input == null)
+			return false;
 		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-		Matcher matcher = pattern.matcher(emailAddress);
+		Matcher matcher = pattern.matcher(input);
 		return matcher.matches();
 	}
 	
 	public static boolean validateNotEmpty (String input) {
+		if (input == null)
+			return false;
 		return input.length() > 0;
 	}
 	
@@ -50,6 +54,8 @@ public class PersonValidator {
 	 * @return
 	 */
 	public static boolean validatePhoneNumber (String input) {
+		if (input == null)
+			return false;
 		String phone = PhoneNumberConverter.formatPhoneNumber(input);
 		if (phone.length() != 0 && phone.length() < 7 )
 			return false;
