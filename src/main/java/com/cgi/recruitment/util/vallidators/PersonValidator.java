@@ -24,11 +24,10 @@ public class PersonValidator {
 	}
 	
 	public static boolean validateNotRequired (String input) {
-		if (input.isEmpty())
-			return input.isEmpty();
-		else
-			return true;
+		return true;
 	}
+	
+	
 	
 	/**
 	 * Non-required field. If input is null, return true. If format fails, return false.

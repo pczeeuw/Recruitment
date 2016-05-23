@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.cgi.recruitment.fx.domain.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
 import com.cgi.recruitment.services.EventPersistService;
+import com.cgi.recruitment.util.converters.LastNameConverter;
 import com.cgi.recruitment.util.converters.PhoneNumberConverter;
 import com.cgi.recruitment.util.vallidators.PersonValidator;
 
@@ -130,7 +131,7 @@ public class AddPersonController {
 		person.setFirstName(firstNameFld.getText());
 		firstNameFld.setText("");
 		
-		person.setLastName(lastNameFld.getText());
+		person.setLastName(LastNameConverter.convertLastName(lastNameFld.getText()));
 		lastNameFld.setText("");
 		
 		person.setEmailAddress(emailAddressFld.getText());
