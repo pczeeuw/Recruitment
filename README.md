@@ -29,7 +29,8 @@ Download and install Git from https://git-scm.com/downloads (make sure to includ
 
 <h1>Cloning the project</h1>
 
-Go to your Sts-working dir in the windows file explorer. Right-click and choose 'Git Bash here'
+Go to your Sts-working dir in the windows file explorer. Right-click and choose 'Git Bash here'.
+
 Type: <i>git clone https://github.com/pczeeuw/Recruitment.git</i>
 
 Wait for the process to finish and go to STS and select File -> Import -> Excisting Maven Project and navigate to the Recruitment dir in your workspace.
