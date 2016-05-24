@@ -12,10 +12,8 @@ import java.util.Properties;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,8 +24,8 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 
+@Configuration
 @Slf4j
-@Component
 public class AppConfiguration {
 	private static final String SYSTEM_OS = System.getProperty("os.name").toLowerCase();
 	private static final String INI_FILE = "recruitment.ini";

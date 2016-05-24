@@ -7,6 +7,7 @@ import org.controlsfx.control.CheckComboBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.domain.FxPerson;
@@ -36,7 +37,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-@PropertySource(value = "${recruitment.config}", ignoreResourceNotFound=true)
+@PropertySources({
+	@PropertySource(value = "classpath:recruitment.properties"),
+	@PropertySource(value = "${recruitment.config}",ignoreResourceNotFound=true)
+})
 public class AddPersonController {
 
 	@FXML
@@ -129,8 +133,6 @@ public class AddPersonController {
 			validatorLbl.setText("Vul alle velden in!");
 		}
 	}
-
-
 
 	public void setPersonOverviewModel(PersonOverviewModel model) {
 		this.personOverviewModel = model;
@@ -262,20 +264,21 @@ public class AddPersonController {
 			}
 		});
 	}
-	
-	private void addDateCellFactory () {
-		prefStartDateDap.setDayCellFactory(new Callback<DatePicker,DateCell> () {
+
+	private void addDateCellFactory() {
+		prefStartDateDap.setDayCellFactory(new Callback<DatePicker, DateCell>() {
 			@Override
 			public DateCell call(DatePicker datePicker) {
-				return new DateCell () {
-					@Override public void updateItem(LocalDate item, boolean empty) {
-		                 super.updateItem(item, empty);		                 
-		                 if (item.isBefore(LocalDate.now())) {
-		                     setDisable(true);
-		                 }
+				return new DateCell() {
+					@Override
+					public void updateItem(LocalDate item, boolean empty) {
+						super.updateItem(item, empty);
+						if (item.isBefore(LocalDate.now())) {
+							setDisable(true);
+						}
 					}
 				};
-			}			
+			}
 		});
 	}
 

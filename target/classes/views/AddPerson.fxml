@@ -245,7 +245,7 @@
 								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
-                  <ComboBox fx:id="testBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  
 					</children>
 				</GridPane>
 			</children>

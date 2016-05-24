@@ -60,7 +60,7 @@
 			<version>1.4.6</version>
 		</dependency>
 
-
+<!-- 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-envers</artifactId>
@@ -70,6 +70,7 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>1.6</version>
 		</dependency>
+ -->
 	</dependencies>
 
 	<build>
