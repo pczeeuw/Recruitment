@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.cgi.recruitment.fx.domain.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
 import com.cgi.recruitment.services.EventPersistService;
+import com.cgi.recruitment.util.converters.CheckListConverter;
 import com.cgi.recruitment.util.converters.LastNameConverter;
 import com.cgi.recruitment.util.converters.PhoneNumberConverter;
 import com.cgi.recruitment.util.vallidators.PersonValidator;
@@ -163,11 +164,11 @@ public class AddPersonController {
 		educationLevelChc.setValue(null);
 
 
-		person.setInterestedIn(interestedInChc.getCheckModel().getCheckedItems().toString());
+		person.setInterestedIn(CheckListConverter.normalizeArray(interestedInChc.getCheckModel().getCheckedItems().toString()));
 		interestedInChc.getCheckModel().clearChecks();
 
-		person.setRegion(regionChc.getCheckModel().getCheckedItems().toString());
-		interestedInChc.getCheckModel().clearChecks();
+		person.setRegion(CheckListConverter.normalizeArray(regionChc.getCheckModel().getCheckedItems().toString()));
+		regionChc.getCheckModel().clearChecks();
 
 		person.setPrefStartDate(prefStartDateDap.getValue());
 		prefStartDateDap.setValue(null);
@@ -175,13 +176,13 @@ public class AddPersonController {
 		person.setCareerLevel(carreerLevelChc.getValue());
 		carreerLevelChc.setValue(null);
 
-		person.setSpecialism(comboSkill.getCheckModel().getCheckedItems().toString());
+		person.setSpecialism(CheckListConverter.normalizeArray(comboSkill.getCheckModel().getCheckedItems().toString()));
 		comboSkill.getCheckModel().clearChecks();
 
-		person.setBranch(comboBranch.getCheckModel().getCheckedItems().toString());
+		person.setBranch(CheckListConverter.normalizeArray(comboBranch.getCheckModel().getCheckedItems().toString()));
 		comboBranch.getCheckModel().clearChecks();
 
-		person.setRole(comboRole.getCheckModel().getCheckedItems().toString());
+		person.setRole(CheckListConverter.normalizeArray(comboRole.getCheckModel().getCheckedItems().toString()));
 		comboRole.getCheckModel().clearChecks();
 
 		person.setComments(commentsArea.getText());

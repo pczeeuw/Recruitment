@@ -122,8 +122,8 @@ public class AppConfiguration {
 	
 	private void createPropertiesFile(Path target) {
 		Properties recProps = new Properties ();
-		recProps.setProperty("recruitment.fields.en", "FirstName,LastName,EmailAddress,PhoneNumber,Study,GraduationDate,InterestedIn,Region,PrefStartDate,CareerLevel,Specialism,Branch,Role,Comments");
-		recProps.setProperty("recruitment.fields.nl", "Voornaam,Achternaam,E-mailadres,Telefoonnummer,Studie,Afstudeerdatum,Interesse In,Regio,Startdatum,Carriere Niveau,Specialisme,Branche,Role,Commentaar");
+//		recProps.setProperty("recruitment.fields.en", "FirstName,LastName,EmailAddress,PhoneNumber,Study,GraduationDate,InterestedIn,Region,PrefStartDate,CareerLevel,Specialism,Branch,Role,Comments");
+//		recProps.setProperty("recruitment.fields.nl", "Voornaam,Achternaam,E-mailadres,Telefoonnummer,Studie,Afstudeerdatum,Interesse In,Regio,Startdatum,Carriere Niveau,Specialisme,Branche,Role,Commentaar");
 		recProps.setProperty("recruitment.values.opleidingsniveau", "HBO,WO,PhD,Anders,Test");
 		recProps.setProperty("recruitment.values.regio", "Noord,Oost,Randstad,Zuid,Landelijk");
 		recProps.setProperty("recruitment.values.interesse", "Baan,Afstudeerstage,Samenwerking,Oplossing,Anders,Nvt");
