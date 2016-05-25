@@ -19,6 +19,7 @@ public class FxPerson {
 	private final StringProperty phoneNumber;
 	private final StringProperty study;
 	private final ObjectProperty<LocalDate> graduationDate;
+	private final StringProperty educationLevel;
 	private final StringProperty interestedIn;
 	private final StringProperty region;
 	private final ObjectProperty<LocalDate> prefStartDate;
@@ -26,7 +27,7 @@ public class FxPerson {
 	private final StringProperty specialism;
 	private final StringProperty branch;
 	private final StringProperty role;
-	
+
 	private final StringProperty comments;
 
 	/**
@@ -43,24 +44,32 @@ public class FxPerson {
 	 * @param lastName
 	 */
 	public FxPerson(String firstName, String lastName) {
-		this (firstName, lastName, null,null,null,null,null,null,null,null,null,null,null,null);
+		this(firstName, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	}
-	
-	public FxPerson(String firstName, String lastName, String emailAddress, String phoneNumber, String study, LocalDate graduationDate, String lookingFor, String workLocation, LocalDate prefStartDate, String comments, String careerLevel, String specialism, String branch, String role) {
+
+	public FxPerson(String firstName, String lastName, String emailAddress, String phoneNumber, String study,
+			LocalDate graduationDate, String educationLevel, String lookingFor, String workLocation,
+			LocalDate prefStartDate, String comments, String careerLevel, String specialism, String branch,
+			String role) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
 		this.emailAddress = new SimpleStringProperty(emailAddress);
 		this.phoneNumber = new SimpleStringProperty(phoneNumber);
 		this.study = new SimpleStringProperty(study);
 		this.graduationDate = new SimpleObjectProperty<>(graduationDate);
+		this.educationLevel = new SimpleStringProperty(educationLevel);
 		this.interestedIn = new SimpleStringProperty(lookingFor);
 		this.region = new SimpleStringProperty(workLocation);
 		this.prefStartDate = new SimpleObjectProperty<>(prefStartDate);
 		this.comments = new SimpleStringProperty(comments);
-		this.careerLevel = new SimpleStringProperty(careerLevel);;
-		this.specialism = new SimpleStringProperty(specialism);;
-		this.branch = new SimpleStringProperty(branch);;
-		this.role = new SimpleStringProperty(role);;
+		this.careerLevel = new SimpleStringProperty(careerLevel);
+		;
+		this.specialism = new SimpleStringProperty(specialism);
+		;
+		this.branch = new SimpleStringProperty(branch);
+		;
+		this.role = new SimpleStringProperty(role);
+		;
 	}
 
 	public String getFirstName() {
@@ -90,36 +99,35 @@ public class FxPerson {
 	public StringProperty emailAddressProperty() {
 		return emailAddress;
 	}
-	
-	public String getEmailAddress () {
+
+	public String getEmailAddress() {
 		return this.emailAddress.get();
 	}
-	
+
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress.set(emailAddress);
 	}
 
-	public StringProperty getPhoneNumberProperty () {
+	public StringProperty getPhoneNumberProperty() {
 		return phoneNumber;
 	}
-	
-	public String getPhoneNumber () {
+
+	public String getPhoneNumber() {
 		return this.phoneNumber.get();
 	}
-	
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber.set(phoneNumber);
 	}
 
-
 	public StringProperty getStudyProperty() {
 		return study;
 	}
-	
-	public String getStudy () {
+
+	public String getStudy() {
 		return this.study.get();
 	}
-	
+
 	public void setStudy(String study) {
 		this.study.set(study);
 	}
@@ -127,11 +135,11 @@ public class FxPerson {
 	public ObjectProperty<LocalDate> getGraduationDateProperty() {
 		return graduationDate;
 	}
-	
+
 	public LocalDate getGraduationDate() {
 		return graduationDate.get();
 	}
-	
+
 	public void setGraduationDate(LocalDate gradDate) {
 		this.graduationDate.set(gradDate);
 	}
@@ -139,11 +147,11 @@ public class FxPerson {
 	public StringProperty getInterestedInProperty() {
 		return interestedIn;
 	}
-	
+
 	public String getInterestedIn() {
 		return interestedIn.get();
 	}
-	
+
 	public void setInterestedIn(String lookingFor) {
 		this.interestedIn.set(lookingFor);
 	}
@@ -151,11 +159,11 @@ public class FxPerson {
 	public StringProperty getRegionProperty() {
 		return region;
 	}
-	
+
 	public String getRegion() {
 		return region.get();
 	}
-	
+
 	public void setRegion(String workLocation) {
 		this.region.set(workLocation);
 	}
@@ -163,11 +171,11 @@ public class FxPerson {
 	public ObjectProperty<LocalDate> getPrefStartDateProperty() {
 		return prefStartDate;
 	}
-	
+
 	public LocalDate getPrefStartDate() {
 		return prefStartDate.get();
 	}
-	
+
 	public void setPrefStartDate(LocalDate startDate) {
 		this.prefStartDate.set(startDate);
 	}
@@ -175,64 +183,73 @@ public class FxPerson {
 	public StringProperty getCommentsProperty() {
 		return comments;
 	}
-	
+
 	public String getComments() {
 		return comments.get();
 	}
-	
+
 	public void setComments(String comments) {
 		this.comments.set(comments);
 	}
-	
-	public StringProperty getCareerLevelProperty () {
+
+	public StringProperty getCareerLevelProperty() {
 		return this.careerLevel;
 	}
-	
-	public String getCareerLevel () {
+
+	public String getCareerLevel() {
 		return careerLevel.get();
 	}
-	
-	public void setCareerLevel (String careerLevel) {
+
+	public void setCareerLevel(String careerLevel) {
 		this.careerLevel.set(careerLevel);
 	}
-	
-	public StringProperty getSpecialismProperty () {
+
+	public StringProperty getSpecialismProperty() {
 		return this.specialism;
 	}
-	
-	public String getSpecialism () {
+
+	public String getSpecialism() {
 		return specialism.get();
 	}
-	
-	public void setSpecialism (String specialism) {
+
+	public void setSpecialism(String specialism) {
 		this.specialism.set(specialism);
 	}
-	
-	public StringProperty getBranchProperty () {
+
+	public StringProperty getBranchProperty() {
 		return this.branch;
 	}
-	
-	public String getBranch () {
+
+	public String getBranch() {
 		return branch.get();
 	}
-	
-	public void setBranch (String branch) {
+
+	public void setBranch(String branch) {
 		this.branch.set(branch);
 	}
-	
-	public StringProperty getRoleProperty () {
+
+	public StringProperty getRoleProperty() {
 		return this.role;
 	}
-	
-	public String getRole () {
+
+	public String getRole() {
 		return role.get();
 	}
-	
-	public void setRole (String role) {
+
+	public void setRole(String role) {
 		this.role.set(role);
 	}
-	
-	
 
+	public StringProperty getEducationLevelProperty() {
+		return this.educationLevel;
+	}
+
+	public String getEducationLevel() {
+		return this.educationLevel.get();
+	}
+
+	public void setEductionLevel(String educationLevel) {
+		this.educationLevel.set(educationLevel);
+	}
 
 }

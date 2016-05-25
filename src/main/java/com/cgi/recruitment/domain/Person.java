@@ -10,7 +10,8 @@ import lombok.Data;
 
 
 @XmlRootElement(name="person")
-@XmlType(propOrder = {"firstName","lastName","emailAddress","phoneNumber","study","graduationDate","interestedIn","region","prefStartDate","comments","careerLevel","specialism","branch","role"})
+@XmlType(propOrder = {"firstName","lastName","emailAddress","phoneNumber","study","graduationDate","educationLevel","interestedIn","region","prefStartDate","comments","careerLevel","specialism","branch","role"})
+
 @Data 
 public class Person {
 	private String firstName;
@@ -19,12 +20,13 @@ public class Person {
 	private String phoneNumber;
 	private String study;
 	private LocalDate graduationDate;
+	private String educationLevel;
 	private String interestedIn;
 	private String region;
-	private LocalDate prefStartDate;
-	private String comments;
+	private LocalDate prefStartDate;	
 	private String careerLevel;
 	private String specialism;
 	private String branch;
 	private String role;
+	private String comments;
 }

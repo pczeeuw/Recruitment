@@ -158,6 +158,10 @@ public class AddPersonController {
 
 		person.setGraduationDate(graduationDateFld.getValue());
 		graduationDateFld.setValue(null);
+		
+		person.setEductionLevel(educationLevelChc.getValue());
+		educationLevelChc.setValue(null);
+
 
 		person.setInterestedIn(interestedInChc.getCheckModel().getCheckedItems().toString());
 		interestedInChc.getCheckModel().clearChecks();
