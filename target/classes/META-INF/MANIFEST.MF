@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: boot-fx-rec
-Implementation-Version: 0.1.2-SNAPSHOT
-Built-By: pczee
-Implementation-Vendor-Id: nl.pczeeuw
-Build-Jdk: 1.8.0_60
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: CGI Nederland
-
