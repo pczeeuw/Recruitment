@@ -1,9 +1,9 @@
 package com.cgi.recruitment.fx.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import com.cgi.recruitment.fx.FXApp;
 import com.cgi.recruitment.fx.domain.FxRecruitmentEvent;
 import com.cgi.recruitment.services.EventPersistService;
 
@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 @Component
+@Lazy
 public class NewEventController {
 	@FXML
 	private TextField nameField;

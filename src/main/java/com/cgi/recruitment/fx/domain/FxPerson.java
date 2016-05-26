@@ -29,6 +29,9 @@ public class FxPerson {
 	private final StringProperty role;
 
 	private final StringProperty comments;
+	
+	private final StringProperty spokenWith;
+	private final StringProperty commentsCGI;
 
 	/**
 	 * Default constructor.
@@ -44,13 +47,13 @@ public class FxPerson {
 	 * @param lastName
 	 */
 	public FxPerson(String firstName, String lastName) {
-		this(firstName, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null);
+		this(firstName, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	}
 
 	public FxPerson(String firstName, String lastName, String emailAddress, String phoneNumber, String study,
 			LocalDate graduationDate, String educationLevel, String lookingFor, String workLocation,
 			LocalDate prefStartDate, String comments, String careerLevel, String specialism, String branch,
-			String role) {
+			String role, String spokenWith, String commentsCGI) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
 		this.emailAddress = new SimpleStringProperty(emailAddress);
@@ -62,14 +65,13 @@ public class FxPerson {
 		this.region = new SimpleStringProperty(workLocation);
 		this.prefStartDate = new SimpleObjectProperty<>(prefStartDate);
 		this.comments = new SimpleStringProperty(comments);
-		this.careerLevel = new SimpleStringProperty(careerLevel);
-		;
-		this.specialism = new SimpleStringProperty(specialism);
-		;
-		this.branch = new SimpleStringProperty(branch);
-		;
+		this.careerLevel = new SimpleStringProperty(careerLevel);		
+		this.specialism = new SimpleStringProperty(specialism);		
+		this.branch = new SimpleStringProperty(branch);		
 		this.role = new SimpleStringProperty(role);
-		;
+		this.spokenWith = new SimpleStringProperty(spokenWith);
+		this.commentsCGI = new SimpleStringProperty(commentsCGI);
+		
 	}
 
 	public String getFirstName() {
@@ -250,6 +252,30 @@ public class FxPerson {
 
 	public void setEductionLevel(String educationLevel) {
 		this.educationLevel.set(educationLevel);
+	}
+	
+	public StringProperty getSpokenWithProperty() {
+		return this.spokenWith;
+	}
+
+	public String getSpokenWith() {
+		return this.spokenWith.get();
+	}
+
+	public void setSpokenWith(String spokenWith) {
+		this.spokenWith.set(spokenWith);
+	}
+	
+	public StringProperty getCommentsCGIProperty() {
+		return this.commentsCGI;
+	}
+
+	public String getCommentsCGI() {
+		return this.commentsCGI.get();
+	}
+
+	public void setCommentsCGI(String commentsCGI) {
+		this.commentsCGI.set(commentsCGI);
 	}
 
 }

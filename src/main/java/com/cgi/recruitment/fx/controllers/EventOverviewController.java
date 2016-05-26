@@ -4,6 +4,7 @@ import java.io.File;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.FXApp;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 
 @Component
+@Lazy
 public class EventOverviewController {
 	@FXML
 	private TableView<FxRecruitmentEventFileName> eventTable;
@@ -63,7 +65,7 @@ public class EventOverviewController {
 
 		eventTable.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> showEventDetails(newValue));
-
+		
 	}
 
 	private void showEventDetails(FxRecruitmentEventFileName eventFile) {

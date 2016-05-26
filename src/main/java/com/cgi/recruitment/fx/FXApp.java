@@ -8,10 +8,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import com.cgi.recruitment.fx.controllers.AddPersonCGIController;
 import com.cgi.recruitment.fx.controllers.AddPersonController;
 import com.cgi.recruitment.fx.controllers.EventOverviewController;
 import com.cgi.recruitment.fx.controllers.NewEventController;
 import com.cgi.recruitment.fx.controllers.PersonOverviewController;
+import com.cgi.recruitment.fx.domain.FxPerson;
 import com.cgi.recruitment.fx.domain.FxRecruitmentEvent;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
 import com.cgi.recruitment.util.AppConfiguration;
@@ -95,6 +97,15 @@ public class FXApp implements ApplicationContextAware {
 		}
 	}
 	
+	public void showAddPersonCGIDialog (FxPerson person) {
+		try {
+			this.loadNewAddPersonCGIDialog (person);
+		} catch  (IOException e) {
+			log.error("Could not load Add Person CGI Dialog");
+			e.printStackTrace();
+		}
+	}
+	
 	public Stage getStage () {
 		return this.primaryStage;
 	}
@@ -127,6 +138,7 @@ public class FXApp implements ApplicationContextAware {
 				
 		AddPersonController controller = (AddPersonController) loader.getController();
 		controller.setPersonOverviewModel(model);
+		controller.setMainApp(this);
 
 		dialogStage.showAndWait();
 	}
@@ -183,6 +195,29 @@ public class FXApp implements ApplicationContextAware {
 		NewEventController controller = (NewEventController) loader.getController();
 		controller.setDialogStage(dialogStage);
 
+		dialogStage.showAndWait();
+	}
+	
+	private void loadNewAddPersonCGIDialog (FxPerson person) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setControllerFactory(context::getBean);
+		Resource screenResource = getScreenResourceByFileName("AddPersonCGI.fxml");
+
+		loader.setLocation(screenResource.getURL());
+		AnchorPane page = (AnchorPane) loader.load();
+
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Invullen door CGI medewerker");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(primaryStage);
+		
+		Scene scene = new Scene(page);
+		dialogStage.setScene(scene);
+				
+		AddPersonCGIController controller = (AddPersonCGIController) loader.getController();
+		controller.setFxPerson(person);
+		controller.setDialogStage(dialogStage);
+		
 		dialogStage.showAndWait();
 	}
 

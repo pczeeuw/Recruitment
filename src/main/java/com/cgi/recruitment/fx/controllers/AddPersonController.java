@@ -6,10 +6,10 @@ import java.util.Arrays;
 import org.controlsfx.control.CheckComboBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import com.cgi.recruitment.fx.FXApp;
 import com.cgi.recruitment.fx.domain.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
 import com.cgi.recruitment.services.EventPersistService;
@@ -25,7 +25,6 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -38,10 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-@PropertySources({
-	@PropertySource(value = "classpath:recruitment.properties"),
-	@PropertySource(value = "${recruitment.config}",ignoreResourceNotFound=true)
-})
+@Lazy
 public class AddPersonController {
 
 	@FXML
@@ -80,9 +76,6 @@ public class AddPersonController {
 	@FXML
 	private GridPane gridPane;
 
-	@FXML
-	private ComboBox<String> testBox;
-
 	@Autowired
 	private EventPersistService persistService;
 
@@ -110,6 +103,8 @@ public class AddPersonController {
 
 	private PersonOverviewModel personOverviewModel;
 
+	private FXApp fxApp;
+
 	@FXML
 	private void initialize() {
 		interestedInChc.getItems().addAll(Arrays.asList(lookingForList));
@@ -123,15 +118,23 @@ public class AddPersonController {
 		addListeners();
 	}
 
+	public void setMainApp(FXApp fxApp) {
+		this.fxApp = fxApp;
+	}
+
 	@FXML
 	public void addPerson(ActionEvent event) {
 		if (validateAll()) {
-			addPersonToModel();
+			
+			
+			fxApp.showAddPersonCGIDialog(addPersonToModel());
+			
 			persistService.persistEvent(personOverviewModel.getFxEvent());
+			
 			validatorLbl.setText("");
 			log.info("Person added to model and saved to file");
 		} else {
-			validatorLbl.setText("Vul alle velden in!");
+			validatorLbl.setText("Vul alle velden (correct) in!");
 		}
 	}
 
@@ -139,7 +142,7 @@ public class AddPersonController {
 		this.personOverviewModel = model;
 	}
 
-	private void addPersonToModel() {
+	private FxPerson addPersonToModel() {
 		FxPerson person = new FxPerson();
 
 		person.setFirstName(firstNameFld.getText());
@@ -159,12 +162,12 @@ public class AddPersonController {
 
 		person.setGraduationDate(graduationDateFld.getValue());
 		graduationDateFld.setValue(null);
-		
+
 		person.setEductionLevel(educationLevelChc.getValue());
 		educationLevelChc.setValue(null);
 
-
-		person.setInterestedIn(CheckListConverter.normalizeArray(interestedInChc.getCheckModel().getCheckedItems().toString()));
+		person.setInterestedIn(
+				CheckListConverter.normalizeArray(interestedInChc.getCheckModel().getCheckedItems().toString()));
 		interestedInChc.getCheckModel().clearChecks();
 
 		person.setRegion(CheckListConverter.normalizeArray(regionChc.getCheckModel().getCheckedItems().toString()));
@@ -176,7 +179,8 @@ public class AddPersonController {
 		person.setCareerLevel(carreerLevelChc.getValue());
 		carreerLevelChc.setValue(null);
 
-		person.setSpecialism(CheckListConverter.normalizeArray(comboSkill.getCheckModel().getCheckedItems().toString()));
+		person.setSpecialism(
+				CheckListConverter.normalizeArray(comboSkill.getCheckModel().getCheckedItems().toString()));
 		comboSkill.getCheckModel().clearChecks();
 
 		person.setBranch(CheckListConverter.normalizeArray(comboBranch.getCheckModel().getCheckedItems().toString()));
@@ -192,6 +196,8 @@ public class AddPersonController {
 			personOverviewModel.getPersonData().add(person);
 		else
 			log.error("Overview model is null!!");
+		
+		return person;
 	}
 
 	private boolean validateAll() {
@@ -215,7 +221,8 @@ public class AddPersonController {
 				educationLevelChc.getStyleClass());
 		allFieldsCorrect &= validateNotRequired(
 				PersonValidator.validateNotRequired(interestedInChc.getCheckModel().getCheckedItems().toString()));
-		allFieldsCorrect &= validateNotRequired(PersonValidator.validateNotRequired(carreerLevelChc.getValue()));
+		allFieldsCorrect &= validateRequired(PersonValidator.validateNotEmpty(carreerLevelChc.getValue()),
+				carreerLevelChc.getStyleClass());
 		allFieldsCorrect &= validateNotRequired(
 				PersonValidator.validateNotRequired(comboSkill.getCheckModel().getCheckedItems().toString()));
 		allFieldsCorrect &= validateNotRequired(
