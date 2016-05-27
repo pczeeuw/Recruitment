@@ -97,5 +97,12 @@ public class EventPersistService {
 			return null;
 		}
 	}
+	
+	public void deleteEvent (String fileName) {
+		Path path = Paths.get(appProperties.getProperty("data.eventdir"),fileName);
+		if (path.toFile().exists()) {
+			path.toFile().delete();
+		}
+	}
 
 }

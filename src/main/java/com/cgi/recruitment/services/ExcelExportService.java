@@ -105,6 +105,10 @@ public class ExcelExportService {
 		persistWorkbook(workbook);		
 	}
 	
+	public void deleteXmlEvent () {
+		targetFile.delete();
+	}
+	
 	private void persistWorkbook (HSSFWorkbook workbook) {
 		try (FileOutputStream out = new FileOutputStream(targetFile)) {
 			workbook.write(out);

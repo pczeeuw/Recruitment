@@ -27,11 +27,14 @@ public class FxPerson {
 	private final StringProperty specialism;
 	private final StringProperty branch;
 	private final StringProperty role;
-
 	private final StringProperty comments;
-	
 	private final StringProperty spokenWith;
 	private final StringProperty commentsCGI;
+	private final StringProperty newsLetter;
+	private final ObjectProperty<LocalDate> applyDate;
+	private final StringProperty eventName;
+	private final StringProperty eventLocation;
+	private final ObjectProperty<LocalDate> eventDate;
 
 	/**
 	 * Default constructor.
@@ -47,13 +50,14 @@ public class FxPerson {
 	 * @param lastName
 	 */
 	public FxPerson(String firstName, String lastName) {
-		this(firstName, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+		this(firstName, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 	}
 
 	public FxPerson(String firstName, String lastName, String emailAddress, String phoneNumber, String study,
 			LocalDate graduationDate, String educationLevel, String lookingFor, String workLocation,
 			LocalDate prefStartDate, String comments, String careerLevel, String specialism, String branch,
-			String role, String spokenWith, String commentsCGI) {
+			String role, String spokenWith, String commentsCGI, String newsLetter, LocalDate applyDate,
+			String eventName, String eventLocation, LocalDate eventDate) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
 		this.emailAddress = new SimpleStringProperty(emailAddress);
@@ -71,7 +75,11 @@ public class FxPerson {
 		this.role = new SimpleStringProperty(role);
 		this.spokenWith = new SimpleStringProperty(spokenWith);
 		this.commentsCGI = new SimpleStringProperty(commentsCGI);
-		
+		this.newsLetter = new SimpleStringProperty(newsLetter);
+		this.applyDate = new SimpleObjectProperty<> (applyDate);
+		this.eventName = new SimpleStringProperty(eventName);
+		this.eventLocation = new SimpleStringProperty(eventLocation);
+		this.eventDate = new SimpleObjectProperty<>(eventDate);
 	}
 
 	public String getFirstName() {
@@ -276,6 +284,66 @@ public class FxPerson {
 
 	public void setCommentsCGI(String commentsCGI) {
 		this.commentsCGI.set(commentsCGI);
+	}
+	
+	public StringProperty getNewsLetterProperty() {
+		return this.newsLetter;
+	}
+
+	public String getNewsLetter() {
+		return this.newsLetter.get();
+	}
+
+	public void setNewsLetter(String newsLetter) {
+		this.newsLetter.set(newsLetter);
+	}
+	
+	public ObjectProperty<LocalDate> getApplyDateProperty() {
+		return applyDate;
+	}
+
+	public LocalDate getApplyDate() {
+		return applyDate.get();
+	}
+
+	public void setApplyDate(LocalDate applyDate) {
+		this.applyDate.set(applyDate);
+	}
+	
+	public StringProperty getEventNameProperty() {
+		return this.eventName;
+	}
+
+	public String getEventName() {
+		return this.eventName.get();
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName.set(eventName);
+	}
+	
+	public StringProperty getEventLocationProperty() {
+		return this.eventLocation;
+	}
+
+	public String getEventLocation() {
+		return this.eventLocation.get();
+	}
+
+	public void setEventLocation(String eventLocation) {
+		this.eventLocation.set(eventLocation);
+	}
+	
+	public ObjectProperty<LocalDate> getEventDateProperty() {
+		return eventDate;
+	}
+
+	public LocalDate getEventDate() {
+		return eventDate.get();
+	}
+
+	public void setEventDate(LocalDate eventDate) {
+		this.eventDate.set(eventDate);
 	}
 
 }

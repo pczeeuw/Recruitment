@@ -24,6 +24,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -70,7 +71,9 @@ public class AddPersonController {
 	private CheckComboBox<String> comboRole;
 	@FXML
 	private TextArea commentsArea;
-
+	@FXML
+	private CheckBox akkoordCheckBox;
+	
 	@FXML
 	private Label validatorLbl;
 	@FXML
@@ -100,6 +103,8 @@ public class AddPersonController {
 
 	@Value("${recruitment.values.ervaring}")
 	private String[] experienceList;
+	
+
 
 	private PersonOverviewModel personOverviewModel;
 
@@ -191,6 +196,11 @@ public class AddPersonController {
 
 		person.setComments(commentsArea.getText());
 		commentsArea.setText("");
+		
+		person.setNewsLetter(getCheckBoxValue());
+		akkoordCheckBox.setSelected(false);
+		
+		person.setApplyDate(LocalDate.now());
 
 		if (personOverviewModel != null)
 			personOverviewModel.getPersonData().add(person);
@@ -198,6 +208,13 @@ public class AddPersonController {
 			log.error("Overview model is null!!");
 		
 		return person;
+	}
+
+	private String getCheckBoxValue() {
+		if (akkoordCheckBox.isSelected())
+			return "Akkoord";
+		else 
+			return "Niet Akkoord";
 	}
 
 	private boolean validateAll() {

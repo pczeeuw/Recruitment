@@ -1,6 +1,7 @@
 package com.cgi.recruitment.fx.controllers;
 
 import java.util.Collections;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -13,11 +14,14 @@ import com.cgi.recruitment.services.EventPersistService;
 import com.cgi.recruitment.util.converters.DateConverter;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,7 +54,23 @@ public class PersonOverviewController {
 	@FXML
 	private Label prefStartDateLabel;
 	@FXML
+	private Label carreerLevelLabel;;
+	@FXML
+	private Label specialismLabel;
+	@FXML
+	private Label branchLabel;
+	@FXML
+	private Label roleLabel;
+	@FXML
 	private Label commentsLabel;
+	@FXML
+	private Label spokenWithLabel;
+	@FXML
+	private Label commentsCGILabel;
+	@FXML
+	private Label newsLetterLabel;
+	@FXML
+	private Label applyDateLabel;
 
 	private PersonOverviewModel personModel;
 
@@ -96,12 +116,12 @@ public class PersonOverviewController {
 					protected void updateItem(FxPerson person, boolean empty) {
 						super.updateItem(person, empty);
 						if (person != null) {
-							if (person.getSpokenWith() == null) {
-								if (!getStyleClass().contains("highlightedRow")) {
-									getStyleClass().add("highlightedRow");
+							if (person.getSpokenWith() == null || person.getSpokenWith().length() < 1) {
+								if (!getStyleClass().contains("highlight")) {
+									getStyleClass().add("highlight");
 								}
 							} else {
-								getStyleClass().removeAll(Collections.singleton("highlightedRow"));
+								getStyleClass().removeAll(Collections.singleton("highlight"));
 							}
 						}
 					}
@@ -149,10 +169,16 @@ public class PersonOverviewController {
 			lookingForLabel.setText(person.getInterestedIn());
 			workLocationLabel.setText(person.getRegion());
 			prefStartDateLabel.setText(DateConverter.format(person.getPrefStartDate()));
+			carreerLevelLabel.setText(person.getCareerLevel());
+			specialismLabel.setText(person.getSpecialism());
+			branchLabel.setText(person.getBranch());
+			roleLabel.setText(person.getRole());
 			commentsLabel.setText(person.getComments());
+			spokenWithLabel.setText(person.getSpokenWith());
+			commentsCGILabel.setText(person.getCommentsCGI());
+			newsLetterLabel.setText(person.getNewsLetter());
+			applyDateLabel.setText(DateConverter.format(person.getApplyDate()));
 
-			// TODO: We need a way to convert the birthday into a String!
-			// birthdayLabel.setText(...);
 		} else {
 			// Person is null, remove all the text.
 			firstNameLabel.setText("");
@@ -164,7 +190,15 @@ public class PersonOverviewController {
 			lookingForLabel.setText("");
 			workLocationLabel.setText("");
 			prefStartDateLabel.setText("");
+			carreerLevelLabel.setText("");
+			specialismLabel.setText("");
+			branchLabel.setText("");
+			roleLabel.setText("");
 			commentsLabel.setText("");
+			spokenWithLabel.setText("");
+			commentsCGILabel.setText("");
+			newsLetterLabel.setText("");
+			applyDateLabel.setText("");
 		}
 	}
 
@@ -174,27 +208,35 @@ public class PersonOverviewController {
 	@FXML
 	private void handleNewPerson() {
 		fxApp.showAddPersonDialog(personModel);
+		personTable.refresh();
 	}
 
 	@FXML
 	private void editPerson() {
-		// recruitmentEvent.setEventName("Testdagen");
-		// recruitmentEvent.setEventLocation("Groningen");
-		// recruitmentEvent.setEventDate(LocalDate.now());
-		// recruitmentEvent.setPersonList(personModel.getPersonData());
-		//
-		// log.info("Persisting Model");
-		// service.persistEvent(recruitmentEvent);
-
+		if (personTable.getSelectionModel().getSelectedItem() == null)
+			return;
+		fxApp.showEditPersonScreen(personTable.getSelectionModel().getSelectedItem(),personModel.getFxEvent());
+		personTable.refresh();
 	}
 
 	@FXML
 	private void deletePerson() {
-		log.info(personTable.getSelectionModel().getSelectedItem().getFirstName());
-		if (personModel.getPersonData().remove(personTable.getSelectionModel().getSelectedItem())) {
-			log.info("Selected Person deleted from model");
-			service.persistEvent(personModel.getFxEvent());
+		if (personTable.getSelectionModel().getSelectedItem() == null)
+			return;
+
+		Optional<ButtonType> result = fxApp.showConfirmationDialog("Persoon verwijderen?",
+				"Wilt u persoon met naam " + personTable.getSelectionModel().getSelectedItem().getFirstName() + " "
+						+ personTable.getSelectionModel().getSelectedItem().getLastName() + " verwijderen?");
+
+		if (result.get() == ButtonType.OK) {
+			if (personModel.getPersonData().remove(personTable.getSelectionModel().getSelectedItem())) {
+				log.info("Selected Person deleted from model");
+				service.persistEvent(personModel.getFxEvent());
+			}
+		} else {
+			return;
 		}
+
 	}
 
 	@FXML

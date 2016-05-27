@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -73,8 +74,9 @@
 						<RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
 						<RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
 						<RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
 						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
 						<TextField id="first-name-input" fx:id="firstNameFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1">
@@ -112,7 +114,7 @@
 						<CheckComboBox fx:id="comboBranch" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" />
 						<CheckComboBox fx:id="comboRole" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
 						<TextArea fx:id="commentsArea" prefHeight="50.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="12" GridPane.rowSpan="2" />
-						<Button alignment="CENTER" mnemonicParsing="false" onAction="#addPerson" text="Versturen" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
+						<Button alignment="CENTER" mnemonicParsing="false" onAction="#addPerson" text="Versturen" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
 							<font>
 								<Font name="Arial" size="24.0" />
 							</font>
@@ -244,6 +246,8 @@
 								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
+                  <Label text="Wil je op de hoogte blijven van vacature en stage nieuws? " textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="14" GridPane.valignment="CENTER" />
+                  <CheckBox fx:id="akkoordCheckBox" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="14" GridPane.valignment="CENTER" />
                   
 					</children>
 				</GridPane>

@@ -1,6 +1,7 @@
 package com.cgi.recruitment.fx;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.controllers.AddPersonCGIController;
 import com.cgi.recruitment.fx.controllers.AddPersonController;
+import com.cgi.recruitment.fx.controllers.EditPersonController;
 import com.cgi.recruitment.fx.controllers.EventOverviewController;
 import com.cgi.recruitment.fx.controllers.NewEventController;
 import com.cgi.recruitment.fx.controllers.PersonOverviewController;
@@ -20,6 +22,9 @@ import com.cgi.recruitment.util.AppConfiguration;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -43,9 +48,10 @@ public class FXApp implements ApplicationContextAware {
 
 	public void initApp(Stage primaryStage) {
 		loadScreenResources();
-		
+
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Recruitment App " + ((AppConfiguration)context.getBean(AppConfiguration.class)).getAppVersion());
+		this.primaryStage.setTitle(
+				"Recruitment App " + ((AppConfiguration) context.getBean(AppConfiguration.class)).getAppVersion());
 
 		try {
 			loadRootLayout();
@@ -69,8 +75,8 @@ public class FXApp implements ApplicationContextAware {
 			e.printStackTrace();
 		}
 	}
-	
-	public void showPersonOverview (FxRecruitmentEvent event) {
+
+	public void showPersonOverview(FxRecruitmentEvent event) {
 		try {
 			this.loadPersonOverview(event);
 		} catch (IOException e) {
@@ -78,8 +84,17 @@ public class FXApp implements ApplicationContextAware {
 			e.printStackTrace();
 		}
 	}
-	
-	public void showEventOverview () {
+
+	public void showEditPersonScreen(FxPerson person,FxRecruitmentEvent event) {
+		try {
+			this.loadEditPersonScreen(person,event);
+		} catch (IOException e) {
+			log.error("Failed to load PersonOverview");
+			e.printStackTrace();
+		}
+	}
+
+	public void showEventOverview() {
 		try {
 			this.loadEventOverview();
 		} catch (IOException e) {
@@ -87,8 +102,8 @@ public class FXApp implements ApplicationContextAware {
 			e.printStackTrace();
 		}
 	}
-	
-	public void showNewEventDialog () {
+
+	public void showNewEventDialog() {
 		try {
 			this.loadNewEventDialog();
 		} catch (IOException e) {
@@ -96,17 +111,17 @@ public class FXApp implements ApplicationContextAware {
 			e.printStackTrace();
 		}
 	}
-	
-	public void showAddPersonCGIDialog (FxPerson person) {
+
+	public void showAddPersonCGIDialog(FxPerson person) {
 		try {
-			this.loadNewAddPersonCGIDialog (person);
-		} catch  (IOException e) {
+			this.loadNewAddPersonCGIDialog(person);
+		} catch (IOException e) {
 			log.error("Could not load Add Person CGI Dialog");
 			e.printStackTrace();
 		}
 	}
-	
-	public Stage getStage () {
+
+	public Stage getStage() {
 		return this.primaryStage;
 	}
 
@@ -132,10 +147,10 @@ public class FXApp implements ApplicationContextAware {
 		dialogStage.initOwner(primaryStage);
 		dialogStage.setFullScreenExitKeyCombination(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
 		dialogStage.setFullScreen(true);
-		
+
 		Scene scene = new Scene(page);
 		dialogStage.setScene(scene);
-				
+
 		AddPersonController controller = (AddPersonController) loader.getController();
 		controller.setPersonOverviewModel(model);
 		controller.setMainApp(this);
@@ -159,7 +174,7 @@ public class FXApp implements ApplicationContextAware {
 
 		rootLayout.setCenter(personOverview);
 	}
-	
+
 	private void loadEventOverview() throws IOException {
 
 		FXMLLoader loader = new FXMLLoader();
@@ -175,8 +190,26 @@ public class FXApp implements ApplicationContextAware {
 
 		rootLayout.setCenter(personOverview);
 	}
-	
-	private void loadNewEventDialog () throws IOException {
+
+	private void loadEditPersonScreen(FxPerson person, FxRecruitmentEvent event) throws IOException {
+
+		FXMLLoader loader = new FXMLLoader();
+		loader.setControllerFactory(context::getBean);
+		Resource resource = getScreenResourceByFileName("EditPerson.fxml");
+		loader.setLocation(resource.getURL());
+		AnchorPane editPerson = (AnchorPane) loader.load();
+
+		rootLayout.setCenter(editPerson);
+
+		EditPersonController controller = loader.getController();
+		controller.setMainApp(this);
+		controller.setFxPerson(person);
+		controller.setFxRecruitmentEvent(event);
+
+		rootLayout.setCenter(editPerson);
+	}
+
+	private void loadNewEventDialog() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setControllerFactory(context::getBean);
 		Resource screenResource = getScreenResourceByFileName("NewEvent.fxml");
@@ -188,17 +221,17 @@ public class FXApp implements ApplicationContextAware {
 		dialogStage.setTitle("Nieuw Event");
 		dialogStage.initModality(Modality.WINDOW_MODAL);
 		dialogStage.initOwner(primaryStage);
-		
+
 		Scene scene = new Scene(page);
 		dialogStage.setScene(scene);
-				
+
 		NewEventController controller = (NewEventController) loader.getController();
 		controller.setDialogStage(dialogStage);
 
 		dialogStage.showAndWait();
 	}
-	
-	private void loadNewAddPersonCGIDialog (FxPerson person) throws IOException {
+
+	private void loadNewAddPersonCGIDialog(FxPerson person) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setControllerFactory(context::getBean);
 		Resource screenResource = getScreenResourceByFileName("AddPersonCGI.fxml");
@@ -210,14 +243,14 @@ public class FXApp implements ApplicationContextAware {
 		dialogStage.setTitle("Invullen door CGI medewerker");
 		dialogStage.initModality(Modality.WINDOW_MODAL);
 		dialogStage.initOwner(primaryStage);
-		
+
 		Scene scene = new Scene(page);
 		dialogStage.setScene(scene);
-				
+
 		AddPersonCGIController controller = (AddPersonCGIController) loader.getController();
 		controller.setFxPerson(person);
 		controller.setDialogStage(dialogStage);
-		
+		dialogStage.setAlwaysOnTop(true);
 		dialogStage.showAndWait();
 	}
 
@@ -243,6 +276,17 @@ public class FXApp implements ApplicationContextAware {
 		Scene scene = new Scene(rootLayout);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+
+	public Optional<ButtonType> showConfirmationDialog(String header, String body) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmatie");
+		alert.setHeaderText(header);
+		alert.setContentText(body);
+
+		Optional<ButtonType> result = alert.showAndWait();
+
+		return result;
 	}
 
 }
