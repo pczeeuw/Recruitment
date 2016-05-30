@@ -1,6 +1,7 @@
 package com.cgi.recruitment.fx.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -31,7 +32,7 @@ public class FxPerson {
 	private final StringProperty spokenWith;
 	private final StringProperty commentsCGI;
 	private final StringProperty newsLetter;
-	private final ObjectProperty<LocalDate> applyDate;
+	private final ObjectProperty<LocalDateTime> applyDate;
 	private final StringProperty eventName;
 	private final StringProperty eventLocation;
 	private final ObjectProperty<LocalDate> eventDate;
@@ -56,7 +57,7 @@ public class FxPerson {
 	public FxPerson(String firstName, String lastName, String emailAddress, String phoneNumber, String study,
 			LocalDate graduationDate, String educationLevel, String lookingFor, String workLocation,
 			LocalDate prefStartDate, String comments, String careerLevel, String specialism, String branch,
-			String role, String spokenWith, String commentsCGI, String newsLetter, LocalDate applyDate,
+			String role, String spokenWith, String commentsCGI, String newsLetter, LocalDateTime applyDate,
 			String eventName, String eventLocation, LocalDate eventDate) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
@@ -298,15 +299,15 @@ public class FxPerson {
 		this.newsLetter.set(newsLetter);
 	}
 	
-	public ObjectProperty<LocalDate> getApplyDateProperty() {
+	public ObjectProperty<LocalDateTime> getApplyDateProperty() {
 		return applyDate;
 	}
 
-	public LocalDate getApplyDate() {
+	public LocalDateTime getApplyDate() {
 		return applyDate.get();
 	}
 
-	public void setApplyDate(LocalDate applyDate) {
+	public void setApplyDate(LocalDateTime applyDate) {
 		this.applyDate.set(applyDate);
 	}
 	

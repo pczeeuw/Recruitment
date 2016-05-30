@@ -1,6 +1,7 @@
 package com.cgi.recruitment.fx.controllers;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.controlsfx.control.CheckComboBox;
@@ -186,7 +187,7 @@ public class AddPersonController {
 		person.setRole(CheckListConverter.normalizeArray(comboRole.getCheckModel().getCheckedItems().toString()));
 		person.setComments(commentsArea.getText());
 		person.setNewsLetter(getCheckBoxValue());
-		person.setApplyDate(LocalDate.now());
+		person.setApplyDate(LocalDateTime.now());
 		
 		if (personOverviewModel != null) {
 			person.setEventName(personOverviewModel.getFxEvent().getEventName());

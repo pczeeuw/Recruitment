@@ -1,6 +1,7 @@
 package com.cgi.recruitment.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -32,7 +33,7 @@ public class Person {
 	private String spokenWith;
 	private String commentsCGI;
 	private String newsLetter;
-	private LocalDate applyDate;
+	private LocalDateTime applyDate;
 	private String eventName;
 	private String eventLocation;
 	private LocalDate eventDate;

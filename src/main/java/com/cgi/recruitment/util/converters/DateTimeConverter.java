@@ -1,6 +1,6 @@
 package com.cgi.recruitment.util.converters;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -13,22 +13,22 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
-public class DateConverter {
-	private static final String DATE_PATTERN = "dd-MM-yyyy";
+public class DateTimeConverter {
+	private static final String DATE_PATTERN = "dd-MM-yyyy HH:mm:ss";
 
 	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
-	public static String format(LocalDate date) {
-		if (date == null)
+	public static String format(LocalDateTime dateTime) {
+		if (dateTime == null)
 			return null;
-		return DATE_FORMATTER.format(date);
+		return DATE_FORMATTER.format(dateTime);
 	}
 
-	public static LocalDate parse(String dateString) {
+	public static LocalDateTime parse(String dateString) {
 		if (dateString == null)
 			return null;
 		try {
-			return DATE_FORMATTER.parse(dateString, LocalDate::from);
+			return DATE_FORMATTER.parse(dateString, LocalDateTime::from);
 		} catch (DateTimeParseException e) {
 			log.error("Could not parse date in String: " + dateString);
 			return null;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.cgi.recruitment.fx.FXApp;
 import com.cgi.recruitment.fx.domain.FxPerson;
 import com.cgi.recruitment.fx.domain.FxRecruitmentEvent;
+import com.cgi.recruitment.util.converters.DateTimeConverter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
@@ -58,7 +59,7 @@ public class EditPersonController {
 	@FXML
 	private TextField newsletterFld;
 	@FXML
-	private DatePicker applyDate;
+	private TextField applyDate;
 
 	private FXApp fxApp;
 	private FxPerson person;
@@ -109,7 +110,7 @@ public class EditPersonController {
 		commentsCGIArea.setText(person.getCommentsCGI());
 		spokenWithFld.setText(person.getSpokenWith());
 		newsletterFld.setText(person.getNewsLetter());
-		applyDate.setValue(person.getEventDate());
+		applyDate.setText(DateTimeConverter.format(person.getApplyDate()));
 	}
 	
 	@FXML
@@ -145,7 +146,7 @@ public class EditPersonController {
 		person.setCommentsCGI(commentsCGIArea.getText());
 		person.setSpokenWith(spokenWithFld.getText());
 		person.setNewsLetter(newsletterFld.getText());
-		person.setApplyDate(applyDate.getValue());
+		person.setApplyDate(DateTimeConverter.parse(applyDate.getText()));
 		
 		log.info("Person updated!");
 	}

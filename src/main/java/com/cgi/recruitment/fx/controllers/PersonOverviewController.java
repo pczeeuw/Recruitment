@@ -1,6 +1,5 @@
 package com.cgi.recruitment.fx.controllers;
 
-import java.awt.Event;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -13,16 +12,14 @@ import com.cgi.recruitment.fx.domain.FxPerson;
 import com.cgi.recruitment.fx.models.PersonOverviewModel;
 import com.cgi.recruitment.services.EventPersistService;
 import com.cgi.recruitment.util.converters.DateConverter;
+import com.cgi.recruitment.util.converters.DateTimeConverter;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 import lombok.extern.slf4j.Slf4j;
 
@@ -102,9 +99,6 @@ public class PersonOverviewController {
 	 */
 	@FXML
 	private void initialize() {
-		// Initialize the person table with the two columns.
-		log.info("Initialize of Controller called");
-
 	}
 
 	private void initAfterModel() {
@@ -181,7 +175,7 @@ public class PersonOverviewController {
 			spokenWithLabel.setText(person.getSpokenWith());
 			commentsCGILabel.setText(person.getCommentsCGI());
 			newsLetterLabel.setText(person.getNewsLetter());
-			applyDateLabel.setText(DateConverter.format(person.getApplyDate()));
+			applyDateLabel.setText(DateTimeConverter.format(person.getApplyDate()));
 
 		} else {
 			// Person is null, remove all the text.
@@ -208,7 +202,7 @@ public class PersonOverviewController {
 	}
 
 	/**
-	 * If Button new is clicked.
+	 * If Button 'Nieuwe Aanmelding' is clicked.
 	 */
 	@FXML
 	private void handleNewPerson() {
@@ -216,6 +210,9 @@ public class PersonOverviewController {
 		personTable.refresh();
 	}
 
+	/**
+	 * If button 'Edit' is clicked:
+	 */
 	@FXML
 	private void editPerson() {
 		if (personTable.getSelectionModel().getSelectedItem() == null)
@@ -225,6 +222,9 @@ public class PersonOverviewController {
 		personTable.refresh();
 	}
 
+	/**
+	 * If button 'Delete' is clicked
+	 */
 	@FXML
 	private void deletePerson() {
 		if (personTable.getSelectionModel().getSelectedItem() == null)
@@ -245,6 +245,9 @@ public class PersonOverviewController {
 
 	}
 
+	/**
+	 * If button 'Terug' is clicked
+	 */
 	@FXML
 	private void backToEvents() {
 		service.persistEvent(personModel.getFxEvent());

@@ -120,6 +120,9 @@ public class EventOverviewController {
 		);
 		file = fileChooser.showSaveDialog(fxApp.getStage());
 
+		if (file == null) 
+			return;
+		
 		excelService.setRecruitmentEvent(eventModel.getSelectedEvent());
 		excelService.setTargetFile(file);
 

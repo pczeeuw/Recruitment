@@ -26,7 +26,7 @@ public class OrikaCustomConverter {
 	private static MapperFacade mapper;
 	static {
 		mapperFactory.getConverterFactory().registerConverter(new OrikaLocalDateConverter());
-		
+		mapperFactory.getConverterFactory().registerConverter(new OrikaLocalDateTimeConverter());
 		mapperFactory.getConverterFactory().registerConverter(new OrikaPersonListConverter ());
 		
 		
