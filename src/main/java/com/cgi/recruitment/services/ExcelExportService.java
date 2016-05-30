@@ -12,6 +12,8 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.domain.Person;
@@ -20,6 +22,7 @@ import com.cgi.recruitment.fx.domain.FxRecruitmentEvent;
 import com.cgi.recruitment.util.converters.orika.OrikaCustomConverter;
 
 @Component
+@Lazy
 public class ExcelExportService {
 	
 	private RecruitmentEvent event;
@@ -100,6 +103,10 @@ public class ExcelExportService {
 //			row.createCell(9).setCellValue(p.getComments());
 		}
 		persistWorkbook(workbook);		
+	}
+	
+	public void deleteXmlEvent () {
+		targetFile.delete();
 	}
 	
 	private void persistWorkbook (HSSFWorkbook workbook) {

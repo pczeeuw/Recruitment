@@ -16,6 +16,7 @@ import javax.xml.bind.Unmarshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.domain.RecruitmentEvent;
@@ -26,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
+@Lazy
 public class EventPersistService {
 	
 	@Autowired
@@ -93,6 +95,13 @@ public class EventPersistService {
 			log.error("Failed to load from File!");
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public void deleteEvent (String fileName) {
+		Path path = Paths.get(appProperties.getProperty("data.eventdir"),fileName);
+		if (path.toFile().exists()) {
+			path.toFile().delete();
 		}
 	}
 

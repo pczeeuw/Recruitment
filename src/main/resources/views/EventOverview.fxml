@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgi.recruitment.fx.controllers.EventOverviewController">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgi.recruitment.fx.controllers.EventOverviewController">
    <children>
       <SplitPane dividerPositions="0.45" layoutX="184.0" layoutY="-10.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -66,7 +66,7 @@
                      <buttons>
                         <Button mnemonicParsing="false" onAction="#openEvent" prefWidth="65.0" text="Open.." />
                         <Button mnemonicParsing="false" onAction="#exportEvent" prefWidth="60.0" text="Export" />
-                        <Button mnemonicParsing="false" prefWidth="60.0" text="Delete" />
+                        <Button mnemonicParsing="false" onAction="#deleteEvent" prefWidth="60.0" text="Delete" />
                      </buttons>
                   </ButtonBar>
                </children>

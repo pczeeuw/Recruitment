@@ -9,7 +9,9 @@ import com.cgi.recruitment.services.EventPersistService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class EventOverviewModel {
 	
@@ -34,6 +36,14 @@ public class EventOverviewModel {
 		for (String eventFileName : eventPersistService.getEventFileNames()) {
 			eventData.add(new FxRecruitmentEventFileName(eventFileName));
 		}
+	}
+	
+	public void deleteEvent (String eventFileName) {
+		eventPersistService.deleteEvent(eventFileName);
+		eventData.remove(eventFileName);
+		fillEventData ();
+		this.selectedEvent = null;
+		log.info("Event with filename " + eventFileName + " deleted");
 	}
 	
 	//When user clicks an event filename, load the event based on the filename

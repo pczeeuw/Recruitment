@@ -2,8 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -74,8 +74,9 @@
 						<RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
 						<RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
 						<RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
 						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
 						<TextField id="first-name-input" fx:id="firstNameFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1">
@@ -104,16 +105,16 @@
 							</font>
 						</TextField>
 						<DatePicker fx:id="graduationDateFld" maxWidth="200.0" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-						<ChoiceBox fx:id="educationLevelChc" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+						<ChoiceBox fx:id="educationLevelChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 						<CheckComboBox fx:id="interestedInChc" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 						<CheckComboBox fx:id="regionChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
 						<DatePicker fx:id="prefStartDateDap" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
-						<ChoiceBox fx:id="carreerLevelChc" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
+						<ChoiceBox fx:id="carreerLevelChc" maxWidth="200.0" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
 						<CheckComboBox fx:id="comboSkill" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
 						<CheckComboBox fx:id="comboBranch" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" />
 						<CheckComboBox fx:id="comboRole" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
 						<TextArea fx:id="commentsArea" prefHeight="50.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="12" GridPane.rowSpan="2" />
-						<Button alignment="CENTER" mnemonicParsing="false" onAction="#addPerson" text="Versturen" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
+						<Button alignment="CENTER" mnemonicParsing="false" onAction="#addPerson" text="Versturen" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
 							<font>
 								<Font name="Arial" size="24.0" />
 							</font>
@@ -190,7 +191,7 @@
 								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
-						<Label fx:id="validatorLbl" stylesheets="@css/add-person.css" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+						<Label fx:id="validatorLbl" stylesheets="@css/add-person.css" textFill="RED" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
 						<Label text="Opmerkingen" GridPane.rowIndex="12">
 							<padding>
 								<Insets left="5.0" />
@@ -226,7 +227,7 @@
 								<Insets left="5.0" />
 							</padding>
 						</Label>
-						<Label text="Carrière Niveau" GridPane.rowIndex="9">
+						<Label text="Carrière Niveau *" GridPane.rowIndex="9">
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
@@ -245,6 +246,11 @@
 								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
+                  <Label text="Wil je op de hoogte blijven van vacature en stage nieuws? " textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="14" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <CheckBox fx:id="akkoordCheckBox" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="14" GridPane.valignment="CENTER" />
                   
 					</children>
 				</GridPane>
