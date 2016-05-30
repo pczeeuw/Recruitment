@@ -73,7 +73,7 @@ public class AddPersonController {
 	private TextArea commentsArea;
 	@FXML
 	private CheckBox akkoordCheckBox;
-	
+
 	@FXML
 	private Label validatorLbl;
 	@FXML
@@ -103,8 +103,6 @@ public class AddPersonController {
 
 	@Value("${recruitment.values.ervaring}")
 	private String[] experienceList;
-	
-
 
 	private PersonOverviewModel personOverviewModel;
 
@@ -130,13 +128,13 @@ public class AddPersonController {
 	@FXML
 	public void addPerson(ActionEvent event) {
 		if (validateAll()) {
-			
-			
+
 			fxApp.showAddPersonCGIDialog(addPersonToModel());
-			
+
 			persistService.persistEvent(personOverviewModel.getFxEvent());
 			
-			validatorLbl.setText("");
+			emptyAllFields();
+			
 			log.info("Person added to model and saved to file");
 		} else {
 			validatorLbl.setText("Vul alle velden (correct) in!");
@@ -147,73 +145,65 @@ public class AddPersonController {
 		this.personOverviewModel = model;
 	}
 
+	private void emptyAllFields() {
+		firstNameFld.setText("");
+		lastNameFld.setText("");
+		emailAddressFld.setText("");
+		phoneNumberFld.setText("");
+		studyFld.setText("");
+		graduationDateFld.setValue(null);
+		educationLevelChc.setValue(null);
+		interestedInChc.getCheckModel().clearChecks();
+		regionChc.getCheckModel().clearChecks();
+		prefStartDateDap.setValue(null);
+		carreerLevelChc.setValue(null);
+		comboSkill.getCheckModel().clearChecks();
+		comboBranch.getCheckModel().clearChecks();
+		comboRole.getCheckModel().clearChecks();
+		commentsArea.setText("");
+		akkoordCheckBox.setSelected(false);
+		validatorLbl.setText("");
+	}
+
 	private FxPerson addPersonToModel() {
 		FxPerson person = new FxPerson();
 
 		person.setFirstName(firstNameFld.getText());
-		firstNameFld.setText("");
-
 		person.setLastName(LastNameConverter.convertLastName(lastNameFld.getText()));
-		lastNameFld.setText("");
-
 		person.setEmailAddress(emailAddressFld.getText());
-		emailAddressFld.setText("");
-
 		person.setPhoneNumber(PhoneNumberConverter.formatPhoneNumber(phoneNumberFld.getText()));
-		phoneNumberFld.setText("");
-
 		person.setStudy(studyFld.getText());
-		studyFld.setText("");
-
 		person.setGraduationDate(graduationDateFld.getValue());
-		graduationDateFld.setValue(null);
-
 		person.setEductionLevel(educationLevelChc.getValue());
-		educationLevelChc.setValue(null);
-
 		person.setInterestedIn(
 				CheckListConverter.normalizeArray(interestedInChc.getCheckModel().getCheckedItems().toString()));
-		interestedInChc.getCheckModel().clearChecks();
-
 		person.setRegion(CheckListConverter.normalizeArray(regionChc.getCheckModel().getCheckedItems().toString()));
-		regionChc.getCheckModel().clearChecks();
-
 		person.setPrefStartDate(prefStartDateDap.getValue());
-		prefStartDateDap.setValue(null);
-
 		person.setCareerLevel(carreerLevelChc.getValue());
-		carreerLevelChc.setValue(null);
-
 		person.setSpecialism(
 				CheckListConverter.normalizeArray(comboSkill.getCheckModel().getCheckedItems().toString()));
-		comboSkill.getCheckModel().clearChecks();
-
 		person.setBranch(CheckListConverter.normalizeArray(comboBranch.getCheckModel().getCheckedItems().toString()));
-		comboBranch.getCheckModel().clearChecks();
-
 		person.setRole(CheckListConverter.normalizeArray(comboRole.getCheckModel().getCheckedItems().toString()));
-		comboRole.getCheckModel().clearChecks();
-
 		person.setComments(commentsArea.getText());
-		commentsArea.setText("");
-		
 		person.setNewsLetter(getCheckBoxValue());
-		akkoordCheckBox.setSelected(false);
-		
 		person.setApplyDate(LocalDate.now());
-
-		if (personOverviewModel != null)
-			personOverviewModel.getPersonData().add(person);
-		else
-			log.error("Overview model is null!!");
 		
+		if (personOverviewModel != null) {
+			person.setEventName(personOverviewModel.getFxEvent().getEventName());
+			person.setEventLocation(personOverviewModel.getFxEvent().getEventLocation());
+			person.setEventDate(personOverviewModel.getFxEvent().getEventDate());
+
+			personOverviewModel.getPersonData().add(person);
+		} else {
+			log.error("Overview model is null!!");
+		}
 		return person;
 	}
 
 	private String getCheckBoxValue() {
 		if (akkoordCheckBox.isSelected())
 			return "Akkoord";
-		else 
+		else
 			return "Niet Akkoord";
 	}
 

@@ -1,5 +1,6 @@
 package com.cgi.recruitment.fx.controllers;
 
+import java.awt.Event;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -48,7 +49,9 @@ public class PersonOverviewController {
 	@FXML
 	private Label graduationLabel;
 	@FXML
-	private Label lookingForLabel;
+	private Label educationLevelLabel;
+	@FXML
+	private Label interestedInLabel;
 	@FXML
 	private Label workLocationLabel;
 	@FXML
@@ -166,7 +169,8 @@ public class PersonOverviewController {
 			phoneLabel.setText(person.getPhoneNumber());
 			studyLabel.setText(person.getStudy());
 			graduationLabel.setText(DateConverter.format(person.getGraduationDate()));
-			lookingForLabel.setText(person.getInterestedIn());
+			educationLevelLabel.setText(person.getEducationLevel());
+			interestedInLabel.setText(person.getInterestedIn());
 			workLocationLabel.setText(person.getRegion());
 			prefStartDateLabel.setText(DateConverter.format(person.getPrefStartDate()));
 			carreerLevelLabel.setText(person.getCareerLevel());
@@ -187,7 +191,8 @@ public class PersonOverviewController {
 			phoneLabel.setText("");
 			studyLabel.setText("");
 			graduationLabel.setText("");
-			lookingForLabel.setText("");
+			educationLevelLabel.setText("");
+			interestedInLabel.setText("");
 			workLocationLabel.setText("");
 			prefStartDateLabel.setText("");
 			carreerLevelLabel.setText("");
@@ -216,6 +221,7 @@ public class PersonOverviewController {
 		if (personTable.getSelectionModel().getSelectedItem() == null)
 			return;
 		fxApp.showEditPersonScreen(personTable.getSelectionModel().getSelectedItem(),personModel.getFxEvent());
+		service.persistEvent(this.personModel.getFxEvent());
 		personTable.refresh();
 	}
 

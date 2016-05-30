@@ -56,26 +56,26 @@
             <Label text="Specialisme" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <Label text="Rol" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <Label text="Gesproken met" GridPane.rowIndex="10" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <DatePicker GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <DatePicker GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.rowSpan="2" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="8" GridPane.rowSpan="2" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" text="Opslaan" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+            <TextField fx:id="firstNameFld" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="lastNameFld" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="emailAddressFld" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="phoneNumberFld" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <TextField fx:id="studyFld" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="graduationDateFld" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <DatePicker fx:id="prefStartDateDap" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <DatePicker fx:id="applyDate" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextArea fx:id="commentsArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.rowSpan="2" />
+            <TextArea fx:id="commentsCGIArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="8" GridPane.rowSpan="2" />
+            <TextField fx:id="interestedInChc" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <TextField fx:id="educationLevelChc" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="regionChc" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="carreerLevelChc" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="comboBranch" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="comboSkill" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <TextField fx:id="comboRole" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <TextField fx:id="spokenWithFld" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="newsletterFld" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+            <Button mnemonicParsing="false" onAction="#updatePerson" text="Opslaan" GridPane.columnIndex="4" GridPane.rowIndex="13" />
             <Button mnemonicParsing="false" onAction="#backToPersonOverview" text="Terug" GridPane.columnIndex="1" GridPane.rowIndex="13" />
          </children>
       </GridPane>

@@ -203,6 +203,7 @@ public class FXApp implements ApplicationContextAware {
 
 		EditPersonController controller = loader.getController();
 		controller.setMainApp(this);
+		log.info(person.getLastName() + " is being editted");
 		controller.setFxPerson(person);
 		controller.setFxRecruitmentEvent(event);
 
