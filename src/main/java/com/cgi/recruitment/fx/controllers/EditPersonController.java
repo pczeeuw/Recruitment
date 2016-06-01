@@ -2,7 +2,6 @@ package com.cgi.recruitment.fx.controllers;
 
 import java.util.Optional;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.FXApp;
@@ -19,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-@Lazy
 public class EditPersonController {
 
 	@FXML
@@ -41,6 +39,8 @@ public class EditPersonController {
 	@FXML
 	private TextField regionChc;
 	@FXML
+	private TextField homeTownFld;
+	@FXML
 	private DatePicker prefStartDateDap;
 	@FXML
 	private TextField carreerLevelChc;
@@ -57,7 +57,7 @@ public class EditPersonController {
 	@FXML
 	private TextField spokenWithFld;
 	@FXML
-	private TextField newsletterFld;
+	private TextField disclaimerFld;
 	@FXML
 	private TextField applyDate;
 
@@ -101,6 +101,7 @@ public class EditPersonController {
 		educationLevelChc.setText(person.getEducationLevel());
 		interestedInChc.setText(person.getInterestedIn());
 		regionChc.setText(person.getRegion());
+		homeTownFld.setText(person.getHomeTown());
 		prefStartDateDap.setValue(person.getPrefStartDate());
 		carreerLevelChc.setText(person.getCareerLevel());
 		comboSkill.setText(person.getSpecialism());
@@ -109,7 +110,7 @@ public class EditPersonController {
 		commentsArea.setText(person.getComments());
 		commentsCGIArea.setText(person.getCommentsCGI());
 		spokenWithFld.setText(person.getSpokenWith());
-		newsletterFld.setText(person.getNewsLetter());
+		disclaimerFld.setText(person.getDisclaimer());
 		applyDate.setText(DateTimeConverter.format(person.getApplyDate()));
 	}
 	
@@ -134,9 +135,10 @@ public class EditPersonController {
 		person.setPhoneNumber(phoneNumberFld.getText());
 		person.setStudy(studyFld.getText());
 		person.setGraduationDate(graduationDateFld.getValue());
-		person.setEductionLevel(educationLevelChc.getText());
+		person.setEducationLevel(educationLevelChc.getText());
 		person.setInterestedIn(interestedInChc.getText());
 		person.setRegion(regionChc.getText());
+		person.setHomeTown(homeTownFld.getText());
 		person.setPrefStartDate(prefStartDateDap.getValue());
 		person.setCareerLevel(carreerLevelChc.getText());
 		person.setSpecialism(comboSkill.getText());
@@ -145,7 +147,7 @@ public class EditPersonController {
 		person.setComments(commentsArea.getText());
 		person.setCommentsCGI(commentsCGIArea.getText());
 		person.setSpokenWith(spokenWithFld.getText());
-		person.setNewsLetter(newsletterFld.getText());
+		person.setDisclaimer(disclaimerFld.getText());
 		person.setApplyDate(DateTimeConverter.parse(applyDate.getText()));
 		
 		log.info("Person updated!");

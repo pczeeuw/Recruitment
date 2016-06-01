@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgi.recruitment.fx.controllers.DisclaimerController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/cgi-commit.JPG" />
+         </image>
+      </ImageView>
+      <TextArea layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" text="Verklaring omtrent het gebruik van jouw persoonlijke gegevens.&#10;&#10;Voorwaarden voor het gebruik van de vacaturebank van CGI Nederland B.V. (Hierna CGI)&#10;Jouw persoonlijke gegevens worden beschouwd als vertrouwelijke informatie en die &#10;gegevens worden alleen gebruikt voor het hieronder beschreven doel.&#10;CGI Committeert zich aan de Nederlandse en Europese wetgeving voor het gebruik van&#10;persoonsgegevens.&#10;&#10;Het doel van het gebruik van jouw persoonlijke gegevens in de vacaturebank van CGI is &#10;om de kans op een carrière binnen CGI te vergemakkelijken.&#10;&#10;Jij kunt natuurlijk solliciteren op een vacature via onze website. Dat betekent echter dat jij &#10;daarmee uitdrukkelijk toestemming verleent aan CGI om die gegevens minimaal 1 jaar te&#10;bewaren. Jij kunt er echter ook voor kiezen om je gegevens in combinatie met je CV te &#10;registeren zonder te solliciteren. Ook dan kiest CGI ervoor om je gegeven 1 jaar te &#10;bewaren. Na die periode zal CGI je desgewenst vragen om die periode te verlengen.&#10;CGI gebruikt die data eventuuel op heht moment dat er zich een passende mogelijkheid&#10;aandient, tenzij je daarvan afziet.&#10;&#10;Jij kunt te allen tijde jouw persoonlijke gegevens gegevens in onze database bijwerken of&#10;verwijderen. Die verantwoordelijkheid laten wij aan jou over. Wij bewaren jouw gegevens &#10;net zolang totdat jij aangeeft dat dit niet langer wenselijk is.&#10;&#10;Met het accepteren van deze verklaring geef jij toestemming voor het bewaren van je &#10;persoonlijke gegevens en (eventueel) je CV.&#10;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+      <Button layoutX="563.0" layoutY="455.0" mnemonicParsing="false" onAction="#gelezen" text="Gelezen" />
+   </children>
+</AnchorPane>

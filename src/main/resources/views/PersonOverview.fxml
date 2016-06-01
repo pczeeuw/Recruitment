@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="625.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgi.recruitment.fx.controllers.PersonOverviewController">
+<AnchorPane prefHeight="625.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgi.recruitment.fx.controllers.PersonOverviewController">
    <children>
       <SplitPane dividerPositions="0.45" layoutX="184.0" layoutY="-10.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -46,6 +46,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -110,56 +111,62 @@
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
                         <Label fx:id="workLocationLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <Label text="Startdatum" GridPane.rowIndex="9">
+                        <Label text="Woonplaats" GridPane.rowIndex="9">
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="homeTownLabel" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label text="Startdatum" GridPane.rowIndex="10">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="prefStartDateLabel" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <Label text="Carriere Niveau" GridPane.rowIndex="10">
+                        <Label fx:id="prefStartDateLabel" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label text="Carriere Niveau" GridPane.rowIndex="11">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="carreerLevelLabel" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                        <Label text="Specialisme" GridPane.rowIndex="11">
+                        <Label fx:id="carreerLevelLabel" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label text="Specialisme" GridPane.rowIndex="12">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="specialismLabel" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                        <Label text="Branch" GridPane.rowIndex="12">
+                        <Label fx:id="specialismLabel" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                        <Label text="Branch" GridPane.rowIndex="13">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="branchLabel" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                        <Label text="Gewenste Rol" GridPane.rowIndex="13">
+                        <Label fx:id="branchLabel" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                        <Label text="Gewenste Rol" GridPane.rowIndex="14">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="roleLabel" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                        <Label text="Opmerkingen" GridPane.rowIndex="14">
+                        <Label fx:id="roleLabel" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                        <Label text="Opmerkingen" GridPane.rowIndex="15">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="commentsLabel" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-                        <Label text="Gesproken met" GridPane.rowIndex="15">
+                        <Label fx:id="commentsLabel" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                        <Label text="Gesproken met" GridPane.rowIndex="16">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="spokenWithLabel" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-                        <Label text="Opmerkingen CGI" GridPane.rowIndex="16">
+                        <Label fx:id="spokenWithLabel" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+                        <Label text="Opmerkingen CGI" GridPane.rowIndex="17">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="commentsCGILabel" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-                        <Label text="Nieuwsbrief" GridPane.rowIndex="17">
+                        <Label fx:id="commentsCGILabel" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+                        <Label text="Disclaimer" GridPane.rowIndex="18">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="newsLetterLabel" GridPane.columnIndex="1" GridPane.rowIndex="17" />
-                        <Label text="Aanmelddatum" GridPane.rowIndex="18">
+                        <Label fx:id="newsLetterLabel" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+                        <Label text="Aanmelddatum" GridPane.rowIndex="19">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
-                        <Label fx:id="applyDateLabel" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+                        <Label fx:id="applyDateLabel" GridPane.columnIndex="1" GridPane.rowIndex="19" />
                      </children>
                   </GridPane>
                   <ButtonBar buttonMinWidth="50.0" layoutY="350.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">

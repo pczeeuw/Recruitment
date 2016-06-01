@@ -7,7 +7,6 @@ import java.util.Arrays;
 import org.controlsfx.control.CheckComboBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.FXApp;
@@ -33,13 +32,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-@Lazy
 public class AddPersonController {
 
 	@FXML
@@ -61,6 +60,8 @@ public class AddPersonController {
 	@FXML
 	private CheckComboBox<String> regionChc;
 	@FXML
+	private TextField homeTownFld;
+	@FXML
 	private DatePicker prefStartDateDap;
 	@FXML
 	private ChoiceBox<String> carreerLevelChc;
@@ -73,7 +74,7 @@ public class AddPersonController {
 	@FXML
 	private TextArea commentsArea;
 	@FXML
-	private CheckBox akkoordCheckBox;
+	private CheckBox disclaimerBox;
 
 	@FXML
 	private Label validatorLbl;
@@ -133,9 +134,9 @@ public class AddPersonController {
 			fxApp.showAddPersonCGIDialog(addPersonToModel());
 
 			persistService.persistEvent(personOverviewModel.getFxEvent());
-			
+
 			emptyAllFields();
-			
+
 			log.info("Person added to model and saved to file");
 		} else {
 			validatorLbl.setText("Vul alle velden (correct) in!");
@@ -162,7 +163,7 @@ public class AddPersonController {
 		comboBranch.getCheckModel().clearChecks();
 		comboRole.getCheckModel().clearChecks();
 		commentsArea.setText("");
-		akkoordCheckBox.setSelected(false);
+		disclaimerBox.setSelected(false);
 		validatorLbl.setText("");
 	}
 
@@ -175,10 +176,11 @@ public class AddPersonController {
 		person.setPhoneNumber(PhoneNumberConverter.formatPhoneNumber(phoneNumberFld.getText()));
 		person.setStudy(studyFld.getText());
 		person.setGraduationDate(graduationDateFld.getValue());
-		person.setEductionLevel(educationLevelChc.getValue());
+		person.setEducationLevel(educationLevelChc.getValue());
 		person.setInterestedIn(
 				CheckListConverter.normalizeArray(interestedInChc.getCheckModel().getCheckedItems().toString()));
 		person.setRegion(CheckListConverter.normalizeArray(regionChc.getCheckModel().getCheckedItems().toString()));
+		person.setHomeTown(homeTownFld.getText());
 		person.setPrefStartDate(prefStartDateDap.getValue());
 		person.setCareerLevel(carreerLevelChc.getValue());
 		person.setSpecialism(
@@ -186,9 +188,10 @@ public class AddPersonController {
 		person.setBranch(CheckListConverter.normalizeArray(comboBranch.getCheckModel().getCheckedItems().toString()));
 		person.setRole(CheckListConverter.normalizeArray(comboRole.getCheckModel().getCheckedItems().toString()));
 		person.setComments(commentsArea.getText());
-		person.setNewsLetter(getCheckBoxValue());
+		person.setDisclaimer(getCheckBoxValue());
 		person.setApplyDate(LocalDateTime.now());
-		
+		person.setEducationLevel(educationLevelChc.getValue());
+
 		if (personOverviewModel != null) {
 			person.setEventName(personOverviewModel.getFxEvent().getEventName());
 			person.setEventLocation(personOverviewModel.getFxEvent().getEventLocation());
@@ -202,7 +205,7 @@ public class AddPersonController {
 	}
 
 	private String getCheckBoxValue() {
-		if (akkoordCheckBox.isSelected())
+		if (disclaimerBox.isSelected())
 			return "Akkoord";
 		else
 			return "Niet Akkoord";
@@ -237,7 +240,13 @@ public class AddPersonController {
 				PersonValidator.validateNotRequired(comboBranch.getCheckModel().getCheckedItems().toString()));
 		allFieldsCorrect &= validateNotRequired(
 				PersonValidator.validateNotRequired(comboRole.getCheckModel().getCheckedItems().toString()));
+		allFieldsCorrect &= validateRequired(disclaimerBox.isSelected(), disclaimerBox.getStyleClass());
 		return allFieldsCorrect;
+	}
+
+	@FXML
+	public void resetForm() {
+		this.emptyAllFields();
 	}
 
 	@FXML
@@ -266,6 +275,12 @@ public class AddPersonController {
 		TextField source = (TextField) event.getSource();
 
 		validateRequired(PersonValidator.validateNotEmpty(source.getText()), source.getStyleClass());
+	}
+	
+	@FXML 
+	public void showDisclaimer (MouseEvent event) {
+		//System.err.println("Klikl" + event.getClickCount());
+		this.fxApp.showDisclaimerDialog();
 	}
 
 	private void addListeners() {

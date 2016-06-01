@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.controllers.AddPersonCGIController;
 import com.cgi.recruitment.fx.controllers.AddPersonController;
+import com.cgi.recruitment.fx.controllers.DisclaimerController;
 import com.cgi.recruitment.fx.controllers.EditPersonController;
 import com.cgi.recruitment.fx.controllers.EventOverviewController;
 import com.cgi.recruitment.fx.controllers.NewEventController;
@@ -85,9 +86,9 @@ public class FXApp implements ApplicationContextAware {
 		}
 	}
 
-	public void showEditPersonScreen(FxPerson person,FxRecruitmentEvent event) {
+	public void showEditPersonScreen(FxPerson person, FxRecruitmentEvent event) {
 		try {
-			this.loadEditPersonScreen(person,event);
+			this.loadEditPersonScreen(person, event);
 		} catch (IOException e) {
 			log.error("Failed to load PersonOverview");
 			e.printStackTrace();
@@ -97,6 +98,15 @@ public class FXApp implements ApplicationContextAware {
 	public void showEventOverview() {
 		try {
 			this.loadEventOverview();
+		} catch (IOException e) {
+			log.error("Failed to load EventOverview");
+			e.printStackTrace();
+		}
+	}
+
+	public void showDisclaimerDialog() {
+		try {
+			this.loadDisclaimerDialog();
 		} catch (IOException e) {
 			log.error("Failed to load EventOverview");
 			e.printStackTrace();
@@ -143,10 +153,11 @@ public class FXApp implements ApplicationContextAware {
 
 		Stage dialogStage = new Stage();
 		dialogStage.setTitle("Aanmelden");
-		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initModality(Modality.APPLICATION_MODAL);
 		dialogStage.initOwner(primaryStage);
 		dialogStage.setFullScreenExitKeyCombination(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
 		dialogStage.setFullScreen(true);
+		//dialogStage.
 
 		Scene scene = new Scene(page);
 		dialogStage.setScene(scene);
@@ -250,6 +261,28 @@ public class FXApp implements ApplicationContextAware {
 
 		AddPersonCGIController controller = (AddPersonCGIController) loader.getController();
 		controller.setFxPerson(person);
+		controller.setDialogStage(dialogStage);
+		dialogStage.setAlwaysOnTop(true);
+		dialogStage.showAndWait();
+	}
+
+	private void loadDisclaimerDialog() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setControllerFactory(context::getBean);
+		Resource screenResource = getScreenResourceByFileName("Disclaimer.fxml");
+
+		loader.setLocation(screenResource.getURL());
+		AnchorPane page = (AnchorPane) loader.load();
+
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Disclaimer");
+		dialogStage.initModality(Modality.APPLICATION_MODAL);
+		dialogStage.initOwner(primaryStage);
+
+		Scene scene = new Scene(page);
+		dialogStage.setScene(scene);
+
+		DisclaimerController controller = (DisclaimerController) loader.getController();
 		controller.setDialogStage(dialogStage);
 		dialogStage.setAlwaysOnTop(true);
 		dialogStage.showAndWait();

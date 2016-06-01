@@ -23,6 +23,7 @@ public class FxPerson {
 	private final StringProperty educationLevel;
 	private final StringProperty interestedIn;
 	private final StringProperty region;
+	private final StringProperty homeTown;
 	private final ObjectProperty<LocalDate> prefStartDate;
 	private final StringProperty careerLevel;
 	private final StringProperty specialism;
@@ -31,11 +32,12 @@ public class FxPerson {
 	private final StringProperty comments;
 	private final StringProperty spokenWith;
 	private final StringProperty commentsCGI;
-	private final StringProperty newsLetter;
+	private final StringProperty disclaimer;
 	private final ObjectProperty<LocalDateTime> applyDate;
 	private final StringProperty eventName;
 	private final StringProperty eventLocation;
 	private final ObjectProperty<LocalDate> eventDate;
+
 
 	/**
 	 * Default constructor.
@@ -51,14 +53,15 @@ public class FxPerson {
 	 * @param lastName
 	 */
 	public FxPerson(String firstName, String lastName) {
-		this(firstName, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+		this(firstName, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+				null, null, null, null, null, null, null);
 	}
 
 	public FxPerson(String firstName, String lastName, String emailAddress, String phoneNumber, String study,
 			LocalDate graduationDate, String educationLevel, String lookingFor, String workLocation,
-			LocalDate prefStartDate, String comments, String careerLevel, String specialism, String branch,
-			String role, String spokenWith, String commentsCGI, String newsLetter, LocalDateTime applyDate,
-			String eventName, String eventLocation, LocalDate eventDate) {
+			LocalDate prefStartDate, String comments, String careerLevel, String specialism, String branch, String role,
+			String spokenWith, String commentsCGI, String newsLetter, LocalDateTime applyDate, String eventName,
+			String eventLocation, LocalDate eventDate, String homeTown) {
 		this.firstName = new SimpleStringProperty(firstName);
 		this.lastName = new SimpleStringProperty(lastName);
 		this.emailAddress = new SimpleStringProperty(emailAddress);
@@ -70,17 +73,18 @@ public class FxPerson {
 		this.region = new SimpleStringProperty(workLocation);
 		this.prefStartDate = new SimpleObjectProperty<>(prefStartDate);
 		this.comments = new SimpleStringProperty(comments);
-		this.careerLevel = new SimpleStringProperty(careerLevel);		
-		this.specialism = new SimpleStringProperty(specialism);		
-		this.branch = new SimpleStringProperty(branch);		
+		this.careerLevel = new SimpleStringProperty(careerLevel);
+		this.specialism = new SimpleStringProperty(specialism);
+		this.branch = new SimpleStringProperty(branch);
 		this.role = new SimpleStringProperty(role);
 		this.spokenWith = new SimpleStringProperty(spokenWith);
 		this.commentsCGI = new SimpleStringProperty(commentsCGI);
-		this.newsLetter = new SimpleStringProperty(newsLetter);
-		this.applyDate = new SimpleObjectProperty<> (applyDate);
+		this.disclaimer = new SimpleStringProperty(newsLetter);
+		this.applyDate = new SimpleObjectProperty<>(applyDate);
 		this.eventName = new SimpleStringProperty(eventName);
 		this.eventLocation = new SimpleStringProperty(eventLocation);
 		this.eventDate = new SimpleObjectProperty<>(eventDate);
+		this.homeTown = new SimpleStringProperty(homeTown);
 	}
 
 	public String getFirstName() {
@@ -153,6 +157,18 @@ public class FxPerson {
 
 	public void setGraduationDate(LocalDate gradDate) {
 		this.graduationDate.set(gradDate);
+	}
+
+	public StringProperty getEducationLevelProperty() {
+		return this.educationLevel;
+	}
+
+	public String getEducationLevel() {
+		return this.educationLevel.get();
+	}
+
+	public void setEducationLevel(String educationLevel) {
+		this.educationLevel.set(educationLevel);
 	}
 
 	public StringProperty getInterestedInProperty() {
@@ -251,18 +267,6 @@ public class FxPerson {
 		this.role.set(role);
 	}
 
-	public StringProperty getEducationLevelProperty() {
-		return this.educationLevel;
-	}
-
-	public String getEducationLevel() {
-		return this.educationLevel.get();
-	}
-
-	public void setEductionLevel(String educationLevel) {
-		this.educationLevel.set(educationLevel);
-	}
-	
 	public StringProperty getSpokenWithProperty() {
 		return this.spokenWith;
 	}
@@ -274,7 +278,7 @@ public class FxPerson {
 	public void setSpokenWith(String spokenWith) {
 		this.spokenWith.set(spokenWith);
 	}
-	
+
 	public StringProperty getCommentsCGIProperty() {
 		return this.commentsCGI;
 	}
@@ -286,19 +290,19 @@ public class FxPerson {
 	public void setCommentsCGI(String commentsCGI) {
 		this.commentsCGI.set(commentsCGI);
 	}
-	
-	public StringProperty getNewsLetterProperty() {
-		return this.newsLetter;
+
+	public StringProperty getDisclaimerProperty() {
+		return this.disclaimer;
 	}
 
-	public String getNewsLetter() {
-		return this.newsLetter.get();
+	public String getDisclaimer() {
+		return this.disclaimer.get();
 	}
 
-	public void setNewsLetter(String newsLetter) {
-		this.newsLetter.set(newsLetter);
+	public void setDisclaimer(String newsLetter) {
+		this.disclaimer.set(newsLetter);
 	}
-	
+
 	public ObjectProperty<LocalDateTime> getApplyDateProperty() {
 		return applyDate;
 	}
@@ -310,7 +314,7 @@ public class FxPerson {
 	public void setApplyDate(LocalDateTime applyDate) {
 		this.applyDate.set(applyDate);
 	}
-	
+
 	public StringProperty getEventNameProperty() {
 		return this.eventName;
 	}
@@ -322,7 +326,7 @@ public class FxPerson {
 	public void setEventName(String eventName) {
 		this.eventName.set(eventName);
 	}
-	
+
 	public StringProperty getEventLocationProperty() {
 		return this.eventLocation;
 	}
@@ -334,7 +338,7 @@ public class FxPerson {
 	public void setEventLocation(String eventLocation) {
 		this.eventLocation.set(eventLocation);
 	}
-	
+
 	public ObjectProperty<LocalDate> getEventDateProperty() {
 		return eventDate;
 	}
@@ -346,5 +350,18 @@ public class FxPerson {
 	public void setEventDate(LocalDate eventDate) {
 		this.eventDate.set(eventDate);
 	}
+
+	public StringProperty getHomeTownProperty() {
+		return this.homeTown;
+	}
+
+	public String getHomeTown() {
+		return this.homeTown.get();
+	}
+
+	public void setHomeTown(String homeTown) {
+		this.homeTown.set(homeTown);
+	}
+
 
 }

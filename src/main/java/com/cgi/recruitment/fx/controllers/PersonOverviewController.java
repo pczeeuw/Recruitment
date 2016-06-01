@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.FXApp;
@@ -25,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-@Lazy
 public class PersonOverviewController {
 	@FXML
 	private TableView<FxPerson> personTable;
@@ -51,6 +49,8 @@ public class PersonOverviewController {
 	private Label interestedInLabel;
 	@FXML
 	private Label workLocationLabel;
+	@FXML
+	private Label homeTownLabel;
 	@FXML
 	private Label prefStartDateLabel;
 	@FXML
@@ -166,6 +166,7 @@ public class PersonOverviewController {
 			educationLevelLabel.setText(person.getEducationLevel());
 			interestedInLabel.setText(person.getInterestedIn());
 			workLocationLabel.setText(person.getRegion());
+			homeTownLabel.setText(person.getHomeTown());
 			prefStartDateLabel.setText(DateConverter.format(person.getPrefStartDate()));
 			carreerLevelLabel.setText(person.getCareerLevel());
 			specialismLabel.setText(person.getSpecialism());
@@ -174,7 +175,7 @@ public class PersonOverviewController {
 			commentsLabel.setText(person.getComments());
 			spokenWithLabel.setText(person.getSpokenWith());
 			commentsCGILabel.setText(person.getCommentsCGI());
-			newsLetterLabel.setText(person.getNewsLetter());
+			newsLetterLabel.setText(person.getDisclaimer());
 			applyDateLabel.setText(DateTimeConverter.format(person.getApplyDate()));
 
 		} else {
@@ -188,6 +189,7 @@ public class PersonOverviewController {
 			educationLevelLabel.setText("");
 			interestedInLabel.setText("");
 			workLocationLabel.setText("");
+			homeTownLabel.setText("");
 			prefStartDateLabel.setText("");
 			carreerLevelLabel.setText("");
 			specialismLabel.setText("");

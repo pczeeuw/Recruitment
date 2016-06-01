@@ -6,12 +6,11 @@ import java.time.LocalDateTime;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import javafx.beans.property.StringProperty;
 import lombok.Data;
 
 
 @XmlRootElement(name="person")
-@XmlType(propOrder = {"firstName","lastName","emailAddress","phoneNumber","study","graduationDate","educationLevel","interestedIn","region","prefStartDate","comments","careerLevel","specialism","branch","role","spokenWith","commentsCGI","newsLetter","applyDate","eventName","eventLocation","eventDate"})
+@XmlType(propOrder = {"firstName","lastName","emailAddress","phoneNumber","study","graduationDate","educationLevel","interestedIn","region","homeTown","prefStartDate","comments","careerLevel","specialism","branch","role","spokenWith","commentsCGI","disclaimer","applyDate","eventName","eventLocation","eventDate"})
 
 @Data 
 public class Person {
@@ -32,9 +31,10 @@ public class Person {
 	private String comments;
 	private String spokenWith;
 	private String commentsCGI;
-	private String newsLetter;
+	private String disclaimer;
 	private LocalDateTime applyDate;
 	private String eventName;
 	private String eventLocation;
 	private LocalDate eventDate;
+	private String homeTown;
 }

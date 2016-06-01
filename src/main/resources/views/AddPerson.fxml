@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -46,14 +47,18 @@
 					<image>
 						<Image url="@img/bg-right.jpg" />
 					</image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
 				</ImageView>
 				<ImageView fitHeight="600.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.rowIndex="1">
 					<image>
 						<Image url="@img/bg-left.jpg" />
 					</image>
 				</ImageView>
-				<GridPane fx:id="gridPane" alignment="CENTER" prefWidth="800.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+				<GridPane fx:id="gridPane" alignment="CENTER" maxWidth="800.0" prefWidth="800.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
 					<columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
@@ -79,155 +84,208 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField id="first-name-input" fx:id="firstNameFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1">
+						<TextField id="first-name-input" fx:id="firstNameFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="2" GridPane.halignment="LEFT">
 							<font>
 								<Font name="Arial" size="18.0" />
 							</font>
 						</TextField>
-						<TextField id="last-name-input" fx:id="lastNameFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+						<TextField id="last-name-input" fx:id="lastNameFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="4" GridPane.halignment="LEFT">
 							<font>
 								<Font name="Arial" size="18.0" />
 							</font>
 						</TextField>
-						<TextField id="email-input" fx:id="emailAddressFld" maxWidth="200.0" onKeyTyped="#validateEmailAddress" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+						<TextField id="email-input" fx:id="emailAddressFld" maxWidth="200.0" onKeyTyped="#validateEmailAddress" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
 							<font>
 								<Font name="Arial" size="18.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="phoneNumberFld" maxWidth="200.0" onKeyTyped="#validatePhoneNumber" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+						<TextField fx:id="phoneNumberFld" maxWidth="200.0" onKeyTyped="#validatePhoneNumber" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1">
 							<font>
 								<Font name="Arial" size="18.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="studyFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+						<TextField fx:id="studyFld" maxWidth="200.0" onKeyTyped="#validateNotEmpty" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3">
 							<font>
 								<Font name="Arial" size="18.0" />
 							</font>
 						</TextField>
-						<DatePicker fx:id="graduationDateFld" maxWidth="200.0" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-						<ChoiceBox fx:id="educationLevelChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-						<CheckComboBox fx:id="interestedInChc" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-						<CheckComboBox fx:id="regionChc" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-						<DatePicker fx:id="prefStartDateDap" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
-						<ChoiceBox fx:id="carreerLevelChc" maxWidth="200.0" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
-						<CheckComboBox fx:id="comboSkill" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
-						<CheckComboBox fx:id="comboBranch" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" />
-						<CheckComboBox fx:id="comboRole" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
-						<TextArea fx:id="commentsArea" prefHeight="50.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="12" GridPane.rowSpan="2" />
-						<Button alignment="CENTER" mnemonicParsing="false" onAction="#addPerson" text="Versturen" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
+						<DatePicker fx:id="graduationDateFld" maxWidth="200.0" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+						<ChoiceBox fx:id="educationLevelChc" maxWidth="200.0" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
+						<CheckComboBox fx:id="interestedInChc" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+						<CheckComboBox fx:id="regionChc" maxWidth="200.0" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+						<DatePicker fx:id="prefStartDateDap" maxWidth="200.0" onHidden="#validateDate" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
+                  <TextField fx:id="homeTownFld" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
+						<ChoiceBox fx:id="carreerLevelChc" maxWidth="200.0" prefWidth="200.0" stylesheets="@css/add-person.css" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
+						<CheckComboBox fx:id="comboSkill" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
+						<CheckComboBox fx:id="comboBranch" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="10" />
+						<CheckComboBox fx:id="comboRole" maxWidth="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="10" />
+						<TextArea fx:id="commentsArea" maxWidth="600.0" prefHeight="75.0" prefWidth="600.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.rowIndex="12" GridPane.rowSpan="2" />
+                  <CheckBox fx:id="disclaimerBox" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" stylesheets="@css/add-person.css" underline="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.halignment="RIGHT" GridPane.rowIndex="14" GridPane.valignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></CheckBox>
+						<Button alignment="CENTER" mnemonicParsing="false" onAction="#addPerson" text="Opslaan" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
 							<font>
 								<Font name="Arial" size="24.0" />
 							</font>
 						</Button>
-						<Label text="Voornaam *">
+                  <Button mnemonicParsing="false" onAction="#resetForm" text="Reset" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                  </Button>
+						<Label text="Voornaam *" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Achternaam *" GridPane.columnIndex="2">
+						<Label text="Achternaam *" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="E-mail Adres *" GridPane.rowIndex="1">
+						<Label text="E-mail Adres *" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Telefoonnummer" GridPane.columnIndex="2" GridPane.rowIndex="1">
+						<Label text="Telefoonnummer" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Studierichting *" GridPane.rowIndex="3">
+						<Label text="Studierichting *" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Afstudeerdatum" GridPane.columnIndex="2" GridPane.rowIndex="3">
+						<Label text="Afstudeerdatum" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Geinteresseerd in" GridPane.rowIndex="6">
+						<Label text="Geinteresseerd in" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Regio" GridPane.columnIndex="2" GridPane.rowIndex="6">
+						<Label text="Regio" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Per wanneer?" GridPane.rowIndex="7">
+                  <Label text="Woonplaats" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Label>
+						<Label text="Per wanneer?" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label fx:id="validatorLbl" stylesheets="@css/add-person.css" textFill="RED" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
-						<Label text="Opmerkingen" GridPane.rowIndex="12">
+						<Label text="Opmerkingen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="12">
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Opleidingsniveau *" GridPane.rowIndex="4">
+						<Label text="Opleidingsniveau *" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
 							<padding>
 								<Insets left="5.0" />
 							</padding>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Specialisme" GridPane.columnIndex="2" GridPane.rowIndex="9">
+						<Label text="Specialisme" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
 							<padding>
 								<Insets left="5.0" />
 							</padding>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Branche" GridPane.rowIndex="10">
+						<Label text="Branche" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
 							<GridPane.margin>
-								<Insets />
+								<Insets right="5.0" />
 							</GridPane.margin>
 							<padding>
 								<Insets left="5.0" />
 							</padding>
 						</Label>
-						<Label text="Carrière Niveau *" GridPane.rowIndex="9">
+						<Label text="Carrière Niveau *" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
@@ -237,20 +295,30 @@
 							<padding>
 								<Insets left="5.0" />
 							</padding>
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
 						</Label>
-						<Label text="Rol" GridPane.columnIndex="2" GridPane.rowIndex="10">
+						<Label text="Rol" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
 							<GridPane.margin>
-								<Insets left="5.0" />
+								<Insets right="5.0" />
 							</GridPane.margin>
 							<font>
 								<Font name="Arial" size="20.0" />
 							</font>
 						</Label>
-                  <Label text="Wil je op de hoogte blijven van vacature en stage nieuws? " textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="14" GridPane.valignment="CENTER">
+						<Label fx:id="validatorLbl" stylesheets="@css/add-person.css" textFill="RED" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font></Label>
-                  <CheckBox fx:id="akkoordCheckBox" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="14" GridPane.valignment="CENTER" />
+                  <Label contentDisplay="RIGHT" onMouseClicked="#showDisclaimer" text="Ik ben akkoord met de verklaring omtrent het gebruik van mijn persoonlijke gegevens *" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.halignment="RIGHT" GridPane.rowIndex="14">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
                   
 					</children>
 				</GridPane>

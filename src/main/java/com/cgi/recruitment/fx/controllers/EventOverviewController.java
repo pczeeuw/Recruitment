@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.cgi.recruitment.fx.FXApp;
@@ -15,8 +14,6 @@ import com.cgi.recruitment.fx.models.EventOverviewModel;
 import com.cgi.recruitment.services.ExcelExportService;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -24,7 +21,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 
 @Component
-@Lazy
 public class EventOverviewController {
 	@FXML
 	private TableView<FxRecruitmentEventFileName> eventTable;
